@@ -321,4 +321,15 @@ chkconfig openstack-cinder-api on;
 chkconfig openstack-cinder-scheduler on;
 echo "Done.";
 
+
+#Dashboard install
+yum install -y memcached python-memcached mod_wsgi openstack-dashboard 
+/bin/sed -i.org -e "sOPENSTACK_HOST = \"[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}.[0-9]\{1,3\}\"/OPENSTACK_HOST = \"controller\"/"  /etc/openstack-dashboard/local_settings
+
+
+service httpd start
+service memcached start
+chkconfig httpd on
+chkconfig memcached on
+
 ### DONE ###

@@ -19,3 +19,7 @@ yum install ntp mysql mysql-server MySQL-python yum-plugin-priorities http://rep
 
 #Service config
 service ntpd start;chkconfig ntpd on;service mysqld start;chkconfig mysqld on;service qpidd start;chkconfig qpidd on;
+
+## Disable SELINUX
+/usr/sbin/setenforce 0
+/bin/sed -i.org -e 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
