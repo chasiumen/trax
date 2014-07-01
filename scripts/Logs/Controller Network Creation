@@ -1,0 +1,134 @@
+[root@controller ~]# neutron net-create ext-net --shared --router:external=True
+Created a new network:
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | fc78aa16-ccba-434d-98aa-e6fd9ac63028 |
+| name                      | ext-net                              |
+| provider:network_type     | gre                                  |
+| provider:physical_network |                                      |
+| provider:segmentation_id  | 1                                    |
+| router:external           | True                                 |
+| shared                    | True                                 |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tenant_id                 | 42b6d8d6e47346f0ba1f3b28a12ad1b5     |
++---------------------------+--------------------------------------+
+[root@controller ~]# neutron subnet-create ext-net --name ext-subnet --allocation-pool start=69.43.73.232,end=69.43.73.238 --disable-dhcp --gateway 69.43.73.225 69.43.73.224/28
+Created a new subnet:
++------------------+--------------------------------------------------+
+| Field            | Value                                            |
++------------------+--------------------------------------------------+
+| allocation_pools | {"start": "69.43.73.232", "end": "69.43.73.238"} |
+| cidr             | 69.43.73.224/28                                  |
+| dns_nameservers  |                                                  |
+| enable_dhcp      | False                                            |
+| gateway_ip       | 69.43.73.225                                     |
+| host_routes      |                                                  |
+| id               | e2513e65-b27e-4b62-99c8-181ead9f4320             |
+| ip_version       | 4                                                |
+| name             | ext-subnet                                       |
+| network_id       | fc78aa16-ccba-434d-98aa-e6fd9ac63028             |
+| tenant_id        | 42b6d8d6e47346f0ba1f3b28a12ad1b5                 |
++------------------+--------------------------------------------------+
+[root@controller ~]# neutron net-create demo-net
+Created a new network:
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | 3dc2b3da-143e-4fb2-9eca-ac17236d1f6a |
+| name                      | demo-net                             |
+| provider:network_type     | gre                                  |
+| provider:physical_network |                                      |
+| provider:segmentation_id  | 2                                    |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tenant_id                 | 42b6d8d6e47346f0ba1f3b28a12ad1b5     |
++---------------------------+--------------------------------------+
+[root@controller ~]# neutron net-remove demo-net
+Unknown command [u'net-remove', u'demo-net']
+[root@controller ~]# neutron net-delete demo-net
+Deleted network: demo-net
+[root@controller ~]# keystone user-list
++----------------------------------+---------+---------+---------------------+
+|                id                |   name  | enabled |        email        |
++----------------------------------+---------+---------+---------------------+
+| 1e84baaa848a4c7983fce0b2497fd7d3 |  admin  |   True  |  admin@devtrax.com  |
+| 473dd74b20134fc9962931c3c47737b2 |  austin |   True  |  austin@devtrax.com |
+| 9bcd42a0a65e4827b1ba4fc0528ecfb6 |  glance |   True  |  glance@devtrax.com |
+| 1f3f09d5d0274a799bacfe3b9aee3276 | morinor |   True  | morinor@devtrax.com |
+| 0a1fc653c5824f0c9efd4b331d99397e | neutron |   True  | neutron@devtrax.com |
+| 0f95070b1530424cac88d135040428ab |   nova  |   True  |   nova@devtrax.com  |
+| 7eb3e6e891fd4711a7eb579443b296fc |   tim   |   True  |   tim@devtrax.com   |
+| 299cb1efa47e4524a97488e21cf460a6 |  zhaox  |   True  |  zhaox@devtrax.com  |
++----------------------------------+---------+---------+---------------------+
+[root@controller ~]# nano basicuser-openrc.sh
+[root@controller ~]# keystone user-role-list
++----------------------------------+----------+----------------------------------+----------------------------------+
+|                id                |   name   |             user_id              |            tenant_id             |
++----------------------------------+----------+----------------------------------+----------------------------------+
+| 9fe2ff9ee4384b1894a90878d3e92bab | _member_ | 1e84baaa848a4c7983fce0b2497fd7d3 | 42b6d8d6e47346f0ba1f3b28a12ad1b5 |
+| b9f3fa0c796448dda5b22484d150611b |  admin   | 1e84baaa848a4c7983fce0b2497fd7d3 | 42b6d8d6e47346f0ba1f3b28a12ad1b5 |
++----------------------------------+----------+----------------------------------+----------------------------------+
+[root@controller ~]# keystone tenant-list
++----------------------------------+-----------+---------+
+|                id                |    name   | enabled |
++----------------------------------+-----------+---------+
+| 42b6d8d6e47346f0ba1f3b28a12ad1b5 |   admin   |   True  |
+| f882dbcc65d145689630829a344a632b | basicuser |   True  |
+| 14473d49a2454736acfaf0136703adff |  service  |   True  |
++----------------------------------+-----------+---------+
+[root@controller ~]# exit
+logout
+[austin@controller ~]$ sudo su -
+[root@controller ~]# source basicuser-openrc.sh
+[root@controller ~]# neutron net-create user-net
+Created a new network:
++----------------+--------------------------------------+
+| Field          | Value                                |
++----------------+--------------------------------------+
+| admin_state_up | True                                 |
+| id             | 3a8d601d-6b2f-47e1-b95d-526d78f8b65b |
+| name           | user-net                             |
+| shared         | False                                |
+| status         | ACTIVE                               |
+| subnets        |                                      |
+| tenant_id      | f882dbcc65d145689630829a344a632b     |
++----------------+--------------------------------------+
+[root@controller ~]# neutron subnet-create user-net --name user-subnet --gateway 192.168.1.1 192.168.1.0/24
+Created a new subnet:
++------------------+--------------------------------------------------+
+| Field            | Value                                            |
++------------------+--------------------------------------------------+
+| allocation_pools | {"start": "192.168.1.2", "end": "192.168.1.254"} |
+| cidr             | 192.168.1.0/24                                   |
+| dns_nameservers  |                                                  |
+| enable_dhcp      | True                                             |
+| gateway_ip       | 192.168.1.1                                      |
+| host_routes      |                                                  |
+| id               | 4f6904b5-3855-4d6a-b5e5-625e4080e94e             |
+| ip_version       | 4                                                |
+| name             | user-subnet                                      |
+| network_id       | 3a8d601d-6b2f-47e1-b95d-526d78f8b65b             |
+| tenant_id        | f882dbcc65d145689630829a344a632b                 |
++------------------+--------------------------------------------------+
+[root@controller ~]# neutron router-create tenant-router
+Created a new router:
++-----------------------+--------------------------------------+
+| Field                 | Value                                |
++-----------------------+--------------------------------------+
+| admin_state_up        | True                                 |
+| external_gateway_info |                                      |
+| id                    | fceb07f1-959e-44ff-8d1c-a106e6448555 |
+| name                  | tenant-router                        |
+| status                | ACTIVE                               |
+| tenant_id             | f882dbcc65d145689630829a344a632b     |
++-----------------------+--------------------------------------+
+[root@controller ~]# neutron router-interface-add tenant-router user-subnet
+Added interface 1dee78cc-1c0d-4cb6-943a-b3a21ebc5648 to router tenant-router.
+[root@controller ~]# neutron router-gateway-set tenant-router ext-net
+Set gateway for router tenant-router
+[root@controller ~]# 
