@@ -29,7 +29,7 @@ class openstack_api:
             print "Error: Unreachable to the host", 'url'
             print 'code:', r.status_code
 
-
+    #POST
     def send(self, url, payload, headers):
         print '==========Sending Request=========='
         print '[POST]'
@@ -41,9 +41,6 @@ class openstack_api:
         #print '-----'*10, 'INPUT END', '-----'*10
         
         r = requests.post(url, data, headers=headers)
-        
-        
-       
         #check response 
         if (r.ok):
             print 'code:', r.status_code
@@ -60,33 +57,3 @@ class openstack_api:
             print 'code:', r.status_code
 
 
-
-
-
-#    def RepoNames(self, url):
-#        r = requests.get(url)
-#        if (r.ok):
-#            data = json.loads(r.text or r.content)
-#            print '==========List of the Repos=========='
-#            print '(' + url + ')'
-#            json_out = json.dumps(data, sort_keys=True, indent=4)
-#            #for i in range(0, len(data)):
-#                #print data[i]['name']
-#            print json_out
-#        else:
-#            print "Error: Unreachable to the host", 'url'
-#            sys.exit()
-#
-#    def totalNumberOfRepos(self, url):
-#        r = requests.get(url)
-#        if (r.ok):
-#            data = json.loads(r.text or r.content)
-#            print 'Total number of Repo: ' + '[' + str(len(data)) + ']'
-#
-#    def send(self, url):
-#        r = requests.post(url)
-#        ir
-#url = 'https://api.github.com/users/chasiumen/repos'
-#a = git_api('test')
-#a.RepoNames(url)
-#a.totalNumberOfRepos(url)
