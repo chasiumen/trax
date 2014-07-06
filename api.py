@@ -30,18 +30,20 @@ class openstack_api:
             print 'code:', r.status_code
 
 
-    def send(self, url, payload):
+    def send(self, url, payload, headers):
         print '==========Sending Request=========='
         print '[POST]'
         print '(' + url + ')'
-        
         data=json.dumps(payload)
-        r = requests.post(url, data)
+         #print '-----'*10, 'INPUT DATA', '-----'*10
+        print 'Header:', headers
+        print 'Data:', data
+        #print '-----'*10, 'INPUT END', '-----'*10
         
-        print '-----'*10, 'INPUT DATA', '-----'*10
-        print r.text
-        print '-----'*10, 'INPUT END', '-----'*10
+        r = requests.post(url, data, headers=headers)
         
+        
+       
         #check response 
         if (r.ok):
             print 'code:', r.status_code

@@ -35,6 +35,7 @@ repo = 'https://github.com/chasiumen/github-api-testing.git'
 #working directory
 wdir = '/Users/leox/github/github-api-testing/'
 
+#curl -i 'http://69.43.73.229:5000/v2.0/tokens' -X POST -H "Content-Type: application/json" -H "Accept: application/json"   -d '{"auth": {"tenantName": "admin", "passwordCredentials": {"username": "admin", "password": "548295a7ebf749b74d42"}}}'
 
 ##USER INPUT
 print 'Access to Horizon'
@@ -49,5 +50,5 @@ print payload
 #print url
 a = api.openstack_api('test')
 a.get(url)
-a.send(url, payload)
+a.send(token_url, payload, headers)
 
