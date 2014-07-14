@@ -1,0 +1,93 @@
+neurton network script
+
+create user
+create user tenant (default)
+
+add router
+specify subnet
+associate with floating ip
+
+
+
+ EXT-NET            PRIVATE         User1 net 10.0.0.1
+    |                   |   R1      |       
+    |                   |----X----- |
+    |--------X--------- |           |
+    |       router      |           |
+                        |    R2             User2 net 10.0.1.1
+                        |-----X-------------|
+                        |                   |
+                        |                   |
+                        
+
+###### KEYSTONE #######
+#Create Test cuser Tenant
+keystone tenant-create --name=testuser --description="Test User Tenant"
+
+#Create user account
+keystone user-create --name=chasiumen --pass=admin --email=morinor@devtrax.com
+keystone user-role-add --user=chasiumen --role=_member_ --tenant=testuser
+#keystone user-role-add --user=chasiumen --role=admin --tenant=testuser
+548295a7ebf749b74d42
+
+#remove user
+#keystone user-role-remove --user=chasiumen --role=admin --tenant=testuser
+keystone user-role-remove --user=chasiumen --role=_member_ --tenant=testuser
+keystone user-delete chasiumen
+
+#remove tenant
+keystone tenant-delete testuser
+
+## NEUTRON ##
+
+--os-username=chasiumen --os-password=admin --os-tenant-name=testuser --os-auth-url=http://controller:35357/v2.0
+
+
+
+
+#Create basic neutron network
+    
+    source /root/keystonerc_admin
+    neutron router-create router1 #create router1 and get router1 id
+    
+    ROUTER_ID=$(neutron router-show router1 | grep -i tenant_id | awk -F '|' '{print $3}')
+    ADMIN_ID=$(keystone tenant-list | grep admin | awk -F '|' '{print $2}') #Case public
+
+    neutron net-create public --tenant-id $ADMIN_ID --router:external=True
+    #Assign IP address rage on networks
+    #neutron subnet-create ext-net \
+    #  --allocation-pool start=FLOATING_IP_START,end=FLOATING_IP_END \
+    #  --gateway=EXTERNAL_INTERFACE_GATEWAY --enable_dhcp=False \
+    #  EXTERNAL_INTERFACE_CIDR
+    neutron subnet-create public  --name public_subnet01 --allocation-pool start=192.168.1.200,end=192.168.1.224 --gateway=192.168.1.1 --enable_dhcp=False 192.168.1.0/24
+    #Case private
+    #neutron net-create private-net --tenant-id $routerid --shared
+    neutron net-create private-net --tenant-id $ADMIN_ID
+    neutron subnet-create private-net 10.0.0.0/24 --name private_subnet01 --enable_dhcp=True --gateway=10.0.0.1 --dns-nameserver 8.8.8.8 
+    neutron net-update private-net --shared
+
+    #Assing router1 gateway as public network
+    neutron router-gateway-set router1 public
+    neutron router-interface-add router1 subnet=private_subnet01 #connect private network with router1
+
+       
+
+
+
+192.168.1.159   compute
+192.168.1.160   controller
+192.168.1.161   network
+
+
+#Computer node
+COMP_MNG='10.0.0.31'
+COMP_TUN='10.0.1.31
+
+
+#Controller node
+CONT_MNG='10.0.0.11'
+CONT_TUN='10.0.1.11'
+
+#Network node
+NET_MNG='10.0.0.21'
+NET_TUN='10.0.1.21'

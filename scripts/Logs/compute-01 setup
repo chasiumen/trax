@@ -1,0 +1,975 @@
+[root@compute-01 ~]# ./compute.sh 
++ echo 'Installing Compute Service (Nova)...'
+Installing Compute Service (Nova)...
++ yum install --enablerepo=epel openstack-nova-compute -y
+Loaded plugins: fastestmirror, priorities, security
+Loading mirror speeds from cached hostfile
+ * base: centos.mirror.nac.net
+ * epel: mirror.seas.harvard.edu
+ * extras: mirror.lug.udel.edu
+ * updates: mirror.us.leaseweb.net
+foreman                                                                                                                                                                       | 2.9 kB     00:00     
+foreman-plugins                                                                                                                                                               | 2.9 kB     00:00     
+openstack-icehouse                                                                                                                                                            | 2.9 kB     00:00     
+openstack-icehouse/primary_db                                                                                                                                                 | 773 kB     00:00     
+puppetlabs-deps                                                                                                                                                               | 2.5 kB     00:00     
+puppetlabs-products                                                                                                                                                           | 2.5 kB     00:00     
+215 packages excluded due to repository priority protections
+Setting up Install Process
+Resolving Dependencies
+--> Running transaction check
+---> Package openstack-nova-compute.noarch 0:2014.1.1-1.el6 will be installed
+--> Processing Dependency: openstack-nova-common = 2014.1.1-1.el6 for package: openstack-nova-compute-2014.1.1-1.el6.noarch
+--> Processing Dependency: libvirt >= 0.9.6 for package: openstack-nova-compute-2014.1.1-1.el6.noarch
+--> Processing Dependency: libguestfs-mount >= 1.7.17 for package: openstack-nova-compute-2014.1.1-1.el6.noarch
+--> Processing Dependency: tunctl for package: openstack-nova-compute-2014.1.1-1.el6.noarch
+--> Processing Dependency: qemu-kvm for package: openstack-nova-compute-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-libguestfs for package: openstack-nova-compute-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-cinderclient for package: openstack-nova-compute-2014.1.1-1.el6.noarch
+--> Processing Dependency: libvirt-python for package: openstack-nova-compute-2014.1.1-1.el6.noarch
+--> Processing Dependency: iscsi-initiator-utils for package: openstack-nova-compute-2014.1.1-1.el6.noarch
+--> Processing Dependency: ipmitool for package: openstack-nova-compute-2014.1.1-1.el6.noarch
+--> Processing Dependency: genisoimage for package: openstack-nova-compute-2014.1.1-1.el6.noarch
+--> Processing Dependency: fuse for package: openstack-nova-compute-2014.1.1-1.el6.noarch
+--> Running transaction check
+---> Package fuse.x86_64 0:2.8.3-4.el6 will be installed
+---> Package genisoimage.x86_64 0:1.1.9-12.el6 will be installed
+---> Package ipmitool.x86_64 0:1.8.11-16.el6 will be installed
+---> Package iscsi-initiator-utils.x86_64 0:6.2.0.873-10.el6 will be installed
+---> Package libguestfs-tools-c.x86_64 1:1.20.11-2.el6 will be installed
+--> Processing Dependency: libguestfs = 1:1.20.11-2.el6 for package: 1:libguestfs-tools-c-1.20.11-2.el6.x86_64
+--> Processing Dependency: /usr/bin/qemu-img for package: 1:libguestfs-tools-c-1.20.11-2.el6.x86_64
+--> Processing Dependency: libvirt.so.0()(64bit) for package: 1:libguestfs-tools-c-1.20.11-2.el6.x86_64
+--> Processing Dependency: libguestfs.so.0()(64bit) for package: 1:libguestfs-tools-c-1.20.11-2.el6.x86_64
+--> Processing Dependency: libfuse.so.2()(64bit) for package: 1:libguestfs-tools-c-1.20.11-2.el6.x86_64
+--> Processing Dependency: libconfig.so.8()(64bit) for package: 1:libguestfs-tools-c-1.20.11-2.el6.x86_64
+---> Package libvirt.x86_64 0:0.10.2-29.el6_5.9 will be installed
+--> Processing Dependency: dnsmasq >= 2.41 for package: libvirt-0.10.2-29.el6_5.9.x86_64
+--> Processing Dependency: radvd for package: libvirt-0.10.2-29.el6_5.9.x86_64
+--> Processing Dependency: lzop for package: libvirt-0.10.2-29.el6_5.9.x86_64
+--> Processing Dependency: libnetcf.so.1(NETCF_1.4.0)(64bit) for package: libvirt-0.10.2-29.el6_5.9.x86_64
+--> Processing Dependency: libnetcf.so.1(NETCF_1.3.0)(64bit) for package: libvirt-0.10.2-29.el6_5.9.x86_64
+--> Processing Dependency: libnetcf.so.1(NETCF_1.2.0)(64bit) for package: libvirt-0.10.2-29.el6_5.9.x86_64
+--> Processing Dependency: libnetcf.so.1(NETCF_1.0.0)(64bit) for package: libvirt-0.10.2-29.el6_5.9.x86_64
+--> Processing Dependency: ebtables for package: libvirt-0.10.2-29.el6_5.9.x86_64
+--> Processing Dependency: libyajl.so.1()(64bit) for package: libvirt-0.10.2-29.el6_5.9.x86_64
+--> Processing Dependency: libnetcf.so.1()(64bit) for package: libvirt-0.10.2-29.el6_5.9.x86_64
+---> Package libvirt-python.x86_64 0:0.10.2-29.el6_5.9 will be installed
+---> Package openstack-nova-common.noarch 0:2014.1.1-1.el6 will be installed
+--> Processing Dependency: python-nova = 2014.1.1-1.el6 for package: openstack-nova-common-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-oslo-messaging >= 1.3.0-0.1.a4 for package: openstack-nova-common-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-oslo-rootwrap for package: openstack-nova-common-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-keystoneclient for package: openstack-nova-common-2014.1.1-1.el6.noarch
+---> Package python-cinderclient.noarch 0:1.0.9-1.el6 will be installed
+--> Processing Dependency: python-six for package: python-cinderclient-1.0.9-1.el6.noarch
+--> Processing Dependency: python-simplejson for package: python-cinderclient-1.0.9-1.el6.noarch
+--> Processing Dependency: python-requests for package: python-cinderclient-1.0.9-1.el6.noarch
+--> Processing Dependency: python-prettytable for package: python-cinderclient-1.0.9-1.el6.noarch
+--> Processing Dependency: python-babel for package: python-cinderclient-1.0.9-1.el6.noarch
+---> Package python-libguestfs.x86_64 1:1.20.11-2.el6 will be installed
+---> Package qemu-kvm.x86_64 2:0.12.1.2-2.415.el6_5.10 will be installed
+base/filelists_db                                                                                                                                                             | 5.9 MB     00:00     
+epel/filelists_db                                                                                                                                                             | 8.7 MB     00:02     
+extras/filelists_db                                                                                                                                                           |  11 kB     00:00     
+foreman/filelists_db                                                                                                                                                          | 201 kB     00:00     
+foreman-plugins/filelists_db                                                                                                                                                  |  44 kB     00:00     
+openstack-icehouse/filelists_db                                                                                                                                               | 1.8 MB     00:00     
+puppetlabs-deps/filelists_db                                                                                                                                                  | 182 kB     00:00     
+puppetlabs-products/filelists_db                                                                                                                                              | 951 kB     00:00     
+updates/filelists_db                                                                                                                                                          | 2.0 MB     00:00     
+--> Processing Dependency: seabios >= 0.6.1.2-20.el6 for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: vgabios-vmware for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: vgabios-stdvga for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: vgabios-qxl for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: vgabios for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: libspice-server.so.1(SPICE_SERVER_0.8.3)(64bit) for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: libspice-server.so.1(SPICE_SERVER_0.8.2)(64bit) for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: libspice-server.so.1(SPICE_SERVER_0.8.1)(64bit) for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: libspice-server.so.1(SPICE_SERVER_0.6.0)(64bit) for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: libspice-server.so.1(SPICE_SERVER_0.12.4)(64bit) for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: libspice-server.so.1(SPICE_SERVER_0.11.2)(64bit) for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: libspice-server.so.1(SPICE_SERVER_0.10.4)(64bit) for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: libspice-server.so.1(SPICE_SERVER_0.10.0)(64bit) for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: glusterfs-api for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: /usr/share/sgabios/sgabios.bin for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: /usr/share/gpxe/virtio-net.rom for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: /usr/share/gpxe/rtl8139.rom for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: /usr/share/gpxe/rtl8029.rom for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: /usr/share/gpxe/pcnet32.rom for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: /usr/share/gpxe/e1000-0x100e.rom for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: libusbredirparser.so.1()(64bit) for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: libspice-server.so.1()(64bit) for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: libgfxdr.so.0()(64bit) for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: libgfrpc.so.0()(64bit) for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+--> Processing Dependency: libgfapi.so.0()(64bit) for package: 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64
+---> Package tunctl.x86_64 0:1.5-3.el6 will be installed
+--> Running transaction check
+---> Package dnsmasq.x86_64 0:2.48-13.el6 will be installed
+---> Package ebtables.x86_64 0:2.0.9-6.el6 will be installed
+---> Package fuse-libs.x86_64 0:2.8.3-4.el6 will be installed
+---> Package glusterfs-api.x86_64 0:3.4.0.57rhs-1.el6_5 will be installed
+---> Package glusterfs-libs.x86_64 0:3.4.0.57rhs-1.el6_5 will be installed
+---> Package gpxe-roms-qemu.noarch 0:0.9.7-6.10.el6 will be installed
+---> Package libconfig.x86_64 0:1.3.2-1.1.el6 will be installed
+---> Package libguestfs.x86_64 1:1.20.11-2.el6 will be installed
+--> Processing Dependency: febootstrap-supermin-helper >= 3.21-4 for package: 1:libguestfs-1.20.11-2.el6.x86_64
+--> Processing Dependency: augeas-libs >= 1.0.0-5 for package: 1:libguestfs-1.20.11-2.el6.x86_64
+--> Processing Dependency: scrub for package: 1:libguestfs-1.20.11-2.el6.x86_64
+--> Processing Dependency: netpbm-progs for package: 1:libguestfs-1.20.11-2.el6.x86_64
+--> Processing Dependency: btrfs-progs for package: 1:libguestfs-1.20.11-2.el6.x86_64
+--> Processing Dependency: /usr/lib64/libhivex.so.0 for package: 1:libguestfs-1.20.11-2.el6.x86_64
+--> Processing Dependency: /usr/lib64/libfa.so.1 for package: 1:libguestfs-1.20.11-2.el6.x86_64
+--> Processing Dependency: /usr/lib64/libaugeas.so.0 for package: 1:libguestfs-1.20.11-2.el6.x86_64
+---> Package libvirt-client.x86_64 0:0.10.2-29.el6_5.9 will be installed
+--> Processing Dependency: nc for package: libvirt-client-0.10.2-29.el6_5.9.x86_64
+--> Processing Dependency: gnutls-utils for package: libvirt-client-0.10.2-29.el6_5.9.x86_64
+--> Processing Dependency: cyrus-sasl-md5 for package: libvirt-client-0.10.2-29.el6_5.9.x86_64
+---> Package lzop.x86_64 0:1.02-0.9.rc1.el6 will be installed
+---> Package netcf-libs.x86_64 0:0.1.9-4.el6_5.2 will be installed
+---> Package python-babel.noarch 0:0.9.4-5.1.el6 will be installed
+---> Package python-keystoneclient.noarch 1:0.9.0-1.el6 will be installed
+--> Processing Dependency: python-oslo-config >= 1.1.0 for package: 1:python-keystoneclient-0.9.0-1.el6.noarch
+--> Processing Dependency: python-iso8601 >= 0.1.4 for package: 1:python-keystoneclient-0.9.0-1.el6.noarch
+--> Processing Dependency: python-keyring for package: 1:python-keystoneclient-0.9.0-1.el6.noarch
+--> Processing Dependency: python-argparse for package: 1:python-keystoneclient-0.9.0-1.el6.noarch
+---> Package python-nova.noarch 0:2014.1.1-1.el6 will be installed
+--> Processing Dependency: python-webob >= 1.2.3 for package: python-nova-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-sqlalchemy >= 0.7.8 for package: python-nova-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-routes >= 1.12 for package: python-nova-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-paste-deploy >= 1.5 for package: python-nova-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-jinja2 >= 2.6 for package: python-nova-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-glanceclient >= 1:0 for package: python-nova-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-stevedore for package: python-nova-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-qpid for package: python-nova-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-pyasn1 for package: python-nova-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-novaclient for package: python-nova-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-neutronclient for package: python-nova-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-migrate for package: python-nova-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-memcached for package: python-nova-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-kombu for package: python-nova-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-greenlet for package: python-nova-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-eventlet for package: python-nova-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-cheetah for package: python-nova-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-boto for package: python-nova-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-anyjson for package: python-nova-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-amqplib for package: python-nova-2014.1.1-1.el6.noarch
+---> Package python-oslo-messaging.noarch 0:1.3.0.2-4.el6 will be installed
+--> Processing Dependency: PyYAML for package: python-oslo-messaging-1.3.0.2-4.el6.noarch
+---> Package python-oslo-rootwrap.noarch 0:1.0.0-1.el6 will be installed
+---> Package python-prettytable.noarch 0:0.7.2-1.el6 will be installed
+---> Package python-requests.noarch 0:1.1.0-4.el6 will be installed
+--> Processing Dependency: python-urllib3 for package: python-requests-1.1.0-4.el6.noarch
+--> Processing Dependency: python-ordereddict for package: python-requests-1.1.0-4.el6.noarch
+--> Processing Dependency: python-chardet for package: python-requests-1.1.0-4.el6.noarch
+---> Package python-simplejson.x86_64 0:2.0.9-3.1.el6 will be installed
+---> Package python-six.noarch 0:1.6.1-1.el6 will be installed
+---> Package qemu-img.x86_64 2:0.12.1.2-2.415.el6_5.10 will be installed
+---> Package radvd.x86_64 0:1.6-1.el6 will be installed
+---> Package seabios.x86_64 0:0.6.1.2-28.el6 will be installed
+---> Package sgabios-bin.noarch 0:0-0.3.20110621svn.el6 will be installed
+---> Package spice-server.x86_64 0:0.12.4-6.el6_5.2 will be installed
+--> Processing Dependency: libcelt051.so.0()(64bit) for package: spice-server-0.12.4-6.el6_5.2.x86_64
+---> Package usbredir.x86_64 0:0.5.1-1.el6 will be installed
+---> Package vgabios.noarch 0:0.6b-3.7.el6 will be installed
+---> Package yajl.x86_64 0:1.0.7-3.el6 will be installed
+--> Running transaction check
+---> Package PyYAML.x86_64 0:3.10-3.el6 will be installed
+--> Processing Dependency: libyaml-0.so.2()(64bit) for package: PyYAML-3.10-3.el6.x86_64
+---> Package augeas-libs.x86_64 0:1.0.0-5.el6_5.1 will be installed
+---> Package btrfs-progs.x86_64 0:0.20-0.2.git91d9eec.el6 will be installed
+---> Package celt051.x86_64 0:0.5.1.3-0.el6 will be installed
+---> Package cyrus-sasl-md5.x86_64 0:2.1.23-13.el6_3.1 will be installed
+---> Package febootstrap-supermin-helper.x86_64 0:3.21-4.el6 will be installed
+---> Package gnutls-utils.x86_64 0:2.8.5-14.el6_5 will be installed
+---> Package hivex.x86_64 0:1.3.3-4.2.el6 will be installed
+--> Processing Dependency: perl(Win::Hivex::Regedit) for package: hivex-1.3.3-4.2.el6.x86_64
+--> Processing Dependency: perl(Win::Hivex) for package: hivex-1.3.3-4.2.el6.x86_64
+---> Package nc.x86_64 0:1.84-22.el6 will be installed
+---> Package netpbm-progs.x86_64 0:10.47.05-11.el6 will be installed
+--> Processing Dependency: netpbm = 10.47.05-11.el6 for package: netpbm-progs-10.47.05-11.el6.x86_64
+--> Processing Dependency: libnetpbm.so.10()(64bit) for package: netpbm-progs-10.47.05-11.el6.x86_64
+---> Package python-amqplib.noarch 0:0.6.1-2.el6 will be installed
+---> Package python-anyjson.noarch 0:0.3.3-1.el6 will be installed
+---> Package python-argparse.noarch 0:1.2.1-2.el6 will be installed
+---> Package python-boto.noarch 0:2.27.0-1.el6 will be installed
+---> Package python-chardet.noarch 0:2.0.1-1.el6 will be installed
+---> Package python-cheetah.x86_64 0:2.4.1-1.el6 will be installed
+--> Processing Dependency: python-pygments for package: python-cheetah-2.4.1-1.el6.x86_64
+--> Processing Dependency: python-markdown for package: python-cheetah-2.4.1-1.el6.x86_64
+---> Package python-eventlet.noarch 0:0.14.0-1.el6 will be installed
+---> Package python-glanceclient.noarch 1:0.12.0-1.el6 will be installed
+--> Processing Dependency: python-warlock for package: 1:python-glanceclient-0.12.0-1.el6.noarch
+--> Processing Dependency: python-httplib2 for package: 1:python-glanceclient-0.12.0-1.el6.noarch
+---> Package python-greenlet.x86_64 0:0.4.2-1.el6 will be installed
+---> Package python-iso8601.noarch 0:0.1.10-1.el6 will be installed
+---> Package python-jinja2.noarch 0:2.7.2-1.el6 will be installed
+--> Processing Dependency: python-markupsafe for package: python-jinja2-2.7.2-1.el6.noarch
+---> Package python-keyring.noarch 0:0.7-1.el6 will be installed
+---> Package python-kombu.noarch 0:1.1.3-2.el6 will be installed
+---> Package python-memcached.noarch 0:1.53-1.el6 will be installed
+---> Package python-migrate.noarch 0:0.7.2-8.el6 will be installed
+--> Processing Dependency: python-tempita for package: python-migrate-0.7.2-8.el6.noarch
+--> Processing Dependency: python-sqlalchemy0.7 for package: python-migrate-0.7.2-8.el6.noarch
+--> Processing Dependency: python-decorator for package: python-migrate-0.7.2-8.el6.noarch
+---> Package python-neutronclient.noarch 0:2.3.4-1.el6 will be installed
+--> Processing Dependency: python-cliff >= 1.0 for package: python-neutronclient-2.3.4-1.el6.noarch
+--> Processing Dependency: pyparsing for package: python-neutronclient-2.3.4-1.el6.noarch
+---> Package python-novaclient.noarch 1:2.17.0-2.el6 will be installed
+---> Package python-ordereddict.noarch 0:1.1-2.el6 will be installed
+---> Package python-oslo-config.noarch 1:1.2.1-1.el6 will be installed
+---> Package python-paste-deploy.noarch 0:1.5.0-10.el6 will be installed
+--> Processing Dependency: python-paste for package: python-paste-deploy-1.5.0-10.el6.noarch
+---> Package python-pyasn1.noarch 0:0.0.12a-1.el6 will be installed
+---> Package python-qpid.noarch 0:0.18-5.el6_4 will be installed
+--> Processing Dependency: python-saslwrapper >= 0.10 for package: python-qpid-0.18-5.el6_4.noarch
+---> Package python-routes.noarch 0:1.13-2.el6 will be installed
+--> Processing Dependency: python-repoze-lru for package: python-routes-1.13-2.el6.noarch
+---> Package python-sqlalchemy.x86_64 0:0.8.4-1.el6 will be installed
+---> Package python-stevedore.noarch 0:0.14-1.el6 will be installed
+---> Package python-urllib3.noarch 0:1.5-7.el6 will be installed
+--> Processing Dependency: python-backports-ssl_match_hostname for package: python-urllib3-1.5-7.el6.noarch
+---> Package python-webob.noarch 0:1.2.3-8.el6 will be installed
+---> Package scrub.x86_64 0:2.2-1.el6 will be installed
+--> Running transaction check
+---> Package libyaml.x86_64 0:0.1.6-1.el6 will be installed
+---> Package netpbm.x86_64 0:10.47.05-11.el6 will be installed
+---> Package perl-hivex.x86_64 0:1.3.3-4.2.el6 will be installed
+---> Package pyparsing.noarch 0:1.5.6-1.el6 will be installed
+---> Package python-backports-ssl_match_hostname.noarch 0:3.4.0.2-1.el6 will be installed
+--> Processing Dependency: python-backports for package: python-backports-ssl_match_hostname-3.4.0.2-1.el6.noarch
+---> Package python-cliff.noarch 0:1.4.4-1.el6 will be installed
+--> Processing Dependency: python-cmd2 for package: python-cliff-1.4.4-1.el6.noarch
+---> Package python-decorator.noarch 0:3.0.1-3.1.el6 will be installed
+---> Package python-httplib2.noarch 0:0.7.7-1.el6 will be installed
+---> Package python-markdown.noarch 0:2.0.1-3.1.el6 will be installed
+---> Package python-markupsafe.x86_64 0:0.9.2-4.el6 will be installed
+---> Package python-paste.noarch 0:1.7.4-2.el6 will be installed
+---> Package python-pygments.noarch 0:1.4-6.el6 will be installed
+--> Processing Dependency: python-imaging for package: python-pygments-1.4-6.el6.noarch
+---> Package python-repoze-lru.noarch 0:0.4-3.el6 will be installed
+---> Package python-saslwrapper.x86_64 0:0.18-1.el6_3 will be installed
+--> Processing Dependency: saslwrapper = 0.18-1.el6_3 for package: python-saslwrapper-0.18-1.el6_3.x86_64
+--> Processing Dependency: libsaslwrapper.so.1()(64bit) for package: python-saslwrapper-0.18-1.el6_3.x86_64
+---> Package python-sqlalchemy0.7.x86_64 0:0.7.8-1.el6 will be installed
+---> Package python-tempita.noarch 0:0.4-2.el6 will be installed
+---> Package python-warlock.noarch 0:1.0.1-1.el6 will be installed
+--> Processing Dependency: python-jsonschema for package: python-warlock-1.0.1-1.el6.noarch
+--> Processing Dependency: python-jsonpatch for package: python-warlock-1.0.1-1.el6.noarch
+--> Running transaction check
+---> Package python-backports.x86_64 0:1.0-4.el6 will be installed
+---> Package python-cmd2.noarch 0:0.6.4-7.el6 will be installed
+---> Package python-imaging.x86_64 0:1.1.6-19.el6 will be installed
+---> Package python-jsonpatch.noarch 0:1.2-2.el6 will be installed
+--> Processing Dependency: python-jsonpointer for package: python-jsonpatch-1.2-2.el6.noarch
+---> Package python-jsonschema.noarch 0:2.3.0-1.el6 will be installed
+---> Package saslwrapper.x86_64 0:0.18-1.el6_3 will be installed
+--> Running transaction check
+---> Package python-jsonpointer.noarch 0:1.0-3.el6 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================================================================================================================
+ Package                                                      Arch                            Version                                              Repository                                   Size
+=====================================================================================================================================================================================================
+Installing:
+ openstack-nova-compute                                       noarch                          2014.1.1-1.el6                                       openstack-icehouse                           27 k
+Installing for dependencies:
+ PyYAML                                                       x86_64                          3.10-3.el6                                           epel                                        157 k
+ augeas-libs                                                  x86_64                          1.0.0-5.el6_5.1                                      updates                                     309 k
+ btrfs-progs                                                  x86_64                          0.20-0.2.git91d9eec.el6                              base                                        297 k
+ celt051                                                      x86_64                          0.5.1.3-0.el6                                        base                                         50 k
+ cyrus-sasl-md5                                               x86_64                          2.1.23-13.el6_3.1                                    base                                         47 k
+ dnsmasq                                                      x86_64                          2.48-13.el6                                          base                                        149 k
+ ebtables                                                     x86_64                          2.0.9-6.el6                                          base                                         95 k
+ febootstrap-supermin-helper                                  x86_64                          3.21-4.el6                                           base                                        337 k
+ fuse                                                         x86_64                          2.8.3-4.el6                                          base                                         71 k
+ fuse-libs                                                    x86_64                          2.8.3-4.el6                                          base                                         74 k
+ genisoimage                                                  x86_64                          1.1.9-12.el6                                         base                                        348 k
+ glusterfs-api                                                x86_64                          3.4.0.57rhs-1.el6_5                                  updates                                      55 k
+ glusterfs-libs                                               x86_64                          3.4.0.57rhs-1.el6_5                                  updates                                     240 k
+ gnutls-utils                                                 x86_64                          2.8.5-14.el6_5                                       updates                                     100 k
+ gpxe-roms-qemu                                               noarch                          0.9.7-6.10.el6                                       base                                        220 k
+ hivex                                                        x86_64                          1.3.3-4.2.el6                                        base                                         89 k
+ ipmitool                                                     x86_64                          1.8.11-16.el6                                        base                                        329 k
+ iscsi-initiator-utils                                        x86_64                          6.2.0.873-10.el6                                     base                                        686 k
+ libconfig                                                    x86_64                          1.3.2-1.1.el6                                        base                                         51 k
+ libguestfs                                                   x86_64                          1:1.20.11-2.el6                                      base                                        2.0 M
+ libguestfs-tools-c                                           x86_64                          1:1.20.11-2.el6                                      base                                        1.4 M
+ libvirt                                                      x86_64                          0.10.2-29.el6_5.9                                    updates                                     2.4 M
+ libvirt-client                                               x86_64                          0.10.2-29.el6_5.9                                    updates                                     4.0 M
+ libvirt-python                                               x86_64                          0.10.2-29.el6_5.9                                    updates                                     478 k
+ libyaml                                                      x86_64                          0.1.6-1.el6                                          epel                                         52 k
+ lzop                                                         x86_64                          1.02-0.9.rc1.el6                                     base                                         50 k
+ nc                                                           x86_64                          1.84-22.el6                                          base                                         57 k
+ netcf-libs                                                   x86_64                          0.1.9-4.el6_5.2                                      updates                                      52 k
+ netpbm                                                       x86_64                          10.47.05-11.el6                                      base                                        802 k
+ netpbm-progs                                                 x86_64                          10.47.05-11.el6                                      base                                        1.7 M
+ openstack-nova-common                                        noarch                          2014.1.1-1.el6                                       openstack-icehouse                           82 k
+ perl-hivex                                                   x86_64                          1.3.3-4.2.el6                                        base                                         38 k
+ pyparsing                                                    noarch                          1.5.6-1.el6                                          epel                                         94 k
+ python-amqplib                                               noarch                          0.6.1-2.el6                                          epel                                         65 k
+ python-anyjson                                               noarch                          0.3.3-1.el6                                          epel                                         12 k
+ python-argparse                                              noarch                          1.2.1-2.el6                                          epel                                         48 k
+ python-babel                                                 noarch                          0.9.4-5.1.el6                                        base                                        1.4 M
+ python-backports                                             x86_64                          1.0-4.el6                                            openstack-icehouse                          4.8 k
+ python-backports-ssl_match_hostname                          noarch                          3.4.0.2-1.el6                                        epel                                         12 k
+ python-boto                                                  noarch                          2.27.0-1.el6                                         epel                                        1.6 M
+ python-chardet                                               noarch                          2.0.1-1.el6                                          epel                                        225 k
+ python-cheetah                                               x86_64                          2.4.1-1.el6                                          base                                        365 k
+ python-cinderclient                                          noarch                          1.0.9-1.el6                                          openstack-icehouse                          165 k
+ python-cliff                                                 noarch                          1.4.4-1.el6                                          epel                                        131 k
+ python-cmd2                                                  noarch                          0.6.4-7.el6                                          epel                                         40 k
+ python-decorator                                             noarch                          3.0.1-3.1.el6                                        base                                         14 k
+ python-eventlet                                              noarch                          0.14.0-1.el6                                         openstack-icehouse                          269 k
+ python-glanceclient                                          noarch                          1:0.12.0-1.el6                                       openstack-icehouse                           90 k
+ python-greenlet                                              x86_64                          0.4.2-1.el6                                          openstack-icehouse                           24 k
+ python-httplib2                                              noarch                          0.7.7-1.el6                                          epel                                         70 k
+ python-imaging                                               x86_64                          1.1.6-19.el6                                         base                                        388 k
+ python-iso8601                                               noarch                          0.1.10-1.el6                                         epel                                         18 k
+ python-jinja2                                                noarch                          2.7.2-1.el6                                          openstack-icehouse                          550 k
+ python-jsonpatch                                             noarch                          1.2-2.el6                                            epel                                         14 k
+ python-jsonpointer                                           noarch                          1.0-3.el6                                            epel                                        9.2 k
+ python-jsonschema                                            noarch                          2.3.0-1.el6                                          openstack-icehouse                           62 k
+ python-keyring                                               noarch                          0.7-1.el6                                            epel                                         54 k
+ python-keystoneclient                                        noarch                          1:0.9.0-1.el6                                        openstack-icehouse                          478 k
+ python-kombu                                                 noarch                          1.1.3-2.el6                                          openstack-icehouse                          188 k
+ python-libguestfs                                            x86_64                          1:1.20.11-2.el6                                      base                                        272 k
+ python-markdown                                              noarch                          2.0.1-3.1.el6                                        base                                        118 k
+ python-markupsafe                                            x86_64                          0.9.2-4.el6                                          base                                         22 k
+ python-memcached                                             noarch                          1.53-1.el6                                           openstack-icehouse                           37 k
+ python-migrate                                               noarch                          0.7.2-8.el6                                          openstack-icehouse                          222 k
+ python-neutronclient                                         noarch                          2.3.4-1.el6                                          openstack-icehouse                          158 k
+ python-nova                                                  noarch                          2014.1.1-1.el6                                       openstack-icehouse                          3.0 M
+ python-novaclient                                            noarch                          1:2.17.0-2.el6                                       openstack-icehouse                          292 k
+ python-ordereddict                                           noarch                          1.1-2.el6                                            epel                                        7.6 k
+ python-oslo-config                                           noarch                          1:1.2.1-1.el6                                        openstack-icehouse                           42 k
+ python-oslo-messaging                                        noarch                          1.3.0.2-4.el6                                        openstack-icehouse                          166 k
+ python-oslo-rootwrap                                         noarch                          1.0.0-1.el6                                          openstack-icehouse                           28 k
+ python-paste                                                 noarch                          1.7.4-2.el6                                          base                                        758 k
+ python-paste-deploy                                          noarch                          1.5.0-10.el6                                         openstack-icehouse                           46 k
+ python-prettytable                                           noarch                          0.7.2-1.el6                                          openstack-icehouse                           37 k
+ python-pyasn1                                                noarch                          0.0.12a-1.el6                                        base                                         70 k
+ python-pygments                                              noarch                          1.4-6.el6                                            openstack-icehouse                          661 k
+ python-qpid                                                  noarch                          0.18-5.el6_4                                         openstack-icehouse                          413 k
+ python-repoze-lru                                            noarch                          0.4-3.el6                                            epel                                         13 k
+ python-requests                                              noarch                          1.1.0-4.el6                                          epel                                         71 k
+ python-routes                                                noarch                          1.13-2.el6                                           openstack-icehouse                          690 k
+ python-saslwrapper                                           x86_64                          0.18-1.el6_3                                         openstack-icehouse                           25 k
+ python-simplejson                                            x86_64                          2.0.9-3.1.el6                                        base                                        126 k
+ python-six                                                   noarch                          1.6.1-1.el6                                          openstack-icehouse                           25 k
+ python-sqlalchemy                                            x86_64                          0.8.4-1.el6                                          openstack-icehouse                          3.0 M
+ python-sqlalchemy0.7                                         x86_64                          0.7.8-1.el6                                          epel                                        2.1 M
+ python-stevedore                                             noarch                          0.14-1.el6                                           epel                                         47 k
+ python-tempita                                               noarch                          0.4-2.el6                                            base                                         38 k
+ python-urllib3                                               noarch                          1.5-7.el6                                            epel                                         41 k
+ python-warlock                                               noarch                          1.0.1-1.el6                                          openstack-icehouse                           14 k
+ python-webob                                                 noarch                          1.2.3-8.el6                                          openstack-icehouse                          212 k
+ qemu-img                                                     x86_64                          2:0.12.1.2-2.415.el6_5.10                            updates                                     596 k
+ qemu-kvm                                                     x86_64                          2:0.12.1.2-2.415.el6_5.10                            updates                                     1.5 M
+ radvd                                                        x86_64                          1.6-1.el6                                            base                                         75 k
+ saslwrapper                                                  x86_64                          0.18-1.el6_3                                         openstack-icehouse                           19 k
+ scrub                                                        x86_64                          2.2-1.el6                                            base                                         34 k
+ seabios                                                      x86_64                          0.6.1.2-28.el6                                       base                                         92 k
+ sgabios-bin                                                  noarch                          0-0.3.20110621svn.el6                                base                                        6.6 k
+ spice-server                                                 x86_64                          0.12.4-6.el6_5.2                                     updates                                     344 k
+ tunctl                                                       x86_64                          1.5-3.el6                                            base                                        9.2 k
+ usbredir                                                     x86_64                          0.5.1-1.el6                                          base                                         40 k
+ vgabios                                                      noarch                          0.6b-3.7.el6                                         base                                         42 k
+ yajl                                                         x86_64                          1.0.7-3.el6                                          base                                         27 k
+
+Transaction Summary
+=====================================================================================================================================================================================================
+Install     103 Package(s)
+
+Total download size: 38 M
+Installed size: 174 M
+Downloading Packages:
+(1/103): PyYAML-3.10-3.el6.x86_64.rpm                                                                                                                                         | 157 kB     00:00     
+(2/103): augeas-libs-1.0.0-5.el6_5.1.x86_64.rpm                                                                                                                               | 309 kB     00:00     
+(3/103): btrfs-progs-0.20-0.2.git91d9eec.el6.x86_64.rpm                                                                                                                       | 297 kB     00:00     
+(4/103): celt051-0.5.1.3-0.el6.x86_64.rpm                                                                                                                                     |  50 kB     00:00     
+(5/103): cyrus-sasl-md5-2.1.23-13.el6_3.1.x86_64.rpm                                                                                                                          |  47 kB     00:00     
+(6/103): dnsmasq-2.48-13.el6.x86_64.rpm                                                                                                                                       | 149 kB     00:00     
+(7/103): ebtables-2.0.9-6.el6.x86_64.rpm                                                                                                                                      |  95 kB     00:00     
+(8/103): febootstrap-supermin-helper-3.21-4.el6.x86_64.rpm                                                                                                                    | 337 kB     00:00     
+(9/103): fuse-2.8.3-4.el6.x86_64.rpm                                                                                                                                          |  71 kB     00:00     
+(10/103): fuse-libs-2.8.3-4.el6.x86_64.rpm                                                                                                                                    |  74 kB     00:00     
+(11/103): genisoimage-1.1.9-12.el6.x86_64.rpm                                                                                                                                 | 348 kB     00:00     
+(12/103): glusterfs-api-3.4.0.57rhs-1.el6_5.x86_64.rpm                                                                                                                        |  55 kB     00:00     
+(13/103): glusterfs-libs-3.4.0.57rhs-1.el6_5.x86_64.rpm                                                                                                                       | 240 kB     00:00     
+(14/103): gnutls-utils-2.8.5-14.el6_5.x86_64.rpm                                                                                                                              | 100 kB     00:00     
+(15/103): gpxe-roms-qemu-0.9.7-6.10.el6.noarch.rpm                                                                                                                            | 220 kB     00:00     
+(16/103): hivex-1.3.3-4.2.el6.x86_64.rpm                                                                                                                                      |  89 kB     00:00     
+(17/103): ipmitool-1.8.11-16.el6.x86_64.rpm                                                                                                                                   | 329 kB     00:00     
+(18/103): iscsi-initiator-utils-6.2.0.873-10.el6.x86_64.rpm                                                                                                                   | 686 kB     00:00     
+(19/103): libconfig-1.3.2-1.1.el6.x86_64.rpm                                                                                                                                  |  51 kB     00:00     
+(20/103): libguestfs-1.20.11-2.el6.x86_64.rpm                                                                                                                                 | 2.0 MB     00:00     
+(21/103): libguestfs-tools-c-1.20.11-2.el6.x86_64.rpm                                                                                                                         | 1.4 MB     00:00     
+(22/103): libvirt-0.10.2-29.el6_5.9.x86_64.rpm                                                                                                                                | 2.4 MB     00:01     
+(23/103): libvirt-client-0.10.2-29.el6_5.9.x86_64.rpm                                                                                                                         | 4.0 MB     00:03     
+(24/103): libvirt-python-0.10.2-29.el6_5.9.x86_64.rpm                                                                                                                         | 478 kB     00:00     
+(25/103): libyaml-0.1.6-1.el6.x86_64.rpm                                                                                                                                      |  52 kB     00:00     
+(26/103): lzop-1.02-0.9.rc1.el6.x86_64.rpm                                                                                                                                    |  50 kB     00:00     
+(27/103): nc-1.84-22.el6.x86_64.rpm                                                                                                                                           |  57 kB     00:00     
+(28/103): netcf-libs-0.1.9-4.el6_5.2.x86_64.rpm                                                                                                                               |  52 kB     00:00     
+(29/103): netpbm-10.47.05-11.el6.x86_64.rpm                                                                                                                                   | 802 kB     00:00     
+(30/103): netpbm-progs-10.47.05-11.el6.x86_64.rpm                                                                                                                             | 1.7 MB     00:00     
+(31/103): openstack-nova-common-2014.1.1-1.el6.noarch.rpm                                                                                                                     |  82 kB     00:00     
+(32/103): openstack-nova-compute-2014.1.1-1.el6.noarch.rpm                                                                                                                    |  27 kB     00:00     
+(33/103): perl-hivex-1.3.3-4.2.el6.x86_64.rpm                                                                                                                                 |  38 kB     00:00     
+(34/103): pyparsing-1.5.6-1.el6.noarch.rpm                                                                                                                                    |  94 kB     00:00     
+(35/103): python-amqplib-0.6.1-2.el6.noarch.rpm                                                                                                                               |  65 kB     00:00     
+(36/103): python-anyjson-0.3.3-1.el6.noarch.rpm                                                                                                                               |  12 kB     00:00     
+(37/103): python-argparse-1.2.1-2.el6.noarch.rpm                                                                                                                              |  48 kB     00:00     
+(38/103): python-babel-0.9.4-5.1.el6.noarch.rpm                                                                                                                               | 1.4 MB     00:00     
+(39/103): python-backports-1.0-4.el6.x86_64.rpm                                                                                                                               | 4.8 kB     00:00     
+(40/103): python-backports-ssl_match_hostname-3.4.0.2-1.el6.noarch.rpm                                                                                                        |  12 kB     00:00     
+(41/103): python-boto-2.27.0-1.el6.noarch.rpm                                                                                                                                 | 1.6 MB     00:00     
+(42/103): python-chardet-2.0.1-1.el6.noarch.rpm                                                                                                                               | 225 kB     00:00     
+(43/103): python-cheetah-2.4.1-1.el6.x86_64.rpm                                                                                                                               | 365 kB     00:00     
+(44/103): python-cinderclient-1.0.9-1.el6.noarch.rpm                                                                                                                          | 165 kB     00:00     
+(45/103): python-cliff-1.4.4-1.el6.noarch.rpm                                                                                                                                 | 131 kB     00:00     
+(46/103): python-cmd2-0.6.4-7.el6.noarch.rpm                                                                                                                                  |  40 kB     00:00     
+(47/103): python-decorator-3.0.1-3.1.el6.noarch.rpm                                                                                                                           |  14 kB     00:00     
+(48/103): python-eventlet-0.14.0-1.el6.noarch.rpm                                                                                                                             | 269 kB     00:00     
+(49/103): python-glanceclient-0.12.0-1.el6.noarch.rpm                                                                                                                         |  90 kB     00:00     
+(50/103): python-greenlet-0.4.2-1.el6.x86_64.rpm                                                                                                                              |  24 kB     00:00     
+(51/103): python-httplib2-0.7.7-1.el6.noarch.rpm                                                                                                                              |  70 kB     00:00     
+(52/103): python-imaging-1.1.6-19.el6.x86_64.rpm                                                                                                                              | 388 kB     00:00     
+(53/103): python-iso8601-0.1.10-1.el6.noarch.rpm                                                                                                                              |  18 kB     00:00     
+(54/103): python-jinja2-2.7.2-1.el6.noarch.rpm                                                                                                                                | 550 kB     00:00     
+(55/103): python-jsonpatch-1.2-2.el6.noarch.rpm                                                                                                                               |  14 kB     00:00     
+(56/103): python-jsonpointer-1.0-3.el6.noarch.rpm                                                                                                                             | 9.2 kB     00:00     
+(57/103): python-jsonschema-2.3.0-1.el6.noarch.rpm                                                                                                                            |  62 kB     00:00     
+(58/103): python-keyring-0.7-1.el6.noarch.rpm                                                                                                                                 |  54 kB     00:00     
+(59/103): python-keystoneclient-0.9.0-1.el6.noarch.rpm                                                                                                                        | 478 kB     00:00     
+(60/103): python-kombu-1.1.3-2.el6.noarch.rpm                                                                                                                                 | 188 kB     00:00     
+(61/103): python-libguestfs-1.20.11-2.el6.x86_64.rpm                                                                                                                          | 272 kB     00:00     
+(62/103): python-markdown-2.0.1-3.1.el6.noarch.rpm                                                                                                                            | 118 kB     00:00     
+(63/103): python-markupsafe-0.9.2-4.el6.x86_64.rpm                                                                                                                            |  22 kB     00:00     
+(64/103): python-memcached-1.53-1.el6.noarch.rpm                                                                                                                              |  37 kB     00:00     
+(65/103): python-migrate-0.7.2-8.el6.noarch.rpm                                                                                                                               | 222 kB     00:00     
+(66/103): python-neutronclient-2.3.4-1.el6.noarch.rpm                                                                                                                         | 158 kB     00:00     
+(67/103): python-nova-2014.1.1-1.el6.noarch.rpm                                                                                                                               | 3.0 MB     00:00     
+(68/103): python-novaclient-2.17.0-2.el6.noarch.rpm                                                                                                                           | 292 kB     00:00     
+(69/103): python-ordereddict-1.1-2.el6.noarch.rpm                                                                                                                             | 7.6 kB     00:00     
+(70/103): python-oslo-config-1.2.1-1.el6.noarch.rpm                                                                                                                           |  42 kB     00:00     
+(71/103): python-oslo-messaging-1.3.0.2-4.el6.noarch.rpm                                                                                                                      | 166 kB     00:00     
+(72/103): python-oslo-rootwrap-1.0.0-1.el6.noarch.rpm                                                                                                                         |  28 kB     00:00     
+(73/103): python-paste-1.7.4-2.el6.noarch.rpm                                                                                                                                 | 758 kB     00:00     
+(74/103): python-paste-deploy-1.5.0-10.el6.noarch.rpm                                                                                                                         |  46 kB     00:00     
+(75/103): python-prettytable-0.7.2-1.el6.noarch.rpm                                                                                                                           |  37 kB     00:00     
+(76/103): python-pyasn1-0.0.12a-1.el6.noarch.rpm                                                                                                                              |  70 kB     00:00     
+(77/103): python-pygments-1.4-6.el6.noarch.rpm                                                                                                                                | 661 kB     00:00     
+(78/103): python-qpid-0.18-5.el6_4.noarch.rpm                                                                                                                                 | 413 kB     00:00     
+(79/103): python-repoze-lru-0.4-3.el6.noarch.rpm                                                                                                                              |  13 kB     00:00     
+(80/103): python-requests-1.1.0-4.el6.noarch.rpm                                                                                                                              |  71 kB     00:00     
+(81/103): python-routes-1.13-2.el6.noarch.rpm                                                                                                                                 | 690 kB     00:00     
+(82/103): python-saslwrapper-0.18-1.el6_3.x86_64.rpm                                                                                                                          |  25 kB     00:00     
+(83/103): python-simplejson-2.0.9-3.1.el6.x86_64.rpm                                                                                                                          | 126 kB     00:00     
+(84/103): python-six-1.6.1-1.el6.noarch.rpm                                                                                                                                   |  25 kB     00:00     
+(85/103): python-sqlalchemy-0.8.4-1.el6.x86_64.rpm                                                                                                                            | 3.0 MB     00:00     
+(86/103): python-sqlalchemy0.7-0.7.8-1.el6.x86_64.rpm                                                                                                                         | 2.1 MB     00:00     
+(87/103): python-stevedore-0.14-1.el6.noarch.rpm                                                                                                                              |  47 kB     00:00     
+(88/103): python-tempita-0.4-2.el6.noarch.rpm                                                                                                                                 |  38 kB     00:00     
+(89/103): python-urllib3-1.5-7.el6.noarch.rpm                                                                                                                                 |  41 kB     00:00     
+(90/103): python-warlock-1.0.1-1.el6.noarch.rpm                                                                                                                               |  14 kB     00:00     
+(91/103): python-webob-1.2.3-8.el6.noarch.rpm                                                                                                                                 | 212 kB     00:00     
+(92/103): qemu-img-0.12.1.2-2.415.el6_5.10.x86_64.rpm                                                                                                                         | 596 kB     00:00     
+(93/103): qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64.rpm                                                                                                                         | 1.5 MB     00:00     
+(94/103): radvd-1.6-1.el6.x86_64.rpm                                                                                                                                          |  75 kB     00:00     
+(95/103): saslwrapper-0.18-1.el6_3.x86_64.rpm                                                                                                                                 |  19 kB     00:00     
+(96/103): scrub-2.2-1.el6.x86_64.rpm                                                                                                                                          |  34 kB     00:00     
+(97/103): seabios-0.6.1.2-28.el6.x86_64.rpm                                                                                                                                   |  92 kB     00:00     
+(98/103): sgabios-bin-0-0.3.20110621svn.el6.noarch.rpm                                                                                                                        | 6.6 kB     00:00     
+(99/103): spice-server-0.12.4-6.el6_5.2.x86_64.rpm                                                                                                                            | 344 kB     00:00     
+(100/103): tunctl-1.5-3.el6.x86_64.rpm                                                                                                                                        | 9.2 kB     00:00     
+(101/103): usbredir-0.5.1-1.el6.x86_64.rpm                                                                                                                                    |  40 kB     00:00     
+(102/103): vgabios-0.6b-3.7.el6.noarch.rpm                                                                                                                                    |  42 kB     00:00     
+(103/103): yajl-1.0.7-3.el6.x86_64.rpm                                                                                                                                        |  27 kB     00:00     
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                                2.0 MB/s |  38 MB     00:19     
+warning: rpmts_HdrFromFdno: Header V4 RSA/SHA1 Signature, key ID 0e4fbd28: NOKEY
+Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-RDO-Icehouse
+Importing GPG key 0x0E4FBD28:
+ Userid : rdo-icehouse-sign <rdo-info@redhat.com>
+ Package: rdo-release-icehouse-3.noarch (@/rdo-release-icehouse-3.noarch)
+ From   : /etc/pki/rpm-gpg/RPM-GPG-KEY-RDO-Icehouse
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : python-six-1.6.1-1.el6.noarch                                                                                                                                                   1/103 
+  Installing : python-prettytable-0.7.2-1.el6.noarch                                                                                                                                           2/103 
+  Installing : python-babel-0.9.4-5.1.el6.noarch                                                                                                                                               3/103 
+  Installing : python-argparse-1.2.1-2.el6.noarch                                                                                                                                              4/103 
+  Installing : yajl-1.0.7-3.el6.x86_64                                                                                                                                                         5/103 
+  Installing : python-iso8601-0.1.10-1.el6.noarch                                                                                                                                              6/103 
+  Installing : 1:python-oslo-config-1.2.1-1.el6.noarch                                                                                                                                         7/103 
+  Installing : python-simplejson-2.0.9-3.1.el6.x86_64                                                                                                                                          8/103 
+  Installing : glusterfs-libs-3.4.0.57rhs-1.el6_5.x86_64                                                                                                                                       9/103 
+  Installing : glusterfs-api-3.4.0.57rhs-1.el6_5.x86_64                                                                                                                                       10/103 
+  Installing : perl-hivex-1.3.3-4.2.el6.x86_64                                                                                                                                                11/103 
+  Installing : hivex-1.3.3-4.2.el6.x86_64                                                                                                                                                     12/103 
+  Installing : augeas-libs-1.0.0-5.el6_5.1.x86_64                                                                                                                                             13/103 
+  Installing : lzop-1.02-0.9.rc1.el6.x86_64                                                                                                                                                   14/103 
+  Installing : python-anyjson-0.3.3-1.el6.noarch                                                                                                                                              15/103 
+  Installing : python-kombu-1.1.3-2.el6.noarch                                                                                                                                                16/103 
+  Installing : python-httplib2-0.7.7-1.el6.noarch                                                                                                                                             17/103 
+  Installing : python-stevedore-0.14-1.el6.noarch                                                                                                                                             18/103 
+  Installing : fuse-libs-2.8.3-4.el6.x86_64                                                                                                                                                   19/103 
+  Installing : iscsi-initiator-utils-6.2.0.873-10.el6.x86_64                                                                                                                                  20/103 
+  Installing : python-keyring-0.7-1.el6.noarch                                                                                                                                                21/103 
+  Installing : python-greenlet-0.4.2-1.el6.x86_64                                                                                                                                             22/103 
+  Installing : python-eventlet-0.14.0-1.el6.noarch                                                                                                                                            23/103 
+  Installing : usbredir-0.5.1-1.el6.x86_64                                                                                                                                                    24/103 
+  Installing : 2:qemu-img-0.12.1.2-2.415.el6_5.10.x86_64                                                                                                                                      25/103 
+  Installing : python-ordereddict-1.1-2.el6.noarch                                                                                                                                            26/103 
+  Installing : fuse-2.8.3-4.el6.x86_64                                                                                                                                                        27/103 
+  Installing : pyparsing-1.5.6-1.el6.noarch                                                                                                                                                   28/103 
+  Installing : python-cmd2-0.6.4-7.el6.noarch                                                                                                                                                 29/103 
+  Installing : python-cliff-1.4.4-1.el6.noarch                                                                                                                                                30/103 
+  Installing : python-neutronclient-2.3.4-1.el6.noarch                                                                                                                                        31/103 
+  Installing : netcf-libs-0.1.9-4.el6_5.2.x86_64                                                                                                                                              32/103 
+  Installing : python-memcached-1.53-1.el6.noarch                                                                                                                                             33/103 
+  Installing : cyrus-sasl-md5-2.1.23-13.el6_3.1.x86_64                                                                                                                                        34/103 
+  Installing : ipmitool-1.8.11-16.el6.x86_64                                                                                                                                                  35/103 
+  Installing : python-oslo-rootwrap-1.0.0-1.el6.noarch                                                                                                                                        36/103 
+  Installing : dnsmasq-2.48-13.el6.x86_64                                                                                                                                                     37/103 
+  Installing : gnutls-utils-2.8.5-14.el6_5.x86_64                                                                                                                                             38/103 
+  Installing : python-chardet-2.0.1-1.el6.noarch                                                                                                                                              39/103 
+  Installing : python-imaging-1.1.6-19.el6.x86_64                                                                                                                                             40/103 
+  Installing : python-pygments-1.4-6.el6.noarch                                                                                                                                               41/103 
+  Installing : libyaml-0.1.6-1.el6.x86_64                                                                                                                                                     42/103 
+  Installing : PyYAML-3.10-3.el6.x86_64                                                                                                                                                       43/103 
+  Installing : python-jsonpointer-1.0-3.el6.noarch                                                                                                                                            44/103 
+  Installing : python-jsonpatch-1.2-2.el6.noarch                                                                                                                                              45/103 
+  Installing : python-markdown-2.0.1-3.1.el6.noarch                                                                                                                                           46/103 
+  Installing : python-cheetah-2.4.1-1.el6.x86_64                                                                                                                                              47/103 
+  Installing : python-paste-1.7.4-2.el6.noarch                                                                                                                                                48/103 
+  Installing : python-paste-deploy-1.5.0-10.el6.noarch                                                                                                                                        49/103 
+  Installing : python-tempita-0.4-2.el6.noarch                                                                                                                                                50/103 
+  Installing : seabios-0.6.1.2-28.el6.x86_64                                                                                                                                                  51/103 
+  Installing : python-amqplib-0.6.1-2.el6.noarch                                                                                                                                              52/103 
+  Installing : ebtables-2.0.9-6.el6.x86_64                                                                                                                                                    53/103 
+  Installing : python-webob-1.2.3-8.el6.noarch                                                                                                                                                54/103 
+  Installing : radvd-1.6-1.el6.x86_64                                                                                                                                                         55/103 
+  Installing : python-backports-1.0-4.el6.x86_64                                                                                                                                              56/103 
+  Installing : python-backports-ssl_match_hostname-3.4.0.2-1.el6.noarch                                                                                                                       57/103 
+  Installing : python-urllib3-1.5-7.el6.noarch                                                                                                                                                58/103 
+  Installing : python-requests-1.1.0-4.el6.noarch                                                                                                                                             59/103 
+  Installing : 1:python-keystoneclient-0.9.0-1.el6.noarch                                                                                                                                     60/103 
+  Installing : python-cinderclient-1.0.9-1.el6.noarch                                                                                                                                         61/103 
+  Installing : 1:python-novaclient-2.17.0-2.el6.noarch                                                                                                                                        62/103 
+  Installing : tunctl-1.5-3.el6.x86_64                                                                                                                                                        63/103 
+  Installing : btrfs-progs-0.20-0.2.git91d9eec.el6.x86_64                                                                                                                                     64/103 
+  Installing : genisoimage-1.1.9-12.el6.x86_64                                                                                                                                                65/103 
+  Installing : scrub-2.2-1.el6.x86_64                                                                                                                                                         66/103 
+  Installing : python-sqlalchemy0.7-0.7.8-1.el6.x86_64                                                                                                                                        67/103 
+  Installing : febootstrap-supermin-helper-3.21-4.el6.x86_64                                                                                                                                  68/103 
+  Installing : python-decorator-3.0.1-3.1.el6.noarch                                                                                                                                          69/103 
+  Installing : python-migrate-0.7.2-8.el6.noarch                                                                                                                                              70/103 
+  Installing : netpbm-10.47.05-11.el6.x86_64                                                                                                                                                  71/103 
+  Installing : netpbm-progs-10.47.05-11.el6.x86_64                                                                                                                                            72/103 
+  Installing : python-boto-2.27.0-1.el6.noarch                                                                                                                                                73/103 
+  Installing : nc-1.84-22.el6.x86_64                                                                                                                                                          74/103 
+  Installing : libvirt-client-0.10.2-29.el6_5.9.x86_64                                                                                                                                        75/103 
+  Installing : libvirt-0.10.2-29.el6_5.9.x86_64                                                                                                                                               76/103 
+  Installing : libvirt-python-0.10.2-29.el6_5.9.x86_64                                                                                                                                        77/103 
+  Installing : python-pyasn1-0.0.12a-1.el6.noarch                                                                                                                                             78/103 
+  Installing : python-sqlalchemy-0.8.4-1.el6.x86_64                                                                                                                                           79/103 
+  Installing : python-jsonschema-2.3.0-1.el6.noarch                                                                                                                                           80/103 
+  Installing : python-warlock-1.0.1-1.el6.noarch                                                                                                                                              81/103 
+  Installing : 1:python-glanceclient-0.12.0-1.el6.noarch                                                                                                                                      82/103 
+  Installing : gpxe-roms-qemu-0.9.7-6.10.el6.noarch                                                                                                                                           83/103 
+  Installing : saslwrapper-0.18-1.el6_3.x86_64                                                                                                                                                84/103 
+  Installing : python-saslwrapper-0.18-1.el6_3.x86_64                                                                                                                                         85/103 
+  Installing : python-qpid-0.18-5.el6_4.noarch                                                                                                                                                86/103 
+  Installing : python-oslo-messaging-1.3.0.2-4.el6.noarch                                                                                                                                     87/103 
+  Installing : python-markupsafe-0.9.2-4.el6.x86_64                                                                                                                                           88/103 
+  Installing : python-jinja2-2.7.2-1.el6.noarch                                                                                                                                               89/103 
+  Installing : celt051-0.5.1.3-0.el6.x86_64                                                                                                                                                   90/103 
+  Installing : spice-server-0.12.4-6.el6_5.2.x86_64                                                                                                                                           91/103 
+  Installing : sgabios-bin-0-0.3.20110621svn.el6.noarch                                                                                                                                       92/103 
+  Installing : vgabios-0.6b-3.7.el6.noarch                                                                                                                                                    93/103 
+  Installing : 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64                                                                                                                                      94/103 
+  Installing : 1:libguestfs-1.20.11-2.el6.x86_64                                                                                                                                              95/103 
+  Installing : 1:python-libguestfs-1.20.11-2.el6.x86_64                                                                                                                                       96/103 
+  Installing : python-repoze-lru-0.4-3.el6.noarch                                                                                                                                             97/103 
+  Installing : python-routes-1.13-2.el6.noarch                                                                                                                                                98/103 
+  Installing : python-nova-2014.1.1-1.el6.noarch                                                                                                                                              99/103 
+  Installing : openstack-nova-common-2014.1.1-1.el6.noarch                                                                                                                                   100/103 
+  Installing : libconfig-1.3.2-1.1.el6.x86_64                                                                                                                                                101/103 
+  Installing : 1:libguestfs-tools-c-1.20.11-2.el6.x86_64                                                                                                                                     102/103 
+  Installing : openstack-nova-compute-2014.1.1-1.el6.noarch                                                                                                                                  103/103 
+  Verifying  : libconfig-1.3.2-1.1.el6.x86_64                                                                                                                                                  1/103 
+  Verifying  : 2:qemu-img-0.12.1.2-2.415.el6_5.10.x86_64                                                                                                                                       2/103 
+  Verifying  : 1:python-keystoneclient-0.9.0-1.el6.noarch                                                                                                                                      3/103 
+  Verifying  : python-repoze-lru-0.4-3.el6.noarch                                                                                                                                              4/103 
+  Verifying  : glusterfs-libs-3.4.0.57rhs-1.el6_5.x86_64                                                                                                                                       5/103 
+  Verifying  : vgabios-0.6b-3.7.el6.noarch                                                                                                                                                     6/103 
+  Verifying  : python-prettytable-0.7.2-1.el6.noarch                                                                                                                                           7/103 
+  Verifying  : sgabios-bin-0-0.3.20110621svn.el6.noarch                                                                                                                                        8/103 
+  Verifying  : celt051-0.5.1.3-0.el6.x86_64                                                                                                                                                    9/103 
+  Verifying  : pyparsing-1.5.6-1.el6.noarch                                                                                                                                                   10/103 
+  Verifying  : python-paste-deploy-1.5.0-10.el6.noarch                                                                                                                                        11/103 
+  Verifying  : python-markupsafe-0.9.2-4.el6.x86_64                                                                                                                                           12/103 
+  Verifying  : saslwrapper-0.18-1.el6_3.x86_64                                                                                                                                                13/103 
+  Verifying  : python-jsonpatch-1.2-2.el6.noarch                                                                                                                                              14/103 
+  Verifying  : libvirt-0.10.2-29.el6_5.9.x86_64                                                                                                                                               15/103 
+  Verifying  : hivex-1.3.3-4.2.el6.x86_64                                                                                                                                                     16/103 
+  Verifying  : gpxe-roms-qemu-0.9.7-6.10.el6.noarch                                                                                                                                           17/103 
+  Verifying  : python-cinderclient-1.0.9-1.el6.noarch                                                                                                                                         18/103 
+  Verifying  : python-jsonschema-2.3.0-1.el6.noarch                                                                                                                                           19/103 
+  Verifying  : python-sqlalchemy-0.8.4-1.el6.x86_64                                                                                                                                           20/103 
+  Verifying  : python-pyasn1-0.0.12a-1.el6.noarch                                                                                                                                             21/103 
+  Verifying  : nc-1.84-22.el6.x86_64                                                                                                                                                          22/103 
+  Verifying  : python-cliff-1.4.4-1.el6.noarch                                                                                                                                                23/103 
+  Verifying  : python-jinja2-2.7.2-1.el6.noarch                                                                                                                                               24/103 
+  Verifying  : libvirt-python-0.10.2-29.el6_5.9.x86_64                                                                                                                                        25/103 
+  Verifying  : fuse-2.8.3-4.el6.x86_64                                                                                                                                                        26/103 
+  Verifying  : python-boto-2.27.0-1.el6.noarch                                                                                                                                                27/103 
+  Verifying  : netpbm-10.47.05-11.el6.x86_64                                                                                                                                                  28/103 
+  Verifying  : python-ordereddict-1.1-2.el6.noarch                                                                                                                                            29/103 
+  Verifying  : python-iso8601-0.1.10-1.el6.noarch                                                                                                                                             30/103 
+  Verifying  : python-decorator-3.0.1-3.1.el6.noarch                                                                                                                                          31/103 
+  Verifying  : 1:python-libguestfs-1.20.11-2.el6.x86_64                                                                                                                                       32/103 
+  Verifying  : febootstrap-supermin-helper-3.21-4.el6.x86_64                                                                                                                                  33/103 
+  Verifying  : python-sqlalchemy0.7-0.7.8-1.el6.x86_64                                                                                                                                        34/103 
+  Verifying  : usbredir-0.5.1-1.el6.x86_64                                                                                                                                                    35/103 
+  Verifying  : scrub-2.2-1.el6.x86_64                                                                                                                                                         36/103 
+  Verifying  : genisoimage-1.1.9-12.el6.x86_64                                                                                                                                                37/103 
+  Verifying  : btrfs-progs-0.20-0.2.git91d9eec.el6.x86_64                                                                                                                                     38/103 
+  Verifying  : tunctl-1.5-3.el6.x86_64                                                                                                                                                        39/103 
+  Verifying  : python-pygments-1.4-6.el6.noarch                                                                                                                                               40/103 
+  Verifying  : python-urllib3-1.5-7.el6.noarch                                                                                                                                                41/103 
+  Verifying  : python-backports-1.0-4.el6.x86_64                                                                                                                                              42/103 
+  Verifying  : radvd-1.6-1.el6.x86_64                                                                                                                                                         43/103 
+  Verifying  : python-webob-1.2.3-8.el6.noarch                                                                                                                                                44/103 
+  Verifying  : python-cheetah-2.4.1-1.el6.x86_64                                                                                                                                              45/103 
+  Verifying  : netcf-libs-0.1.9-4.el6_5.2.x86_64                                                                                                                                              46/103 
+  Verifying  : python-greenlet-0.4.2-1.el6.x86_64                                                                                                                                             47/103 
+  Verifying  : python-saslwrapper-0.18-1.el6_3.x86_64                                                                                                                                         48/103 
+  Verifying  : 1:python-novaclient-2.17.0-2.el6.noarch                                                                                                                                        49/103 
+  Verifying  : ebtables-2.0.9-6.el6.x86_64                                                                                                                                                    50/103 
+  Verifying  : 1:libguestfs-tools-c-1.20.11-2.el6.x86_64                                                                                                                                      51/103 
+  Verifying  : python-neutronclient-2.3.4-1.el6.noarch                                                                                                                                        52/103 
+  Verifying  : python-keyring-0.7-1.el6.noarch                                                                                                                                                53/103 
+  Verifying  : python-cmd2-0.6.4-7.el6.noarch                                                                                                                                                 54/103 
+  Verifying  : python-qpid-0.18-5.el6_4.noarch                                                                                                                                                55/103 
+  Verifying  : python-oslo-messaging-1.3.0.2-4.el6.noarch                                                                                                                                     56/103 
+  Verifying  : python-kombu-1.1.3-2.el6.noarch                                                                                                                                                57/103 
+  Verifying  : python-warlock-1.0.1-1.el6.noarch                                                                                                                                              58/103 
+  Verifying  : openstack-nova-compute-2014.1.1-1.el6.noarch                                                                                                                                   59/103 
+  Verifying  : iscsi-initiator-utils-6.2.0.873-10.el6.x86_64                                                                                                                                  60/103 
+  Verifying  : libvirt-client-0.10.2-29.el6_5.9.x86_64                                                                                                                                        61/103 
+  Verifying  : python-amqplib-0.6.1-2.el6.noarch                                                                                                                                              62/103 
+  Verifying  : seabios-0.6.1.2-28.el6.x86_64                                                                                                                                                  63/103 
+  Verifying  : fuse-libs-2.8.3-4.el6.x86_64                                                                                                                                                   64/103 
+  Verifying  : python-babel-0.9.4-5.1.el6.noarch                                                                                                                                              65/103 
+  Verifying  : python-tempita-0.4-2.el6.noarch                                                                                                                                                66/103 
+  Verifying  : python-paste-1.7.4-2.el6.noarch                                                                                                                                                67/103 
+  Verifying  : glusterfs-api-3.4.0.57rhs-1.el6_5.x86_64                                                                                                                                       68/103 
+  Verifying  : python-stevedore-0.14-1.el6.noarch                                                                                                                                             69/103 
+  Verifying  : python-markdown-2.0.1-3.1.el6.noarch                                                                                                                                           70/103 
+  Verifying  : python-nova-2014.1.1-1.el6.noarch                                                                                                                                              71/103 
+  Verifying  : yajl-1.0.7-3.el6.x86_64                                                                                                                                                        72/103 
+  Verifying  : python-six-1.6.1-1.el6.noarch                                                                                                                                                  73/103 
+  Verifying  : PyYAML-3.10-3.el6.x86_64                                                                                                                                                       74/103 
+  Verifying  : python-argparse-1.2.1-2.el6.noarch                                                                                                                                             75/103 
+  Verifying  : 1:python-glanceclient-0.12.0-1.el6.noarch                                                                                                                                      76/103 
+  Verifying  : python-jsonpointer-1.0-3.el6.noarch                                                                                                                                            77/103 
+  Verifying  : netpbm-progs-10.47.05-11.el6.x86_64                                                                                                                                            78/103 
+  Verifying  : python-eventlet-0.14.0-1.el6.noarch                                                                                                                                            79/103 
+  Verifying  : python-httplib2-0.7.7-1.el6.noarch                                                                                                                                             80/103 
+  Verifying  : libyaml-0.1.6-1.el6.x86_64                                                                                                                                                     81/103 
+  Verifying  : 2:qemu-kvm-0.12.1.2-2.415.el6_5.10.x86_64                                                                                                                                      82/103 
+  Verifying  : spice-server-0.12.4-6.el6_5.2.x86_64                                                                                                                                           83/103 
+  Verifying  : openstack-nova-common-2014.1.1-1.el6.noarch                                                                                                                                    84/103 
+  Verifying  : python-imaging-1.1.6-19.el6.x86_64                                                                                                                                             85/103 
+  Verifying  : python-anyjson-0.3.3-1.el6.noarch                                                                                                                                              86/103 
+  Verifying  : python-simplejson-2.0.9-3.1.el6.x86_64                                                                                                                                         87/103 
+  Verifying  : python-backports-ssl_match_hostname-3.4.0.2-1.el6.noarch                                                                                                                       88/103 
+  Verifying  : lzop-1.02-0.9.rc1.el6.x86_64                                                                                                                                                   89/103 
+  Verifying  : perl-hivex-1.3.3-4.2.el6.x86_64                                                                                                                                                90/103 
+  Verifying  : python-chardet-2.0.1-1.el6.noarch                                                                                                                                              91/103 
+  Verifying  : gnutls-utils-2.8.5-14.el6_5.x86_64                                                                                                                                             92/103 
+  Verifying  : 1:python-oslo-config-1.2.1-1.el6.noarch                                                                                                                                        93/103 
+  Verifying  : dnsmasq-2.48-13.el6.x86_64                                                                                                                                                     94/103 
+  Verifying  : python-requests-1.1.0-4.el6.noarch                                                                                                                                             95/103 
+  Verifying  : python-oslo-rootwrap-1.0.0-1.el6.noarch                                                                                                                                        96/103 
+  Verifying  : ipmitool-1.8.11-16.el6.x86_64                                                                                                                                                  97/103 
+  Verifying  : python-routes-1.13-2.el6.noarch                                                                                                                                                98/103 
+  Verifying  : cyrus-sasl-md5-2.1.23-13.el6_3.1.x86_64                                                                                                                                        99/103 
+  Verifying  : augeas-libs-1.0.0-5.el6_5.1.x86_64                                                                                                                                            100/103 
+  Verifying  : python-migrate-0.7.2-8.el6.noarch                                                                                                                                             101/103 
+  Verifying  : 1:libguestfs-1.20.11-2.el6.x86_64                                                                                                                                             102/103 
+  Verifying  : python-memcached-1.53-1.el6.noarch                                                                                                                                            103/103 
+
+Installed:
+  openstack-nova-compute.noarch 0:2014.1.1-1.el6                                                                                                                                                     
+
+Dependency Installed:
+  PyYAML.x86_64 0:3.10-3.el6                                  augeas-libs.x86_64 0:1.0.0-5.el6_5.1                          btrfs-progs.x86_64 0:0.20-0.2.git91d9eec.el6                            
+  celt051.x86_64 0:0.5.1.3-0.el6                              cyrus-sasl-md5.x86_64 0:2.1.23-13.el6_3.1                     dnsmasq.x86_64 0:2.48-13.el6                                            
+  ebtables.x86_64 0:2.0.9-6.el6                               febootstrap-supermin-helper.x86_64 0:3.21-4.el6               fuse.x86_64 0:2.8.3-4.el6                                               
+  fuse-libs.x86_64 0:2.8.3-4.el6                              genisoimage.x86_64 0:1.1.9-12.el6                             glusterfs-api.x86_64 0:3.4.0.57rhs-1.el6_5                              
+  glusterfs-libs.x86_64 0:3.4.0.57rhs-1.el6_5                 gnutls-utils.x86_64 0:2.8.5-14.el6_5                          gpxe-roms-qemu.noarch 0:0.9.7-6.10.el6                                  
+  hivex.x86_64 0:1.3.3-4.2.el6                                ipmitool.x86_64 0:1.8.11-16.el6                               iscsi-initiator-utils.x86_64 0:6.2.0.873-10.el6                         
+  libconfig.x86_64 0:1.3.2-1.1.el6                            libguestfs.x86_64 1:1.20.11-2.el6                             libguestfs-tools-c.x86_64 1:1.20.11-2.el6                               
+  libvirt.x86_64 0:0.10.2-29.el6_5.9                          libvirt-client.x86_64 0:0.10.2-29.el6_5.9                     libvirt-python.x86_64 0:0.10.2-29.el6_5.9                               
+  libyaml.x86_64 0:0.1.6-1.el6                                lzop.x86_64 0:1.02-0.9.rc1.el6                                nc.x86_64 0:1.84-22.el6                                                 
+  netcf-libs.x86_64 0:0.1.9-4.el6_5.2                         netpbm.x86_64 0:10.47.05-11.el6                               netpbm-progs.x86_64 0:10.47.05-11.el6                                   
+  openstack-nova-common.noarch 0:2014.1.1-1.el6               perl-hivex.x86_64 0:1.3.3-4.2.el6                             pyparsing.noarch 0:1.5.6-1.el6                                          
+  python-amqplib.noarch 0:0.6.1-2.el6                         python-anyjson.noarch 0:0.3.3-1.el6                           python-argparse.noarch 0:1.2.1-2.el6                                    
+  python-babel.noarch 0:0.9.4-5.1.el6                         python-backports.x86_64 0:1.0-4.el6                           python-backports-ssl_match_hostname.noarch 0:3.4.0.2-1.el6              
+  python-boto.noarch 0:2.27.0-1.el6                           python-chardet.noarch 0:2.0.1-1.el6                           python-cheetah.x86_64 0:2.4.1-1.el6                                     
+  python-cinderclient.noarch 0:1.0.9-1.el6                    python-cliff.noarch 0:1.4.4-1.el6                             python-cmd2.noarch 0:0.6.4-7.el6                                        
+  python-decorator.noarch 0:3.0.1-3.1.el6                     python-eventlet.noarch 0:0.14.0-1.el6                         python-glanceclient.noarch 1:0.12.0-1.el6                               
+  python-greenlet.x86_64 0:0.4.2-1.el6                        python-httplib2.noarch 0:0.7.7-1.el6                          python-imaging.x86_64 0:1.1.6-19.el6                                    
+  python-iso8601.noarch 0:0.1.10-1.el6                        python-jinja2.noarch 0:2.7.2-1.el6                            python-jsonpatch.noarch 0:1.2-2.el6                                     
+  python-jsonpointer.noarch 0:1.0-3.el6                       python-jsonschema.noarch 0:2.3.0-1.el6                        python-keyring.noarch 0:0.7-1.el6                                       
+  python-keystoneclient.noarch 1:0.9.0-1.el6                  python-kombu.noarch 0:1.1.3-2.el6                             python-libguestfs.x86_64 1:1.20.11-2.el6                                
+  python-markdown.noarch 0:2.0.1-3.1.el6                      python-markupsafe.x86_64 0:0.9.2-4.el6                        python-memcached.noarch 0:1.53-1.el6                                    
+  python-migrate.noarch 0:0.7.2-8.el6                         python-neutronclient.noarch 0:2.3.4-1.el6                     python-nova.noarch 0:2014.1.1-1.el6                                     
+  python-novaclient.noarch 1:2.17.0-2.el6                     python-ordereddict.noarch 0:1.1-2.el6                         python-oslo-config.noarch 1:1.2.1-1.el6                                 
+  python-oslo-messaging.noarch 0:1.3.0.2-4.el6                python-oslo-rootwrap.noarch 0:1.0.0-1.el6                     python-paste.noarch 0:1.7.4-2.el6                                       
+  python-paste-deploy.noarch 0:1.5.0-10.el6                   python-prettytable.noarch 0:0.7.2-1.el6                       python-pyasn1.noarch 0:0.0.12a-1.el6                                    
+  python-pygments.noarch 0:1.4-6.el6                          python-qpid.noarch 0:0.18-5.el6_4                             python-repoze-lru.noarch 0:0.4-3.el6                                    
+  python-requests.noarch 0:1.1.0-4.el6                        python-routes.noarch 0:1.13-2.el6                             python-saslwrapper.x86_64 0:0.18-1.el6_3                                
+  python-simplejson.x86_64 0:2.0.9-3.1.el6                    python-six.noarch 0:1.6.1-1.el6                               python-sqlalchemy.x86_64 0:0.8.4-1.el6                                  
+  python-sqlalchemy0.7.x86_64 0:0.7.8-1.el6                   python-stevedore.noarch 0:0.14-1.el6                          python-tempita.noarch 0:0.4-2.el6                                       
+  python-urllib3.noarch 0:1.5-7.el6                           python-warlock.noarch 0:1.0.1-1.el6                           python-webob.noarch 0:1.2.3-8.el6                                       
+  qemu-img.x86_64 2:0.12.1.2-2.415.el6_5.10                   qemu-kvm.x86_64 2:0.12.1.2-2.415.el6_5.10                     radvd.x86_64 0:1.6-1.el6                                                
+  saslwrapper.x86_64 0:0.18-1.el6_3                           scrub.x86_64 0:2.2-1.el6                                      seabios.x86_64 0:0.6.1.2-28.el6                                         
+  sgabios-bin.noarch 0:0-0.3.20110621svn.el6                  spice-server.x86_64 0:0.12.4-6.el6_5.2                        tunctl.x86_64 0:1.5-3.el6                                               
+  usbredir.x86_64 0:0.5.1-1.el6                               vgabios.noarch 0:0.6b-3.7.el6                                 yajl.x86_64 0:1.0.7-3.el6                                               
+
+Complete!
++ echo Done.
+Done.
++ echo 'Configuring Nova...'
+Configuring Nova...
++ openstack-config --set /etc/nova/nova.conf database connection mysql://nova:548295a7ebf749b74d42@controller/nova
++ openstack-config --set /etc/nova/nova.conf DEFAULT auth_strategy keystone
++ openstack-config --set /etc/nova/nova.conf keystone_authtoken auth_uri http://controller:5000
++ openstack-config --set /etc/nova/nova.conf keystone_authtoken auth_host controller
++ openstack-config --set /etc/nova/nova.conf keystone_authtoken auth_protocol http
++ openstack-config --set /etc/nova/nova.conf keystone_authtoken auth_port 35357
++ openstack-config --set /etc/nova/nova.conf keystone_authtoken admin_user nova
++ openstack-config --set /etc/nova/nova.conf keystone_authtoken admin_tenant_name service
++ openstack-config --set /etc/nova/nova.conf keystone_authtoken admin_password 548295a7ebf749b74d42
++ openstack-config --set /etc/nova/nova.conf DEFAULT rpc_backend qpid
++ openstack-config --set /etc/nova/nova.conf DEFAULT qpid_hostname controller
++ openstack-config --set /etc/nova/nova.conf DEFAULT my_ip 10.0.0.31
++ openstack-config --set /etc/nova/nova.conf DEFAULT vnc_enabled True
++ openstack-config --set /etc/nova/nova.conf DEFAULT vncserver_listen 0.0.0.0
++ openstack-config --set /etc/nova/nova.conf DEFAULT vncserver_proxyclient_address 10.0.0.31
++ openstack-config --set /etc/nova/nova.conf DEFAULT novncproxy_base_url http://controller:6080/vnc_auto.html
++ openstack-config --set /etc/nova/nova.conf DEFAULT glance_host controller
++ echo Done.
+Done.
++ echo 'Starting service and setting chkconfig...'
+Starting service and setting chkconfig...
++ service libvirtd start
+Starting libvirtd daemon:                                  [  OK  ]
++ service messagebus start
+Starting system message bus: 
++ chkconfig libvirtd on
++ chkconfig messagebus on
++ service openstack-nova-compute start
+Starting openstack-nova-compute:                           [  OK  ]
++ chkconfig openstack-nova-compute on
++ echo Done.
+Done.
++ echo 'Installing Networking Service (Neutron)...'
+Installing Networking Service (Neutron)...
++ yum install openstack-neutron-ml2 openstack-neutron-openvswitch -y
+Loaded plugins: fastestmirror, priorities, security
+Loading mirror speeds from cached hostfile
+ * base: centos.mirror.nac.net
+ * epel: mirror.seas.harvard.edu
+ * extras: mirror.lug.udel.edu
+ * updates: mirror.us.leaseweb.net
+215 packages excluded due to repository priority protections
+Setting up Install Process
+Resolving Dependencies
+--> Running transaction check
+---> Package openstack-neutron-ml2.noarch 0:2014.1.1-1.el6 will be installed
+--> Processing Dependency: openstack-neutron = 2014.1.1-1.el6 for package: openstack-neutron-ml2-2014.1.1-1.el6.noarch
+---> Package openstack-neutron-openvswitch.noarch 0:2014.1.1-1.el6 will be installed
+--> Processing Dependency: openvswitch for package: openstack-neutron-openvswitch-2014.1.1-1.el6.noarch
+--> Running transaction check
+---> Package openstack-neutron.noarch 0:2014.1.1-1.el6 will be installed
+--> Processing Dependency: python-neutron = 2014.1.1-1.el6 for package: openstack-neutron-2014.1.1-1.el6.noarch
+--> Processing Dependency: dnsmasq-utils for package: openstack-neutron-2014.1.1-1.el6.noarch
+---> Package openvswitch.x86_64 0:1.11.0_8ce28d-1.el6ost will be installed
+--> Running transaction check
+---> Package dnsmasq-utils.x86_64 0:2.48-13.el6 will be installed
+---> Package python-neutron.noarch 0:2014.1.1-1.el6 will be installed
+--> Processing Dependency: python-routes1.12 for package: python-neutron-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-paste-deploy1.5 for package: python-neutron-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-jinja2-26 for package: python-neutron-2014.1.1-1.el6.noarch
+--> Processing Dependency: python-alembic for package: python-neutron-2014.1.1-1.el6.noarch
+--> Running transaction check
+---> Package python-alembic.noarch 0:0.4.2-3.el6 will be installed
+--> Processing Dependency: python-mako for package: python-alembic-0.4.2-3.el6.noarch
+---> Package python-jinja2-26.noarch 0:2.6-2.el6 will be installed
+---> Package python-paste-deploy1.5.noarch 0:1.5.0-5.el6 will be installed
+---> Package python-routes1.12.noarch 0:1.12.3-4.el6 will be installed
+--> Running transaction check
+---> Package python-mako.noarch 0:0.5.0-5.el6 will be installed
+--> Processing Dependency: python-beaker for package: python-mako-0.5.0-5.el6.noarch
+--> Running transaction check
+---> Package python-beaker.noarch 0:1.3.1-7.el6 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================================================================================================================
+ Package                                                  Arch                              Version                                              Repository                                     Size
+=====================================================================================================================================================================================================
+Installing:
+ openstack-neutron-ml2                                    noarch                            2014.1.1-1.el6                                       openstack-icehouse                            167 k
+ openstack-neutron-openvswitch                            noarch                            2014.1.1-1.el6                                       openstack-icehouse                             77 k
+Installing for dependencies:
+ dnsmasq-utils                                            x86_64                            2.48-13.el6                                          openstack-icehouse                             16 k
+ openstack-neutron                                        noarch                            2014.1.1-1.el6                                       openstack-icehouse                             44 k
+ openvswitch                                              x86_64                            1.11.0_8ce28d-1.el6ost                               openstack-icehouse                            1.8 M
+ python-alembic                                           noarch                            0.4.2-3.el6                                          epel                                          294 k
+ python-beaker                                            noarch                            1.3.1-7.el6                                          base                                           72 k
+ python-jinja2-26                                         noarch                            2.6-2.el6                                            epel                                          526 k
+ python-mako                                              noarch                            0.5.0-5.el6                                          openstack-icehouse                            265 k
+ python-neutron                                           noarch                            2014.1.1-1.el6                                       openstack-icehouse                            1.3 M
+ python-paste-deploy1.5                                   noarch                            1.5.0-5.el6                                          epel                                           47 k
+ python-routes1.12                                        noarch                            1.12.3-4.el6                                         epel                                          691 k
+
+Transaction Summary
+=====================================================================================================================================================================================================
+Install      12 Package(s)
+
+Total download size: 5.3 M
+Installed size: 47 M
+Downloading Packages:
+(1/12): dnsmasq-utils-2.48-13.el6.x86_64.rpm                                                                                                                                  |  16 kB     00:00     
+(2/12): openstack-neutron-2014.1.1-1.el6.noarch.rpm                                                                                                                           |  44 kB     00:00     
+(3/12): openstack-neutron-ml2-2014.1.1-1.el6.noarch.rpm                                                                                                                       | 167 kB     00:00     
+(4/12): openstack-neutron-openvswitch-2014.1.1-1.el6.noarch.rpm                                                                                                               |  77 kB     00:00     
+(5/12): openvswitch-1.11.0_8ce28d-1.el6ost.x86_64.rpm                                                                                                                         | 1.8 MB     00:00     
+(6/12): python-alembic-0.4.2-3.el6.noarch.rpm                                                                                                                                 | 294 kB     00:00     
+(7/12): python-beaker-1.3.1-7.el6.noarch.rpm                                                                                                                                  |  72 kB     00:00     
+(8/12): python-jinja2-26-2.6-2.el6.noarch.rpm                                                                                                                                 | 526 kB     00:00     
+(9/12): python-mako-0.5.0-5.el6.noarch.rpm                                                                                                                                    | 265 kB     00:00     
+(10/12): python-neutron-2014.1.1-1.el6.noarch.rpm                                                                                                                             | 1.3 MB     00:00     
+(11/12): python-paste-deploy1.5-1.5.0-5.el6.noarch.rpm                                                                                                                        |  47 kB     00:00     
+(12/12): python-routes1.12-1.12.3-4.el6.noarch.rpm                                                                                                                            | 691 kB     00:00     
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                                2.0 MB/s | 5.3 MB     00:02     
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : python-beaker-1.3.1-7.el6.noarch                                                                                                                                                 1/12 
+  Installing : python-mako-0.5.0-5.el6.noarch                                                                                                                                                   2/12 
+  Installing : python-alembic-0.4.2-3.el6.noarch                                                                                                                                                3/12 
+  Installing : python-routes1.12-1.12.3-4.el6.noarch                                                                                                                                            4/12 
+  Installing : python-jinja2-26-2.6-2.el6.noarch                                                                                                                                                5/12 
+  Installing : dnsmasq-utils-2.48-13.el6.x86_64                                                                                                                                                 6/12 
+  Installing : python-paste-deploy1.5-1.5.0-5.el6.noarch                                                                                                                                        7/12 
+  Installing : python-neutron-2014.1.1-1.el6.noarch                                                                                                                                             8/12 
+  Installing : openstack-neutron-2014.1.1-1.el6.noarch                                                                                                                                          9/12 
+  Installing : openvswitch-1.11.0_8ce28d-1.el6ost.x86_64                                                                                                                                       10/12 
+  Installing : openstack-neutron-openvswitch-2014.1.1-1.el6.noarch                                                                                                                             11/12 
+  Installing : openstack-neutron-ml2-2014.1.1-1.el6.noarch                                                                                                                                     12/12 
+  Verifying  : openstack-neutron-ml2-2014.1.1-1.el6.noarch                                                                                                                                      1/12 
+  Verifying  : openvswitch-1.11.0_8ce28d-1.el6ost.x86_64                                                                                                                                        2/12 
+  Verifying  : openstack-neutron-openvswitch-2014.1.1-1.el6.noarch                                                                                                                              3/12 
+  Verifying  : openstack-neutron-2014.1.1-1.el6.noarch                                                                                                                                          4/12 
+  Verifying  : python-mako-0.5.0-5.el6.noarch                                                                                                                                                   5/12 
+  Verifying  : python-paste-deploy1.5-1.5.0-5.el6.noarch                                                                                                                                        6/12 
+  Verifying  : dnsmasq-utils-2.48-13.el6.x86_64                                                                                                                                                 7/12 
+  Verifying  : python-jinja2-26-2.6-2.el6.noarch                                                                                                                                                8/12 
+  Verifying  : python-neutron-2014.1.1-1.el6.noarch                                                                                                                                             9/12 
+  Verifying  : python-alembic-0.4.2-3.el6.noarch                                                                                                                                               10/12 
+  Verifying  : python-routes1.12-1.12.3-4.el6.noarch                                                                                                                                           11/12 
+  Verifying  : python-beaker-1.3.1-7.el6.noarch                                                                                                                                                12/12 
+
+Installed:
+  openstack-neutron-ml2.noarch 0:2014.1.1-1.el6                                                 openstack-neutron-openvswitch.noarch 0:2014.1.1-1.el6                                                
+
+Dependency Installed:
+  dnsmasq-utils.x86_64 0:2.48-13.el6                openstack-neutron.noarch 0:2014.1.1-1.el6       openvswitch.x86_64 0:1.11.0_8ce28d-1.el6ost       python-alembic.noarch 0:0.4.2-3.el6         
+  python-beaker.noarch 0:1.3.1-7.el6                python-jinja2-26.noarch 0:2.6-2.el6             python-mako.noarch 0:0.5.0-5.el6                  python-neutron.noarch 0:2014.1.1-1.el6      
+  python-paste-deploy1.5.noarch 0:1.5.0-5.el6       python-routes1.12.noarch 0:1.12.3-4.el6        
+
+Complete!
++ echo Done.
+Done.
++ echo 'Configuring Neutron...'
+Configuring Neutron...
++ openstack-config --set /etc/neutron/neutron.conf DEFAULT auth_strategy keystone
++ openstack-config --set /etc/neutron/neutron.conf keystone_authtoken auth_uri http://controller:5000
++ openstack-config --set /etc/neutron/neutron.conf keystone_authtoken auth_host controller
++ openstack-config --set /etc/neutron/neutron.conf keystone_authtoken auth_protocol http
++ openstack-config --set /etc/neutron/neutron.conf keystone_authtoken auth_port 35357
++ openstack-config --set /etc/neutron/neutron.conf keystone_authtoken admin_tenant_name service
++ openstack-config --set /etc/neutron/neutron.conf keystone_authtoken admin_user neutron
++ openstack-config --set /etc/neutron/neutron.conf keystone_authtoken admin_password 548295a7ebf749b74d42
++ openstack-config --set /etc/neutron/neutron.conf DEFAULT rpc_backend neutron.openstack.common.rpc.impl_qpid
++ openstack-config --set /etc/neutron/neutron.conf DEFAULT qpid_hostname controller
++ openstack-config --set /etc/neutron/neutron.conf DEFAULT core_plugin ml2
++ openstack-config --set /etc/neutron/neutron.conf DEFAULT service_plugins router
++ openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2 type_drivers gre
++ openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2 tenant_network_types gre
++ openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2 mechanism_drivers openvswitch
++ openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2_type_gre tunnel_id_ranges 1:1000
++ openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini ovs local_ip 10.0.1.31
++ openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini ovs tunnel_type gre
++ openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini ovs enable_tunneling True
++ openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini securitygroup firewall_driver neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver
++ openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini securitygroup enable_security_group True
++ echo Done.
+Done.
++ echo 'Enabling OVS...'
+Enabling OVS...
++ service openvswitch start
+/etc/openvswitch/conf.db does not exist ... (warning).
+Creating empty database /etc/openvswitch/conf.db           [  OK  ]
+Starting ovsdb-server                                      [  OK  ]
+Configuring Open vSwitch system IDs                        [  OK  ]
+Inserting openvswitch module                               [  OK  ]
+Starting ovs-vswitchd                                      [  OK  ]
+Enabling remote OVSDB managers                             [  OK  ]
++ chkconfig openvswitch on
++ ovs-vsctl add-br br-int
++ echo Done.
+Done.
++ echo 'Configuring Nova...'
+Configuring Nova...
++ openstack-config --set /etc/nova/nova.conf DEFAULT network_api_class nova.network.neutronv2.api.API
++ openstack-config --set /etc/nova/nova.conf DEFAULT neutron_url http://controller:9696
++ openstack-config --set /etc/nova/nova.conf DEFAULT neutron_auth_strategy keystone
++ openstack-config --set /etc/nova/nova.conf DEFAULT neutron_admin_tenant_name service
++ openstack-config --set /etc/nova/nova.conf DEFAULT neutron_admin_username neutron
++ openstack-config --set /etc/nova/nova.conf DEFAULT neutron_admin_password 548295a7ebf749b74d42
++ openstack-config --set /etc/nova/nova.conf DEFAULT neutron_admin_auth_url http://controller:35357/v2.0
++ openstack-config --set /etc/nova/nova.conf DEFAULT linuxnet_interface_driver nova.network.linux_net.LinuxOVSInterfaceDriver
++ openstack-config --set /etc/nova/nova.conf DEFAULT firewall_driver nova.virt.firewall.NoopFirewallDriver
++ openstack-config --set /etc/nova/nova.conf DEFAULT security_group_api neutron
++ echo Done.
+Done.
++ echo 'Completing settup...'
+Completing settup...
++ ln -s /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugin.ini
++ cp /etc/init.d/neutron-openvswitch-agent /etc/init.d/neutron-openvswitch-agent.orig
++ sed -i s,plugins/openvswitch/ovs_neutron_plugin.ini,plugin.ini,g /etc/init.d/neutron-openvswitch-agent
++ service openstack-nova-compute restart
+Stopping openstack-nova-compute:                           [  OK  ]
+Starting openstack-nova-compute:                           [  OK  ]
++ service neutron-openvswitch-agent start
+Starting neutron-openvswitch-agent:                        [  OK  ]
++ chkconfig neutron-openvswitch-agent on
++ echo Done.
+Done.
+[root@compute-01 ~]# 

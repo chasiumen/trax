@@ -1,0 +1,1223 @@
+[root@controller ~]# ./cont.sh 
++ echo 'Installing Identity Service (Keystone)...'
+Installing Identity Service (Keystone)...
++ yum install openstack-keystone python-keystoneclient -y
+Loaded plugins: fastestmirror, priorities
+Loading mirror speeds from cached hostfile
+epel/metalink                                                                                                                                                                 |  11 kB     00:00     
+ * base: mirror.es.its.nyu.edu
+ * epel: mirror.seas.harvard.edu
+ * extras: mirror.cogentco.com
+ * updates: mirror.net.cen.ct.gov
+base                                                                                                                                                                          | 3.7 kB     00:00     
+epel                                                                                                                                                                          | 4.4 kB     00:00     
+epel/primary_db                                                                                                                                                               | 6.2 MB     00:00     
+extras                                                                                                                                                                        | 3.4 kB     00:00     
+foreman                                                                                                                                                                       | 2.9 kB     00:00     
+foreman/primary_db                                                                                                                                                            |  68 kB     00:00     
+foreman-plugins                                                                                                                                                               | 2.9 kB     00:00     
+foreman-plugins/primary_db                                                                                                                                                    |  24 kB     00:00     
+openstack-icehouse                                                                                                                                                            | 2.9 kB     00:00     
+puppetlabs-deps                                                                                                                                                               | 2.5 kB     00:00     
+puppetlabs-deps/primary_db                                                                                                                                                    |  23 kB     00:00     
+puppetlabs-products                                                                                                                                                           | 2.5 kB     00:00     
+puppetlabs-products/primary_db                                                                                                                                                | 112 kB     00:00     
+updates                                                                                                                                                                       | 3.4 kB     00:00     
+215 packages excluded due to repository priority protections
+Setting up Install Process
+Resolving Dependencies
+--> Running transaction check
+---> Package openstack-keystone.noarch 0:2014.1-5.el6 will be installed
+--> Processing Dependency: python-keystone = 2014.1-5.el6 for package: openstack-keystone-2014.1-5.el6.noarch
+---> Package python-keystoneclient.noarch 1:0.8.0-2.el6 will be installed
+--> Processing Dependency: python-six >= 1.5.2 for package: 1:python-keystoneclient-0.8.0-2.el6.noarch
+--> Processing Dependency: python-requests >= 0.8.8 for package: 1:python-keystoneclient-0.8.0-2.el6.noarch
+--> Processing Dependency: python-oslo-config >= 1.1.0 for package: 1:python-keystoneclient-0.8.0-2.el6.noarch
+--> Processing Dependency: python-iso8601 >= 0.1.4 for package: 1:python-keystoneclient-0.8.0-2.el6.noarch
+--> Processing Dependency: python-setuptools for package: 1:python-keystoneclient-0.8.0-2.el6.noarch
+--> Processing Dependency: python-prettytable for package: 1:python-keystoneclient-0.8.0-2.el6.noarch
+--> Processing Dependency: python-netaddr for package: 1:python-keystoneclient-0.8.0-2.el6.noarch
+--> Processing Dependency: python-keyring for package: 1:python-keystoneclient-0.8.0-2.el6.noarch
+--> Processing Dependency: python-babel for package: 1:python-keystoneclient-0.8.0-2.el6.noarch
+--> Processing Dependency: python-argparse for package: 1:python-keystoneclient-0.8.0-2.el6.noarch
+--> Running transaction check
+---> Package python-argparse.noarch 0:1.2.1-2.el6 will be installed
+---> Package python-babel.noarch 0:0.9.4-5.1.el6 will be installed
+---> Package python-iso8601.noarch 0:0.1.10-1.el6 will be installed
+---> Package python-keyring.noarch 0:0.7-1.el6 will be installed
+---> Package python-keystone.noarch 0:2014.1-5.el6 will be installed
+--> Processing Dependency: python-webob >= 1.2.3 for package: python-keystone-2014.1-5.el6.noarch
+--> Processing Dependency: python-sqlalchemy >= 0.7.8 for package: python-keystone-2014.1-5.el6.noarch
+--> Processing Dependency: python-routes >= 1.12 for package: python-keystone-2014.1-5.el6.noarch
+--> Processing Dependency: python-paste-deploy >= 1.5.0 for package: python-keystone-2014.1-5.el6.noarch
+--> Processing Dependency: python-dogpile-cache >= 0.5.0 for package: python-keystone-2014.1-5.el6.noarch
+--> Processing Dependency: python-pycadf for package: python-keystone-2014.1-5.el6.noarch
+--> Processing Dependency: python-passlib for package: python-keystone-2014.1-5.el6.noarch
+--> Processing Dependency: python-oslo-messaging for package: python-keystone-2014.1-5.el6.noarch
+--> Processing Dependency: python-oauthlib for package: python-keystone-2014.1-5.el6.noarch
+--> Processing Dependency: python-migrate for package: python-keystone-2014.1-5.el6.noarch
+--> Processing Dependency: python-memcached for package: python-keystone-2014.1-5.el6.noarch
+--> Processing Dependency: python-lxml for package: python-keystone-2014.1-5.el6.noarch
+--> Processing Dependency: python-ldap for package: python-keystone-2014.1-5.el6.noarch
+--> Processing Dependency: python-jsonschema for package: python-keystone-2014.1-5.el6.noarch
+--> Processing Dependency: python-eventlet for package: python-keystone-2014.1-5.el6.noarch
+--> Processing Dependency: PyPAM for package: python-keystone-2014.1-5.el6.noarch
+---> Package python-netaddr.noarch 0:0.7.5-4.el6 will be installed
+---> Package python-oslo-config.noarch 1:1.2.1-1.el6 will be installed
+---> Package python-prettytable.noarch 0:0.7.2-1.el6 will be installed
+---> Package python-requests.noarch 0:1.1.0-4.el6 will be installed
+--> Processing Dependency: python-urllib3 for package: python-requests-1.1.0-4.el6.noarch
+--> Processing Dependency: python-ordereddict for package: python-requests-1.1.0-4.el6.noarch
+--> Processing Dependency: python-chardet for package: python-requests-1.1.0-4.el6.noarch
+---> Package python-setuptools.noarch 0:0.6.10-3.el6 will be installed
+---> Package python-six.noarch 0:1.6.1-1.el6 will be installed
+--> Running transaction check
+---> Package PyPAM.x86_64 0:0.5.0-12.el6 will be installed
+---> Package python-chardet.noarch 0:2.0.1-1.el6 will be installed
+---> Package python-dogpile-cache.noarch 0:0.5.0-1.el6 will be installed
+--> Processing Dependency: python-dogpile-core >= 0.4.1 for package: python-dogpile-cache-0.5.0-1.el6.noarch
+---> Package python-eventlet.noarch 0:0.14.0-1.el6 will be installed
+--> Processing Dependency: python-greenlet for package: python-eventlet-0.14.0-1.el6.noarch
+---> Package python-jsonschema.noarch 0:2.3.0-1.el6 will be installed
+---> Package python-ldap.x86_64 0:2.3.10-1.el6 will be installed
+---> Package python-lxml.x86_64 0:2.2.3-1.1.el6 will be installed
+--> Processing Dependency: libxslt.so.1(LIBXML2_1.1.9)(64bit) for package: python-lxml-2.2.3-1.1.el6.x86_64
+--> Processing Dependency: libxslt.so.1(LIBXML2_1.1.26)(64bit) for package: python-lxml-2.2.3-1.1.el6.x86_64
+--> Processing Dependency: libxslt.so.1(LIBXML2_1.1.2)(64bit) for package: python-lxml-2.2.3-1.1.el6.x86_64
+--> Processing Dependency: libxslt.so.1(LIBXML2_1.0.24)(64bit) for package: python-lxml-2.2.3-1.1.el6.x86_64
+--> Processing Dependency: libxslt.so.1(LIBXML2_1.0.22)(64bit) for package: python-lxml-2.2.3-1.1.el6.x86_64
+--> Processing Dependency: libxslt.so.1(LIBXML2_1.0.18)(64bit) for package: python-lxml-2.2.3-1.1.el6.x86_64
+--> Processing Dependency: libxslt.so.1(LIBXML2_1.0.11)(64bit) for package: python-lxml-2.2.3-1.1.el6.x86_64
+--> Processing Dependency: libxslt.so.1()(64bit) for package: python-lxml-2.2.3-1.1.el6.x86_64
+--> Processing Dependency: libexslt.so.0()(64bit) for package: python-lxml-2.2.3-1.1.el6.x86_64
+---> Package python-memcached.noarch 0:1.53-1.el6 will be installed
+---> Package python-migrate.noarch 0:0.7.2-8.el6 will be installed
+--> Processing Dependency: python-tempita for package: python-migrate-0.7.2-8.el6.noarch
+--> Processing Dependency: python-sqlalchemy0.7 for package: python-migrate-0.7.2-8.el6.noarch
+--> Processing Dependency: python-decorator for package: python-migrate-0.7.2-8.el6.noarch
+---> Package python-oauthlib.noarch 0:0.6.0-4.el6 will be installed
+--> Processing Dependency: python-crypto >= 2.6 for package: python-oauthlib-0.6.0-4.el6.noarch
+---> Package python-ordereddict.noarch 0:1.1-2.el6 will be installed
+---> Package python-oslo-messaging.noarch 0:1.3.0.2-2.el6 will be installed
+--> Processing Dependency: python-stevedore for package: python-oslo-messaging-1.3.0.2-2.el6.noarch
+--> Processing Dependency: python-qpid for package: python-oslo-messaging-1.3.0.2-2.el6.noarch
+--> Processing Dependency: python-kombu for package: python-oslo-messaging-1.3.0.2-2.el6.noarch
+--> Processing Dependency: PyYAML for package: python-oslo-messaging-1.3.0.2-2.el6.noarch
+---> Package python-passlib.noarch 0:1.5.3-1.el6 will be installed
+---> Package python-paste-deploy.noarch 0:1.5.0-10.el6 will be installed
+--> Processing Dependency: python-paste for package: python-paste-deploy-1.5.0-10.el6.noarch
+---> Package python-pycadf.noarch 0:0.4.1-2.el6 will be installed
+--> Processing Dependency: pytz for package: python-pycadf-0.4.1-2.el6.noarch
+---> Package python-routes.noarch 0:1.13-2.el6 will be installed
+--> Processing Dependency: python-repoze-lru for package: python-routes-1.13-2.el6.noarch
+---> Package python-sqlalchemy.x86_64 0:0.8.4-1.el6 will be installed
+---> Package python-urllib3.noarch 0:1.5-7.el6 will be installed
+--> Processing Dependency: python-backports-ssl_match_hostname for package: python-urllib3-1.5-7.el6.noarch
+---> Package python-webob.noarch 0:1.2.3-8.el6 will be installed
+--> Running transaction check
+---> Package PyYAML.x86_64 0:3.10-3.el6 will be installed
+--> Processing Dependency: libyaml-0.so.2()(64bit) for package: PyYAML-3.10-3.el6.x86_64
+---> Package libxslt.x86_64 0:1.1.26-2.el6_3.1 will be installed
+---> Package python-backports-ssl_match_hostname.noarch 0:3.4.0.2-1.el6 will be installed
+--> Processing Dependency: python-backports for package: python-backports-ssl_match_hostname-3.4.0.2-1.el6.noarch
+---> Package python-crypto.x86_64 0:2.6.1-1.el6 will be installed
+---> Package python-decorator.noarch 0:3.0.1-3.1.el6 will be installed
+---> Package python-dogpile-core.noarch 0:0.4.1-1.el6 will be installed
+---> Package python-greenlet.x86_64 0:0.4.2-1.el6 will be installed
+---> Package python-kombu.noarch 0:1.1.3-2.el6 will be installed
+--> Processing Dependency: python-anyjson for package: python-kombu-1.1.3-2.el6.noarch
+---> Package python-paste.noarch 0:1.7.4-2.el6 will be installed
+--> Processing Dependency: pyOpenSSL for package: python-paste-1.7.4-2.el6.noarch
+---> Package python-qpid.noarch 0:0.18-5.el6_4 will be installed
+--> Processing Dependency: python-saslwrapper >= 0.10 for package: python-qpid-0.18-5.el6_4.noarch
+---> Package python-repoze-lru.noarch 0:0.4-3.el6 will be installed
+---> Package python-sqlalchemy0.7.x86_64 0:0.7.8-1.el6 will be installed
+---> Package python-stevedore.noarch 0:0.14-1.el6 will be installed
+---> Package python-tempita.noarch 0:0.4-2.el6 will be installed
+---> Package pytz.noarch 0:2010h-2.el6 will be installed
+--> Running transaction check
+---> Package libyaml.x86_64 0:0.1.6-1.el6 will be installed
+---> Package pyOpenSSL.x86_64 0:0.13.1-1.el6 will be installed
+---> Package python-anyjson.noarch 0:0.3.3-1.el6 will be installed
+---> Package python-backports.x86_64 0:1.0-4.el6 will be installed
+---> Package python-saslwrapper.x86_64 0:0.18-1.el6_3 will be installed
+--> Processing Dependency: saslwrapper = 0.18-1.el6_3 for package: python-saslwrapper-0.18-1.el6_3.x86_64
+--> Processing Dependency: libsaslwrapper.so.1()(64bit) for package: python-saslwrapper-0.18-1.el6_3.x86_64
+--> Running transaction check
+---> Package saslwrapper.x86_64 0:0.18-1.el6_3 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================================================================================================================
+ Package                                                        Arch                              Version                                        Repository                                     Size
+=====================================================================================================================================================================================================
+Installing:
+ openstack-keystone                                             noarch                            2014.1-5.el6                                   openstack-icehouse                             41 k
+ python-keystoneclient                                          noarch                            1:0.8.0-2.el6                                  openstack-icehouse                            435 k
+Installing for dependencies:
+ PyPAM                                                          x86_64                            0.5.0-12.el6                                   base                                           23 k
+ PyYAML                                                         x86_64                            3.10-3.el6                                     epel                                          157 k
+ libxslt                                                        x86_64                            1.1.26-2.el6_3.1                               base                                          452 k
+ libyaml                                                        x86_64                            0.1.6-1.el6                                    epel                                           52 k
+ pyOpenSSL                                                      x86_64                            0.13.1-1.el6                                   openstack-icehouse                            129 k
+ python-anyjson                                                 noarch                            0.3.3-1.el6                                    epel                                           12 k
+ python-argparse                                                noarch                            1.2.1-2.el6                                    epel                                           48 k
+ python-babel                                                   noarch                            0.9.4-5.1.el6                                  base                                          1.4 M
+ python-backports                                               x86_64                            1.0-4.el6                                      openstack-icehouse                            4.8 k
+ python-backports-ssl_match_hostname                            noarch                            3.4.0.2-1.el6                                  epel                                           12 k
+ python-chardet                                                 noarch                            2.0.1-1.el6                                    epel                                          225 k
+ python-crypto                                                  x86_64                            2.6.1-1.el6                                    openstack-icehouse                            519 k
+ python-decorator                                               noarch                            3.0.1-3.1.el6                                  base                                           14 k
+ python-dogpile-cache                                           noarch                            0.5.0-1.el6                                    epel                                           53 k
+ python-dogpile-core                                            noarch                            0.4.1-1.el6                                    epel                                           20 k
+ python-eventlet                                                noarch                            0.14.0-1.el6                                   openstack-icehouse                            269 k
+ python-greenlet                                                x86_64                            0.4.2-1.el6                                    openstack-icehouse                             24 k
+ python-iso8601                                                 noarch                            0.1.10-1.el6                                   epel                                           18 k
+ python-jsonschema                                              noarch                            2.3.0-1.el6                                    openstack-icehouse                             62 k
+ python-keyring                                                 noarch                            0.7-1.el6                                      epel                                           54 k
+ python-keystone                                                noarch                            2014.1-5.el6                                   openstack-icehouse                            809 k
+ python-kombu                                                   noarch                            1.1.3-2.el6                                    openstack-icehouse                            188 k
+ python-ldap                                                    x86_64                            2.3.10-1.el6                                   base                                          125 k
+ python-lxml                                                    x86_64                            2.2.3-1.1.el6                                  base                                          2.0 M
+ python-memcached                                               noarch                            1.53-1.el6                                     openstack-icehouse                             37 k
+ python-migrate                                                 noarch                            0.7.2-8.el6                                    openstack-icehouse                            222 k
+ python-netaddr                                                 noarch                            0.7.5-4.el6                                    base                                          1.0 M
+ python-oauthlib                                                noarch                            0.6.0-4.el6                                    openstack-icehouse                            119 k
+ python-ordereddict                                             noarch                            1.1-2.el6                                      epel                                          7.6 k
+ python-oslo-config                                             noarch                            1:1.2.1-1.el6                                  openstack-icehouse                             42 k
+ python-oslo-messaging                                          noarch                            1.3.0.2-2.el6                                  openstack-icehouse                            166 k
+ python-passlib                                                 noarch                            1.5.3-1.el6                                    epel                                          290 k
+ python-paste                                                   noarch                            1.7.4-2.el6                                    base                                          758 k
+ python-paste-deploy                                            noarch                            1.5.0-10.el6                                   openstack-icehouse                             46 k
+ python-prettytable                                             noarch                            0.7.2-1.el6                                    openstack-icehouse                             37 k
+ python-pycadf                                                  noarch                            0.4.1-2.el6                                    openstack-icehouse                             98 k
+ python-qpid                                                    noarch                            0.18-5.el6_4                                   openstack-icehouse                            413 k
+ python-repoze-lru                                              noarch                            0.4-3.el6                                      epel                                           13 k
+ python-requests                                                noarch                            1.1.0-4.el6                                    epel                                           71 k
+ python-routes                                                  noarch                            1.13-2.el6                                     openstack-icehouse                            690 k
+ python-saslwrapper                                             x86_64                            0.18-1.el6_3                                   openstack-icehouse                             25 k
+ python-setuptools                                              noarch                            0.6.10-3.el6                                   base                                          336 k
+ python-six                                                     noarch                            1.6.1-1.el6                                    openstack-icehouse                             25 k
+ python-sqlalchemy                                              x86_64                            0.8.4-1.el6                                    openstack-icehouse                            3.0 M
+ python-sqlalchemy0.7                                           x86_64                            0.7.8-1.el6                                    epel                                          2.1 M
+ python-stevedore                                               noarch                            0.14-1.el6                                     epel                                           47 k
+ python-tempita                                                 noarch                            0.4-2.el6                                      base                                           38 k
+ python-urllib3                                                 noarch                            1.5-7.el6                                      epel                                           41 k
+ python-webob                                                   noarch                            1.2.3-8.el6                                    openstack-icehouse                            212 k
+ pytz                                                           noarch                            2010h-2.el6                                    base                                           35 k
+ saslwrapper                                                    x86_64                            0.18-1.el6_3                                   openstack-icehouse                             19 k
+
+Transaction Summary
+=====================================================================================================================================================================================================
+Install      53 Package(s)
+
+Total download size: 17 M
+Installed size: 96 M
+Downloading Packages:
+(1/53): PyPAM-0.5.0-12.el6.x86_64.rpm                                                                                                                                         |  23 kB     00:00     
+(2/53): PyYAML-3.10-3.el6.x86_64.rpm                                                                                                                                          | 157 kB     00:00     
+(3/53): libxslt-1.1.26-2.el6_3.1.x86_64.rpm                                                                                                                                   | 452 kB     00:00     
+(4/53): libyaml-0.1.6-1.el6.x86_64.rpm                                                                                                                                        |  52 kB     00:00     
+(5/53): openstack-keystone-2014.1-5.el6.noarch.rpm                                                                                                                            |  41 kB     00:00     
+(6/53): pyOpenSSL-0.13.1-1.el6.x86_64.rpm                                                                                                                                     | 129 kB     00:00     
+(7/53): python-anyjson-0.3.3-1.el6.noarch.rpm                                                                                                                                 |  12 kB     00:00     
+(8/53): python-argparse-1.2.1-2.el6.noarch.rpm                                                                                                                                |  48 kB     00:00     
+(9/53): python-babel-0.9.4-5.1.el6.noarch.rpm                                                                                                                                 | 1.4 MB     00:00     
+(10/53): python-backports-1.0-4.el6.x86_64.rpm                                                                                                                                | 4.8 kB     00:00     
+(11/53): python-backports-ssl_match_hostname-3.4.0.2-1.el6.noarch.rpm                                                                                                         |  12 kB     00:00     
+(12/53): python-chardet-2.0.1-1.el6.noarch.rpm                                                                                                                                | 225 kB     00:00     
+(13/53): python-crypto-2.6.1-1.el6.x86_64.rpm                                                                                                                                 | 519 kB     00:00     
+(14/53): python-decorator-3.0.1-3.1.el6.noarch.rpm                                                                                                                            |  14 kB     00:00     
+(15/53): python-dogpile-cache-0.5.0-1.el6.noarch.rpm                                                                                                                          |  53 kB     00:00     
+(16/53): python-dogpile-core-0.4.1-1.el6.noarch.rpm                                                                                                                           |  20 kB     00:00     
+(17/53): python-eventlet-0.14.0-1.el6.noarch.rpm                                                                                                                              | 269 kB     00:00     
+(18/53): python-greenlet-0.4.2-1.el6.x86_64.rpm                                                                                                                               |  24 kB     00:00     
+(19/53): python-iso8601-0.1.10-1.el6.noarch.rpm                                                                                                                               |  18 kB     00:00     
+(20/53): python-jsonschema-2.3.0-1.el6.noarch.rpm                                                                                                                             |  62 kB     00:00     
+(21/53): python-keyring-0.7-1.el6.noarch.rpm                                                                                                                                  |  54 kB     00:00     
+(22/53): python-keystone-2014.1-5.el6.noarch.rpm                                                                                                                              | 809 kB     00:00     
+(23/53): python-keystoneclient-0.8.0-2.el6.noarch.rpm                                                                                                                         | 435 kB     00:00     
+(24/53): python-kombu-1.1.3-2.el6.noarch.rpm                                                                                                                                  | 188 kB     00:00     
+(25/53): python-ldap-2.3.10-1.el6.x86_64.rpm                                                                                                                                  | 125 kB     00:00     
+(26/53): python-lxml-2.2.3-1.1.el6.x86_64.rpm                                                                                                                                 | 2.0 MB     00:00     
+(27/53): python-memcached-1.53-1.el6.noarch.rpm                                                                                                                               |  37 kB     00:00     
+(28/53): python-migrate-0.7.2-8.el6.noarch.rpm                                                                                                                                | 222 kB     00:00     
+(29/53): python-netaddr-0.7.5-4.el6.noarch.rpm                                                                                                                                | 1.0 MB     00:00     
+(30/53): python-oauthlib-0.6.0-4.el6.noarch.rpm                                                                                                                               | 119 kB     00:00     
+(31/53): python-ordereddict-1.1-2.el6.noarch.rpm                                                                                                                              | 7.6 kB     00:00     
+(32/53): python-oslo-config-1.2.1-1.el6.noarch.rpm                                                                                                                            |  42 kB     00:00     
+(33/53): python-oslo-messaging-1.3.0.2-2.el6.noarch.rpm                                                                                                                       | 166 kB     00:00     
+(34/53): python-passlib-1.5.3-1.el6.noarch.rpm                                                                                                                                | 290 kB     00:00     
+(35/53): python-paste-1.7.4-2.el6.noarch.rpm                                                                                                                                  | 758 kB     00:00     
+(36/53): python-paste-deploy-1.5.0-10.el6.noarch.rpm                                                                                                                          |  46 kB     00:00     
+(37/53): python-prettytable-0.7.2-1.el6.noarch.rpm                                                                                                                            |  37 kB     00:00     
+(38/53): python-pycadf-0.4.1-2.el6.noarch.rpm                                                                                                                                 |  98 kB     00:00     
+(39/53): python-qpid-0.18-5.el6_4.noarch.rpm                                                                                                                                  | 413 kB     00:00     
+(40/53): python-repoze-lru-0.4-3.el6.noarch.rpm                                                                                                                               |  13 kB     00:00     
+(41/53): python-requests-1.1.0-4.el6.noarch.rpm                                                                                                                               |  71 kB     00:00     
+(42/53): python-routes-1.13-2.el6.noarch.rpm                                                                                                                                  | 690 kB     00:00     
+(43/53): python-saslwrapper-0.18-1.el6_3.x86_64.rpm                                                                                                                           |  25 kB     00:00     
+(44/53): python-setuptools-0.6.10-3.el6.noarch.rpm                                                                                                                            | 336 kB     00:00     
+(45/53): python-six-1.6.1-1.el6.noarch.rpm                                                                                                                                    |  25 kB     00:00     
+(46/53): python-sqlalchemy-0.8.4-1.el6.x86_64.rpm                                                                                                                             | 3.0 MB     00:00     
+(47/53): python-sqlalchemy0.7-0.7.8-1.el6.x86_64.rpm                                                                                                                          | 2.1 MB     00:00     
+(48/53): python-stevedore-0.14-1.el6.noarch.rpm                                                                                                                               |  47 kB     00:00     
+(49/53): python-tempita-0.4-2.el6.noarch.rpm                                                                                                                                  |  38 kB     00:00     
+(50/53): python-urllib3-1.5-7.el6.noarch.rpm                                                                                                                                  |  41 kB     00:00     
+(51/53): python-webob-1.2.3-8.el6.noarch.rpm                                                                                                                                  | 212 kB     00:00     
+(52/53): pytz-2010h-2.el6.noarch.rpm                                                                                                                                          |  35 kB     00:00     
+(53/53): saslwrapper-0.18-1.el6_3.x86_64.rpm                                                                                                                                  |  19 kB     00:00     
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                                1.9 MB/s |  17 MB     00:08     
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : python-six-1.6.1-1.el6.noarch                                                                                                                                                    1/53 
+  Installing : python-setuptools-0.6.10-3.el6.noarch                                                                                                                                            2/53 
+  Installing : python-iso8601-0.1.10-1.el6.noarch                                                                                                                                               3/53 
+  Installing : python-netaddr-0.7.5-4.el6.noarch                                                                                                                                                4/53 
+  Installing : python-babel-0.9.4-5.1.el6.noarch                                                                                                                                                5/53 
+  Installing : python-argparse-1.2.1-2.el6.noarch                                                                                                                                               6/53 
+  Installing : 1:python-oslo-config-1.2.1-1.el6.noarch                                                                                                                                          7/53 
+  Installing : python-ordereddict-1.1-2.el6.noarch                                                                                                                                              8/53 
+  Installing : python-webob-1.2.3-8.el6.noarch                                                                                                                                                  9/53 
+  Installing : libxslt-1.1.26-2.el6_3.1.x86_64                                                                                                                                                 10/53 
+  Installing : python-lxml-2.2.3-1.1.el6.x86_64                                                                                                                                                11/53 
+  Installing : python-memcached-1.53-1.el6.noarch                                                                                                                                              12/53 
+  Installing : python-crypto-2.6.1-1.el6.x86_64                                                                                                                                                13/53 
+  Installing : python-oauthlib-0.6.0-4.el6.noarch                                                                                                                                              14/53 
+  Installing : python-ldap-2.3.10-1.el6.x86_64                                                                                                                                                 15/53 
+  Installing : python-decorator-3.0.1-3.1.el6.noarch                                                                                                                                           16/53 
+  Installing : python-greenlet-0.4.2-1.el6.x86_64                                                                                                                                              17/53 
+  Installing : python-eventlet-0.14.0-1.el6.noarch                                                                                                                                             18/53 
+  Installing : python-sqlalchemy-0.8.4-1.el6.x86_64                                                                                                                                            19/53 
+  Installing : python-jsonschema-2.3.0-1.el6.noarch                                                                                                                                            20/53 
+  Installing : python-tempita-0.4-2.el6.noarch                                                                                                                                                 21/53 
+  Installing : python-chardet-2.0.1-1.el6.noarch                                                                                                                                               22/53 
+  Installing : python-backports-1.0-4.el6.x86_64                                                                                                                                               23/53 
+  Installing : python-backports-ssl_match_hostname-3.4.0.2-1.el6.noarch                                                                                                                        24/53 
+  Installing : python-urllib3-1.5-7.el6.noarch                                                                                                                                                 25/53 
+  Installing : python-requests-1.1.0-4.el6.noarch                                                                                                                                              26/53 
+  Installing : python-stevedore-0.14-1.el6.noarch                                                                                                                                              27/53 
+  Installing : PyPAM-0.5.0-12.el6.x86_64                                                                                                                                                       28/53 
+  Installing : python-repoze-lru-0.4-3.el6.noarch                                                                                                                                              29/53 
+  Installing : python-routes-1.13-2.el6.noarch                                                                                                                                                 30/53 
+  Installing : pytz-2010h-2.el6.noarch                                                                                                                                                         31/53 
+  Installing : saslwrapper-0.18-1.el6_3.x86_64                                                                                                                                                 32/53 
+  Installing : python-saslwrapper-0.18-1.el6_3.x86_64                                                                                                                                          33/53 
+  Installing : python-qpid-0.18-5.el6_4.noarch                                                                                                                                                 34/53 
+  Installing : python-anyjson-0.3.3-1.el6.noarch                                                                                                                                               35/53 
+  Installing : python-kombu-1.1.3-2.el6.noarch                                                                                                                                                 36/53 
+  Installing : python-sqlalchemy0.7-0.7.8-1.el6.x86_64                                                                                                                                         37/53 
+  Installing : python-migrate-0.7.2-8.el6.noarch                                                                                                                                               38/53 
+  Installing : python-prettytable-0.7.2-1.el6.noarch                                                                                                                                           39/53 
+  Installing : python-keyring-0.7-1.el6.noarch                                                                                                                                                 40/53 
+  Installing : 1:python-keystoneclient-0.8.0-2.el6.noarch                                                                                                                                      41/53 
+  Installing : python-passlib-1.5.3-1.el6.noarch                                                                                                                                               42/53 
+  Installing : python-dogpile-core-0.4.1-1.el6.noarch                                                                                                                                          43/53 
+  Installing : python-dogpile-cache-0.5.0-1.el6.noarch                                                                                                                                         44/53 
+  Installing : pyOpenSSL-0.13.1-1.el6.x86_64                                                                                                                                                   45/53 
+  Installing : python-paste-1.7.4-2.el6.noarch                                                                                                                                                 46/53 
+  Installing : python-paste-deploy-1.5.0-10.el6.noarch                                                                                                                                         47/53 
+  Installing : libyaml-0.1.6-1.el6.x86_64                                                                                                                                                      48/53 
+  Installing : PyYAML-3.10-3.el6.x86_64                                                                                                                                                        49/53 
+  Installing : python-oslo-messaging-1.3.0.2-2.el6.noarch                                                                                                                                      50/53 
+  Installing : python-pycadf-0.4.1-2.el6.noarch                                                                                                                                                51/53 
+  Installing : python-keystone-2014.1-5.el6.noarch                                                                                                                                             52/53 
+  Installing : openstack-keystone-2014.1-5.el6.noarch                                                                                                                                          53/53 
+  Verifying  : libyaml-0.1.6-1.el6.x86_64                                                                                                                                                       1/53 
+  Verifying  : python-eventlet-0.14.0-1.el6.noarch                                                                                                                                              2/53 
+  Verifying  : python-keystone-2014.1-5.el6.noarch                                                                                                                                              3/53 
+  Verifying  : pyOpenSSL-0.13.1-1.el6.x86_64                                                                                                                                                    4/53 
+  Verifying  : python-oslo-messaging-1.3.0.2-2.el6.noarch                                                                                                                                       5/53 
+  Verifying  : python-dogpile-core-0.4.1-1.el6.noarch                                                                                                                                           6/53 
+  Verifying  : python-oauthlib-0.6.0-4.el6.noarch                                                                                                                                               7/53 
+  Verifying  : python-passlib-1.5.3-1.el6.noarch                                                                                                                                                8/53 
+  Verifying  : python-keyring-0.7-1.el6.noarch                                                                                                                                                  9/53 
+  Verifying  : python-prettytable-0.7.2-1.el6.noarch                                                                                                                                           10/53 
+  Verifying  : python-lxml-2.2.3-1.1.el6.x86_64                                                                                                                                                11/53 
+  Verifying  : python-kombu-1.1.3-2.el6.noarch                                                                                                                                                 12/53 
+  Verifying  : python-sqlalchemy0.7-0.7.8-1.el6.x86_64                                                                                                                                         13/53 
+  Verifying  : openstack-keystone-2014.1-5.el6.noarch                                                                                                                                          14/53 
+  Verifying  : python-backports-ssl_match_hostname-3.4.0.2-1.el6.noarch                                                                                                                        15/53 
+  Verifying  : python-paste-deploy-1.5.0-10.el6.noarch                                                                                                                                         16/53 
+  Verifying  : python-anyjson-0.3.3-1.el6.noarch                                                                                                                                               17/53 
+  Verifying  : python-dogpile-cache-0.5.0-1.el6.noarch                                                                                                                                         18/53 
+  Verifying  : saslwrapper-0.18-1.el6_3.x86_64                                                                                                                                                 19/53 
+  Verifying  : pytz-2010h-2.el6.noarch                                                                                                                                                         20/53 
+  Verifying  : python-repoze-lru-0.4-3.el6.noarch                                                                                                                                              21/53 
+  Verifying  : PyPAM-0.5.0-12.el6.x86_64                                                                                                                                                       22/53 
+  Verifying  : python-qpid-0.18-5.el6_4.noarch                                                                                                                                                 23/53 
+  Verifying  : python-stevedore-0.14-1.el6.noarch                                                                                                                                              24/53 
+  Verifying  : python-urllib3-1.5-7.el6.noarch                                                                                                                                                 25/53 
+  Verifying  : 1:python-keystoneclient-0.8.0-2.el6.noarch                                                                                                                                      26/53 
+  Verifying  : python-backports-1.0-4.el6.x86_64                                                                                                                                               27/53 
+  Verifying  : python-chardet-2.0.1-1.el6.noarch                                                                                                                                               28/53 
+  Verifying  : python-babel-0.9.4-5.1.el6.noarch                                                                                                                                               29/53 
+  Verifying  : 1:python-oslo-config-1.2.1-1.el6.noarch                                                                                                                                         30/53 
+  Verifying  : python-tempita-0.4-2.el6.noarch                                                                                                                                                 31/53 
+  Verifying  : python-paste-1.7.4-2.el6.noarch                                                                                                                                                 32/53 
+  Verifying  : python-webob-1.2.3-8.el6.noarch                                                                                                                                                 33/53 
+  Verifying  : python-netaddr-0.7.5-4.el6.noarch                                                                                                                                               34/53 
+  Verifying  : python-requests-1.1.0-4.el6.noarch                                                                                                                                              35/53 
+  Verifying  : python-jsonschema-2.3.0-1.el6.noarch                                                                                                                                            36/53 
+  Verifying  : python-routes-1.13-2.el6.noarch                                                                                                                                                 37/53 
+  Verifying  : python-sqlalchemy-0.8.4-1.el6.x86_64                                                                                                                                            38/53 
+  Verifying  : python-setuptools-0.6.10-3.el6.noarch                                                                                                                                           39/53 
+  Verifying  : python-greenlet-0.4.2-1.el6.x86_64                                                                                                                                              40/53 
+  Verifying  : python-saslwrapper-0.18-1.el6_3.x86_64                                                                                                                                          41/53 
+  Verifying  : python-iso8601-0.1.10-1.el6.noarch                                                                                                                                              42/53 
+  Verifying  : python-migrate-0.7.2-8.el6.noarch                                                                                                                                               43/53 
+  Verifying  : python-decorator-3.0.1-3.1.el6.noarch                                                                                                                                           44/53 
+  Verifying  : python-ldap-2.3.10-1.el6.x86_64                                                                                                                                                 45/53 
+  Verifying  : python-six-1.6.1-1.el6.noarch                                                                                                                                                   46/53 
+  Verifying  : PyYAML-3.10-3.el6.x86_64                                                                                                                                                        47/53 
+  Verifying  : python-crypto-2.6.1-1.el6.x86_64                                                                                                                                                48/53 
+  Verifying  : python-memcached-1.53-1.el6.noarch                                                                                                                                              49/53 
+  Verifying  : python-ordereddict-1.1-2.el6.noarch                                                                                                                                             50/53 
+  Verifying  : libxslt-1.1.26-2.el6_3.1.x86_64                                                                                                                                                 51/53 
+  Verifying  : python-argparse-1.2.1-2.el6.noarch                                                                                                                                              52/53 
+  Verifying  : python-pycadf-0.4.1-2.el6.noarch                                                                                                                                                53/53 
+
+Installed:
+  openstack-keystone.noarch 0:2014.1-5.el6                                                         python-keystoneclient.noarch 1:0.8.0-2.el6                                                        
+
+Dependency Installed:
+  PyPAM.x86_64 0:0.5.0-12.el6                 PyYAML.x86_64 0:3.10-3.el6                                   libxslt.x86_64 0:1.1.26-2.el6_3.1              libyaml.x86_64 0:0.1.6-1.el6            
+  pyOpenSSL.x86_64 0:0.13.1-1.el6             python-anyjson.noarch 0:0.3.3-1.el6                          python-argparse.noarch 0:1.2.1-2.el6           python-babel.noarch 0:0.9.4-5.1.el6     
+  python-backports.x86_64 0:1.0-4.el6         python-backports-ssl_match_hostname.noarch 0:3.4.0.2-1.el6   python-chardet.noarch 0:2.0.1-1.el6            python-crypto.x86_64 0:2.6.1-1.el6      
+  python-decorator.noarch 0:3.0.1-3.1.el6     python-dogpile-cache.noarch 0:0.5.0-1.el6                    python-dogpile-core.noarch 0:0.4.1-1.el6       python-eventlet.noarch 0:0.14.0-1.el6   
+  python-greenlet.x86_64 0:0.4.2-1.el6        python-iso8601.noarch 0:0.1.10-1.el6                         python-jsonschema.noarch 0:2.3.0-1.el6         python-keyring.noarch 0:0.7-1.el6       
+  python-keystone.noarch 0:2014.1-5.el6       python-kombu.noarch 0:1.1.3-2.el6                            python-ldap.x86_64 0:2.3.10-1.el6              python-lxml.x86_64 0:2.2.3-1.1.el6      
+  python-memcached.noarch 0:1.53-1.el6        python-migrate.noarch 0:0.7.2-8.el6                          python-netaddr.noarch 0:0.7.5-4.el6            python-oauthlib.noarch 0:0.6.0-4.el6    
+  python-ordereddict.noarch 0:1.1-2.el6       python-oslo-config.noarch 1:1.2.1-1.el6                      python-oslo-messaging.noarch 0:1.3.0.2-2.el6   python-passlib.noarch 0:1.5.3-1.el6     
+  python-paste.noarch 0:1.7.4-2.el6           python-paste-deploy.noarch 0:1.5.0-10.el6                    python-prettytable.noarch 0:0.7.2-1.el6        python-pycadf.noarch 0:0.4.1-2.el6      
+  python-qpid.noarch 0:0.18-5.el6_4           python-repoze-lru.noarch 0:0.4-3.el6                         python-requests.noarch 0:1.1.0-4.el6           python-routes.noarch 0:1.13-2.el6       
+  python-saslwrapper.x86_64 0:0.18-1.el6_3    python-setuptools.noarch 0:0.6.10-3.el6                      python-six.noarch 0:1.6.1-1.el6                python-sqlalchemy.x86_64 0:0.8.4-1.el6  
+  python-sqlalchemy0.7.x86_64 0:0.7.8-1.el6   python-stevedore.noarch 0:0.14-1.el6                         python-tempita.noarch 0:0.4-2.el6              python-urllib3.noarch 0:1.5-7.el6       
+  python-webob.noarch 0:1.2.3-8.el6           pytz.noarch 0:2010h-2.el6                                    saslwrapper.x86_64 0:0.18-1.el6_3             
+
+Complete!
++ echo Done.
+Done.
++ echo 'Configuring Keystone...'
+Configuring Keystone...
++ openstack-config --set /etc/keystone/keystone.conf database connection mysql://keystone:548295a7ebf749b74d42@controller/keystone
++ su -s /bin/sh -c 'keystone-manage db_sync' keystone
++ openstack-config --set /etc/keystone/keystone.conf DEFAULT admin_token 548295a7ebf749b74d42
++ keystone-manage pki_setup --keystone-user keystone --keystone-group keystone
+Generating RSA private key, 2048 bit long modulus
+.............+++
+.....................................................+++
+e is 65537 (0x10001)
+Generating RSA private key, 2048 bit long modulus
+...........................+++
+..........+++
+e is 65537 (0x10001)
+Using configuration from /etc/keystone/ssl/certs/openssl.conf
+Check that the request matches the signature
+Signature ok
+The Subject's Distinguished Name is as follows
+countryName           :PRINTABLE:'US'
+stateOrProvinceName   :ASN.1 12:'Unset'
+localityName          :ASN.1 12:'Unset'
+organizationName      :ASN.1 12:'Unset'
+commonName            :ASN.1 12:'www.example.com'
+Certificate is to be certified until Jun 15 14:45:27 2024 GMT (3650 days)
+
+Write out database with 1 new entries
+Data Base Updated
++ chown -R keystone:keystone /etc/keystone/ssl
++ chmod -R o-rwx /etc/keystone/ssl
++ crontab -l -u keystone
++ grep -q token_flush
++ echo '@hourly /usr/bin/keystone-manage token_flush >/var/log/keystone/keystone-tokenflush.log 2>&1'
++ echo Done.
+Done.
++ echo 'Starting service and setting chkconfig...'
+Starting service and setting chkconfig...
++ service openstack-keystone start
+Starting keystone:                                         [  OK  ]
++ chkconfig openstack-keystone on
++ echo Done.
+Done.
++ echo 'Setting Keystone authorization tokens...'
+Setting Keystone authorization tokens...
++ export OS_SERVICE_TOKEN=548295a7ebf749b74d42
++ OS_SERVICE_TOKEN=548295a7ebf749b74d42
++ export OS_SERVICE_ENDPOINT=http://controller:35357/v2.0
++ OS_SERVICE_ENDPOINT=http://controller:35357/v2.0
++ echo Done.
+Done.
++ echo 'Making admin account...'
+Making admin account...
++ keystone user-create --name=admin --pass=548295a7ebf749b74d42 --email=admin@devtrax.com
++----------+----------------------------------+
+| Property |              Value               |
++----------+----------------------------------+
+|  email   |        admin@devtrax.com         |
+| enabled  |               True               |
+|    id    | 1e84baaa848a4c7983fce0b2497fd7d3 |
+|   name   |              admin               |
+| username |              admin               |
++----------+----------------------------------+
++ keystone role-create --name=admin
++----------+----------------------------------+
+| Property |              Value               |
++----------+----------------------------------+
+|    id    | b9f3fa0c796448dda5b22484d150611b |
+|   name   |              admin               |
++----------+----------------------------------+
++ keystone tenant-create --name=admin '--description=Admin Tenant'
++-------------+----------------------------------+
+|   Property  |              Value               |
++-------------+----------------------------------+
+| description |           Admin Tenant           |
+|   enabled   |               True               |
+|      id     | 42b6d8d6e47346f0ba1f3b28a12ad1b5 |
+|     name    |              admin               |
++-------------+----------------------------------+
++ keystone user-role-add --user=admin --tenant=admin --role=admin
++ keystone user-role-add --user=admin --role=_member_ --tenant=admin
++ echo Done.
+Done.
++ echo 'Making user accounts...'
+Making user accounts...
++ keystone user-create --name=austin --pass=548295a7ebf749b74d42 --email=austin@devtrax.com
++----------+----------------------------------+
+| Property |              Value               |
++----------+----------------------------------+
+|  email   |        austin@devtrax.com        |
+| enabled  |               True               |
+|    id    | 473dd74b20134fc9962931c3c47737b2 |
+|   name   |              austin              |
+| username |              austin              |
++----------+----------------------------------+
++ keystone tenant-create --name=basicuser '--description=Basic User Tenant'
++-------------+----------------------------------+
+|   Property  |              Value               |
++-------------+----------------------------------+
+| description |        Basic User Tenant         |
+|   enabled   |               True               |
+|      id     | f882dbcc65d145689630829a344a632b |
+|     name    |            basicuser             |
++-------------+----------------------------------+
++ keystone user-role-add --user=austin --role=_member_ --tenant=basicuser
++ keystone user-create --name=tim --pass=548295a7ebf749b74d42 --email=tim@devtrax.com
++----------+----------------------------------+
+| Property |              Value               |
++----------+----------------------------------+
+|  email   |         tim@devtrax.com          |
+| enabled  |               True               |
+|    id    | 7eb3e6e891fd4711a7eb579443b296fc |
+|   name   |               tim                |
+| username |               tim                |
++----------+----------------------------------+
++ keystone tenant-create --name=basicuser '--description=Basic User Tenant'
+Conflict occurred attempting to store project. (IntegrityError) (1062, "Duplicate entry 'default-basicuser' for key 'domain_id'") 'INSERT INTO project (id, name, domain_id, description, enabled, extra) VALUES (%s, %s, %s, %s, %s, %s)' ('1048acb068f943bba8eff7e3f90017ca', 'basicuser', 'default', 'Basic User Tenant', 1, '{}') (HTTP 409)
++ keystone user-role-add --user=tim --role=_member_ --tenant=basicuser
++ keystone user-create --name=morinor --pass=548295a7ebf749b74d42 --email=morinor@devtrax.com
++----------+----------------------------------+
+| Property |              Value               |
++----------+----------------------------------+
+|  email   |       morinor@devtrax.com        |
+| enabled  |               True               |
+|    id    | 1f3f09d5d0274a799bacfe3b9aee3276 |
+|   name   |             morinor              |
+| username |             morinor              |
++----------+----------------------------------+
++ keystone tenant-create --name=basicuser '--description=Basic User Tenant'
+Conflict occurred attempting to store project. (IntegrityError) (1062, "Duplicate entry 'default-basicuser' for key 'domain_id'") 'INSERT INTO project (id, name, domain_id, description, enabled, extra) VALUES (%s, %s, %s, %s, %s, %s)' ('ae0ae5be038e419eb0ce423d539287cc', 'basicuser', 'default', 'Basic User Tenant', 1, '{}') (HTTP 409)
++ keystone user-role-add --user=morinor --role=_member_ --tenant=basicuser
++ keystone user-create --name=zhaox --pass=548295a7ebf749b74d42 --email=zhaox@devtrax.com
++----------+----------------------------------+
+| Property |              Value               |
++----------+----------------------------------+
+|  email   |        zhaox@devtrax.com         |
+| enabled  |               True               |
+|    id    | 299cb1efa47e4524a97488e21cf460a6 |
+|   name   |              zhaox               |
+| username |              zhaox               |
++----------+----------------------------------+
++ keystone tenant-create --name=basicuser '--description=Basic User Tenant'
+Conflict occurred attempting to store project. (IntegrityError) (1062, "Duplicate entry 'default-basicuser' for key 'domain_id'") 'INSERT INTO project (id, name, domain_id, description, enabled, extra) VALUES (%s, %s, %s, %s, %s, %s)' ('7a76998f98c14b65945e2eaa0ee38683', 'basicuser', 'default', 'Basic User Tenant', 1, '{}') (HTTP 409)
++ keystone user-role-add --user=zhaox --role=_member_ --tenant=basicuser
++ echo Done.
+Done.
++ echo 'Making Service tenant...'
+Making Service tenant...
++ keystone tenant-create --name=service '--description=Service Tenant'
++-------------+----------------------------------+
+|   Property  |              Value               |
++-------------+----------------------------------+
+| description |          Service Tenant          |
+|   enabled   |               True               |
+|      id     | 14473d49a2454736acfaf0136703adff |
+|     name    |             service              |
++-------------+----------------------------------+
++ echo Done.
+Done.
++ echo 'Defining service and API endpoints...'
+Defining service and API endpoints...
++ keystone service-create --name=keystone --type=identity 'description=OpenStack Identity'
+usage: keystone [--version] [--timeout <seconds>]
+                [--os-username <auth-user-name>]
+                [--os-password <auth-password>]
+                [--os-tenant-name <auth-tenant-name>]
+                [--os-tenant-id <tenant-id>] [--os-auth-url <auth-url>]
+                [--os-region-name <region-name>]
+                [--os-identity-api-version <identity-api-version>]
+                [--os-token <service-token>]
+                [--os-endpoint <service-endpoint>]
+                [--os-cacert <ca-certificate>] [--insecure]
+                [--os-cert <certificate>] [--os-key <key>] [--os-cache]
+                [--force-new-token] [--stale-duration <seconds>]
+                <subcommand> ...
+keystone: error: unrecognized arguments: description=OpenStack Identity
+++ keystone service-list
+++ awk '/ identity / {print $2}'
++ keystone endpoint-create --service-id= --publicurl=http://controller:5000/v2.0 --internalurl=http://controller:5000/v2.0 --adminurl=http://controller:35357/v2.0
+'OS-KSADM:service'
++ echo Done.
+Done.
++ echo 'Setting Keystone connection...'
+Setting Keystone connection...
++ unset OS_SERVICE_TOKEN OS_SERVICE_ENDPOINT
++ source /root/admin-openrc.sh
+./cont.sh: line 111: /root/admin-openrc.sh: No such file or directory
++ echo Done.
+Done.
++ echo 'Installing Image Service (Glance)...'
+Installing Image Service (Glance)...
++ yum install openstack-glance python-glanceclient -y
+Loaded plugins: fastestmirror, priorities
+Loading mirror speeds from cached hostfile
+ * base: mirror.es.its.nyu.edu
+ * epel: mirrors.mit.edu
+ * extras: mirror.cogentco.com
+ * updates: mirror.net.cen.ct.gov
+215 packages excluded due to repository priority protections
+Setting up Install Process
+Resolving Dependencies
+--> Running transaction check
+---> Package openstack-glance.noarch 0:2014.1-2.el6 will be installed
+--> Processing Dependency: python-glance = 2014.1-2.el6 for package: openstack-glance-2014.1-2.el6.noarch
+---> Package python-glanceclient.noarch 1:0.12.0-1.el6 will be installed
+--> Processing Dependency: python-warlock for package: 1:python-glanceclient-0.12.0-1.el6.noarch
+--> Processing Dependency: python-httplib2 for package: 1:python-glanceclient-0.12.0-1.el6.noarch
+--> Running transaction check
+---> Package python-glance.noarch 0:2014.1-2.el6 will be installed
+--> Processing Dependency: pyxattr for package: python-glance-2014.1-2.el6.noarch
+--> Processing Dependency: python-swiftclient for package: python-glance-2014.1-2.el6.noarch
+--> Processing Dependency: python-routes1.12 for package: python-glance-2014.1-2.el6.noarch
+--> Processing Dependency: python-paste-deploy1.5 for package: python-glance-2014.1-2.el6.noarch
+--> Processing Dependency: python-cinderclient for package: python-glance-2014.1-2.el6.noarch
+--> Processing Dependency: pysendfile for package: python-glance-2014.1-2.el6.noarch
+---> Package python-httplib2.noarch 0:0.7.7-1.el6 will be installed
+---> Package python-warlock.noarch 0:1.0.1-1.el6 will be installed
+--> Processing Dependency: python-jsonpatch for package: python-warlock-1.0.1-1.el6.noarch
+--> Running transaction check
+---> Package pysendfile.x86_64 0:2.0.0-3.el6 will be installed
+---> Package python-cinderclient.noarch 0:1.0.9-1.el6 will be installed
+--> Processing Dependency: python-simplejson for package: python-cinderclient-1.0.9-1.el6.noarch
+---> Package python-jsonpatch.noarch 0:1.2-2.el6 will be installed
+--> Processing Dependency: python-jsonpointer for package: python-jsonpatch-1.2-2.el6.noarch
+---> Package python-paste-deploy1.5.noarch 0:1.5.0-5.el6 will be installed
+---> Package python-routes1.12.noarch 0:1.12.3-4.el6 will be installed
+---> Package python-swiftclient.noarch 0:2.1.0-1.el6 will be installed
+---> Package pyxattr.x86_64 0:0.5.0-1.el6 will be installed
+--> Running transaction check
+---> Package python-jsonpointer.noarch 0:1.0-3.el6 will be installed
+---> Package python-simplejson.x86_64 0:2.0.9-3.1.el6 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================================================================================================================
+ Package                                               Arch                                  Version                                         Repository                                         Size
+=====================================================================================================================================================================================================
+Installing:
+ openstack-glance                                      noarch                                2014.1-2.el6                                    openstack-icehouse                                 46 k
+ python-glanceclient                                   noarch                                1:0.12.0-1.el6                                  openstack-icehouse                                 90 k
+Installing for dependencies:
+ pysendfile                                            x86_64                                2.0.0-3.el6                                     epel                                              9.3 k
+ python-cinderclient                                   noarch                                1.0.9-1.el6                                     openstack-icehouse                                165 k
+ python-glance                                         noarch                                2014.1-2.el6                                    openstack-icehouse                                692 k
+ python-httplib2                                       noarch                                0.7.7-1.el6                                     epel                                               70 k
+ python-jsonpatch                                      noarch                                1.2-2.el6                                       epel                                               14 k
+ python-jsonpointer                                    noarch                                1.0-3.el6                                       epel                                              9.2 k
+ python-paste-deploy1.5                                noarch                                1.5.0-5.el6                                     epel                                               47 k
+ python-routes1.12                                     noarch                                1.12.3-4.el6                                    epel                                              691 k
+ python-simplejson                                     x86_64                                2.0.9-3.1.el6                                   base                                              126 k
+ python-swiftclient                                    noarch                                2.1.0-1.el6                                     openstack-icehouse                                 71 k
+ python-warlock                                        noarch                                1.0.1-1.el6                                     openstack-icehouse                                 14 k
+ pyxattr                                               x86_64                                0.5.0-1.el6                                     epel                                               24 k
+
+Transaction Summary
+=====================================================================================================================================================================================================
+Install      14 Package(s)
+
+Total download size: 2.0 M
+Installed size: 14 M
+Downloading Packages:
+(1/14): openstack-glance-2014.1-2.el6.noarch.rpm                                                                                                                              |  46 kB     00:00     
+(2/14): pysendfile-2.0.0-3.el6.x86_64.rpm                                                                                                                                     | 9.3 kB     00:00     
+(3/14): python-cinderclient-1.0.9-1.el6.noarch.rpm                                                                                                                            | 165 kB     00:00     
+(4/14): python-glance-2014.1-2.el6.noarch.rpm                                                                                                                                 | 692 kB     00:00     
+(5/14): python-glanceclient-0.12.0-1.el6.noarch.rpm                                                                                                                           |  90 kB     00:00     
+(6/14): python-httplib2-0.7.7-1.el6.noarch.rpm                                                                                                                                |  70 kB     00:00     
+(7/14): python-jsonpatch-1.2-2.el6.noarch.rpm                                                                                                                                 |  14 kB     00:00     
+(8/14): python-jsonpointer-1.0-3.el6.noarch.rpm                                                                                                                               | 9.2 kB     00:00     
+(9/14): python-paste-deploy1.5-1.5.0-5.el6.noarch.rpm                                                                                                                         |  47 kB     00:00     
+(10/14): python-routes1.12-1.12.3-4.el6.noarch.rpm                                                                                                                            | 691 kB     00:00     
+(11/14): python-simplejson-2.0.9-3.1.el6.x86_64.rpm                                                                                                                           | 126 kB     00:00     
+(12/14): python-swiftclient-2.1.0-1.el6.noarch.rpm                                                                                                                            |  71 kB     00:00     
+(13/14): python-warlock-1.0.1-1.el6.noarch.rpm                                                                                                                                |  14 kB     00:00     
+(14/14): pyxattr-0.5.0-1.el6.x86_64.rpm                                                                                                                                       |  24 kB     00:00     
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                                1.5 MB/s | 2.0 MB     00:01     
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : python-httplib2-0.7.7-1.el6.noarch                                                                                                                                               1/14 
+  Installing : pyxattr-0.5.0-1.el6.x86_64                                                                                                                                                       2/14 
+  Installing : python-routes1.12-1.12.3-4.el6.noarch                                                                                                                                            3/14 
+  Installing : python-paste-deploy1.5-1.5.0-5.el6.noarch                                                                                                                                        4/14 
+  Installing : python-swiftclient-2.1.0-1.el6.noarch                                                                                                                                            5/14 
+  Installing : pysendfile-2.0.0-3.el6.x86_64                                                                                                                                                    6/14 
+  Installing : python-simplejson-2.0.9-3.1.el6.x86_64                                                                                                                                           7/14 
+  Installing : python-cinderclient-1.0.9-1.el6.noarch                                                                                                                                           8/14 
+  Installing : python-glance-2014.1-2.el6.noarch                                                                                                                                                9/14 
+  Installing : python-jsonpointer-1.0-3.el6.noarch                                                                                                                                             10/14 
+  Installing : python-jsonpatch-1.2-2.el6.noarch                                                                                                                                               11/14 
+  Installing : python-warlock-1.0.1-1.el6.noarch                                                                                                                                               12/14 
+  Installing : 1:python-glanceclient-0.12.0-1.el6.noarch                                                                                                                                       13/14 
+  Installing : openstack-glance-2014.1-2.el6.noarch                                                                                                                                            14/14 
+  Verifying  : openstack-glance-2014.1-2.el6.noarch                                                                                                                                             1/14 
+  Verifying  : 1:python-glanceclient-0.12.0-1.el6.noarch                                                                                                                                        2/14 
+  Verifying  : python-jsonpointer-1.0-3.el6.noarch                                                                                                                                              3/14 
+  Verifying  : python-warlock-1.0.1-1.el6.noarch                                                                                                                                                4/14 
+  Verifying  : python-cinderclient-1.0.9-1.el6.noarch                                                                                                                                           5/14 
+  Verifying  : python-httplib2-0.7.7-1.el6.noarch                                                                                                                                               6/14 
+  Verifying  : python-simplejson-2.0.9-3.1.el6.x86_64                                                                                                                                           7/14 
+  Verifying  : pysendfile-2.0.0-3.el6.x86_64                                                                                                                                                    8/14 
+  Verifying  : python-swiftclient-2.1.0-1.el6.noarch                                                                                                                                            9/14 
+  Verifying  : python-jsonpatch-1.2-2.el6.noarch                                                                                                                                               10/14 
+  Verifying  : python-glance-2014.1-2.el6.noarch                                                                                                                                               11/14 
+  Verifying  : python-paste-deploy1.5-1.5.0-5.el6.noarch                                                                                                                                       12/14 
+  Verifying  : python-routes1.12-1.12.3-4.el6.noarch                                                                                                                                           13/14 
+  Verifying  : pyxattr-0.5.0-1.el6.x86_64                                                                                                                                                      14/14 
+
+Installed:
+  openstack-glance.noarch 0:2014.1-2.el6                                                          python-glanceclient.noarch 1:0.12.0-1.el6                                                         
+
+Dependency Installed:
+  pysendfile.x86_64 0:2.0.0-3.el6                 python-cinderclient.noarch 0:1.0.9-1.el6        python-glance.noarch 0:2014.1-2.el6                python-httplib2.noarch 0:0.7.7-1.el6          
+  python-jsonpatch.noarch 0:1.2-2.el6             python-jsonpointer.noarch 0:1.0-3.el6           python-paste-deploy1.5.noarch 0:1.5.0-5.el6        python-routes1.12.noarch 0:1.12.3-4.el6       
+  python-simplejson.x86_64 0:2.0.9-3.1.el6        python-swiftclient.noarch 0:2.1.0-1.el6         python-warlock.noarch 0:1.0.1-1.el6                pyxattr.x86_64 0:0.5.0-1.el6                  
+
+Complete!
++ echo Done.
+Done.
++ echo 'Configuring Glance...'
+Configuring Glance...
++ openstack-config --set /etc/glance/glance-api.conf database connection mysql://glance:548295a7ebf749b74d42@controller/glance
++ openstack-config --set /etc/glance/glance-registry.conf database connection mysql://glance:548295a7ebf749b74d42@controller/glance
++ openstack-config --set /etc/glance/glance-api.conf DEFAULT rpc_backend qpid
++ openstack-config --set /etc/glance/glance-api.conf DEFAULT qpid_hostname controller
++ su -s /bin/sh -c 'glance-manage db_sync' glance
++ keystone user-create --name=glance --pass=548295a7ebf749b74d42 --email=glance@devtrax.com
+Expecting an auth URL via either --os-auth-url or env[OS_AUTH_URL]
++ keystone user-role-add --user=glance --tenant=service --role=admin
+Expecting an auth URL via either --os-auth-url or env[OS_AUTH_URL]
++ openstack-config --set /etc/glance/glance-api.conf keystone_authtoken auth_uri http://controller:5000
++ openstack-config --set /etc/glance/glance-api.conf keystone_authtoken auth_host controller
++ openstack-config --set /etc/glance/glance-api.conf keystone_authtoken auth_port 35357
++ openstack-config --set /etc/glance/glance-api.conf keystone_authtoken auth_protocol http
++ openstack-config --set /etc/glance/glance-api.conf keystone_authtoken admin_tenant_name service
++ openstack-config --set /etc/glance/glance-api.conf keystone_authtoken admin_user glance
++ openstack-config --set /etc/glance/glance-api.conf keystone_authtoken admin_password 548295a7ebf749b74d42
++ openstack-config --set /etc/glance/glance-api.conf paste_deploy flavor keystone
++ openstack-config --set /etc/glance/glance-registry.conf keystone_authtoken auth_uri http://controller:5000
++ openstack-config --set /etc/glance/glance-registry.conf keystone_authtoken auth_host controller
++ openstack-config --set /etc/glance/glance-registry.conf keystone_authtoken auth_port 35357
++ openstack-config --set /etc/glance/glance-registry.conf keystone_authtoken auth_protocol http
++ openstack-config --set /etc/glance/glance-registry.conf keystone_authtoken admin_tenant_name service
++ openstack-config --set /etc/glance/glance-registry.conf keystone_authtoken admin_user glance
++ openstack-config --set /etc/glance/glance-registry.conf keystone_authtoken admin_password 548295a7ebf749b74d42
++ openstack-config --set /etc/glance/glance-registry.conf paste_deploy flavor keystone
++ keystone service-create --name=glance --type=image '--description=OpenStack Image Service'
+Expecting an auth URL via either --os-auth-url or env[OS_AUTH_URL]
+++ keystone service-list
+++ awk '/ image / {print $2}'
+Expecting an auth URL via either --os-auth-url or env[OS_AUTH_URL]
++ keystone endpoint-create --service-id= --publicurl=http://controller:9292 --internalurl=http://controller:9292 --adminurl=http://controller:9292
+Expecting an auth URL via either --os-auth-url or env[OS_AUTH_URL]
++ echo Done.
+Done.
++ echo 'Starting service and setting chkconfig...'
+Starting service and setting chkconfig...
++ service openstack-glance-api start
+Starting openstack-glance-api:                             [  OK  ]
++ service openstack-glance-registry start
+Starting openstack-glance-registry:                        [  OK  ]
++ chkconfig openstack-glance-api on
++ chkconfig openstack-glance-registry on
++ echo Done.
+Done.
++ echo 'Installing Compute Service (Nova)...'
+Installing Compute Service (Nova)...
++ yum install openstack-nova-api openstack-nova-cert openstack-nova-conductor openstack-nova-console openstack-nova-novncproxy openstack-nova-scheduler python-novaclient -y
+Loaded plugins: fastestmirror, priorities
+Loading mirror speeds from cached hostfile
+ * base: mirror.es.its.nyu.edu
+ * epel: mirror.seas.harvard.edu
+ * extras: mirror.cogentco.com
+ * updates: mirror.net.cen.ct.gov
+215 packages excluded due to repository priority protections
+Setting up Install Process
+Resolving Dependencies
+--> Running transaction check
+---> Package openstack-nova-api.noarch 0:2014.1-4.el6 will be installed
+--> Processing Dependency: openstack-nova-common = 2014.1-4.el6 for package: openstack-nova-api-2014.1-4.el6.noarch
+---> Package openstack-nova-cert.noarch 0:2014.1-4.el6 will be installed
+---> Package openstack-nova-conductor.noarch 0:2014.1-4.el6 will be installed
+---> Package openstack-nova-console.noarch 0:2014.1-4.el6 will be installed
+--> Processing Dependency: python-websockify for package: openstack-nova-console-2014.1-4.el6.noarch
+---> Package openstack-nova-novncproxy.noarch 0:2014.1-4.el6 will be installed
+--> Processing Dependency: novnc for package: openstack-nova-novncproxy-2014.1-4.el6.noarch
+---> Package openstack-nova-scheduler.noarch 0:2014.1-4.el6 will be installed
+---> Package python-novaclient.noarch 1:2.17.0-2.el6 will be installed
+--> Running transaction check
+---> Package novnc.noarch 0:0.4-8.el6 will be installed
+---> Package openstack-nova-common.noarch 0:2014.1-4.el6 will be installed
+--> Processing Dependency: python-nova = 2014.1-4.el6 for package: openstack-nova-common-2014.1-4.el6.noarch
+--> Processing Dependency: python-oslo-rootwrap for package: openstack-nova-common-2014.1-4.el6.noarch
+---> Package python-websockify.noarch 0:0.5.1-1.el6 will be installed
+--> Running transaction check
+---> Package python-nova.noarch 0:2014.1-4.el6 will be installed
+--> Processing Dependency: python-jinja2 >= 2.6 for package: python-nova-2014.1-4.el6.noarch
+--> Processing Dependency: python-pyasn1 for package: python-nova-2014.1-4.el6.noarch
+--> Processing Dependency: python-paramiko for package: python-nova-2014.1-4.el6.noarch
+--> Processing Dependency: python-neutronclient for package: python-nova-2014.1-4.el6.noarch
+--> Processing Dependency: python-cheetah for package: python-nova-2014.1-4.el6.noarch
+--> Processing Dependency: python-boto for package: python-nova-2014.1-4.el6.noarch
+--> Processing Dependency: python-amqplib for package: python-nova-2014.1-4.el6.noarch
+---> Package python-oslo-rootwrap.noarch 0:1.0.0-1.el6 will be installed
+--> Running transaction check
+---> Package python-amqplib.noarch 0:0.6.1-2.el6 will be installed
+---> Package python-boto.noarch 0:2.27.0-1.el6 will be installed
+---> Package python-cheetah.x86_64 0:2.4.1-1.el6 will be installed
+--> Processing Dependency: python-pygments for package: python-cheetah-2.4.1-1.el6.x86_64
+--> Processing Dependency: python-markdown for package: python-cheetah-2.4.1-1.el6.x86_64
+---> Package python-jinja2.noarch 0:2.7.2-1.el6 will be installed
+--> Processing Dependency: python-markupsafe for package: python-jinja2-2.7.2-1.el6.noarch
+---> Package python-neutronclient.noarch 0:2.3.4-1.el6 will be installed
+--> Processing Dependency: python-cliff >= 1.0 for package: python-neutronclient-2.3.4-1.el6.noarch
+--> Processing Dependency: pyparsing for package: python-neutronclient-2.3.4-1.el6.noarch
+---> Package python-paramiko.noarch 0:1.10.1-2.el6 will be installed
+---> Package python-pyasn1.noarch 0:0.0.12a-1.el6 will be installed
+--> Running transaction check
+---> Package pyparsing.noarch 0:1.5.6-1.el6 will be installed
+---> Package python-cliff.noarch 0:1.4.4-1.el6 will be installed
+--> Processing Dependency: python-cmd2 for package: python-cliff-1.4.4-1.el6.noarch
+---> Package python-markdown.noarch 0:2.0.1-3.1.el6 will be installed
+---> Package python-markupsafe.x86_64 0:0.9.2-4.el6 will be installed
+---> Package python-pygments.noarch 0:1.4-6.el6 will be installed
+--> Processing Dependency: python-imaging for package: python-pygments-1.4-6.el6.noarch
+--> Running transaction check
+---> Package python-cmd2.noarch 0:0.6.4-7.el6 will be installed
+---> Package python-imaging.x86_64 0:1.1.6-19.el6 will be installed
+--> Processing Dependency: libjpeg.so.62()(64bit) for package: python-imaging-1.1.6-19.el6.x86_64
+--> Processing Dependency: libfreetype.so.6()(64bit) for package: python-imaging-1.1.6-19.el6.x86_64
+--> Running transaction check
+---> Package freetype.x86_64 0:2.3.11-14.el6_3.1 will be installed
+---> Package libjpeg-turbo.x86_64 0:1.2.1-3.el6_5 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================================================================================================================
+ Package                                                 Arch                                 Version                                         Repository                                        Size
+=====================================================================================================================================================================================================
+Installing:
+ openstack-nova-api                                      noarch                               2014.1-4.el6                                    openstack-icehouse                                25 k
+ openstack-nova-cert                                     noarch                               2014.1-4.el6                                    openstack-icehouse                                27 k
+ openstack-nova-conductor                                noarch                               2014.1-4.el6                                    openstack-icehouse                                24 k
+ openstack-nova-console                                  noarch                               2014.1-4.el6                                    openstack-icehouse                                25 k
+ openstack-nova-novncproxy                               noarch                               2014.1-4.el6                                    openstack-icehouse                                24 k
+ openstack-nova-scheduler                                noarch                               2014.1-4.el6                                    openstack-icehouse                                24 k
+ python-novaclient                                       noarch                               1:2.17.0-2.el6                                  openstack-icehouse                               292 k
+Installing for dependencies:
+ freetype                                                x86_64                               2.3.11-14.el6_3.1                               base                                             359 k
+ libjpeg-turbo                                           x86_64                               1.2.1-3.el6_5                                   updates                                          174 k
+ novnc                                                   noarch                               0.4-8.el6                                       openstack-icehouse                               160 k
+ openstack-nova-common                                   noarch                               2014.1-4.el6                                    openstack-icehouse                                82 k
+ pyparsing                                               noarch                               1.5.6-1.el6                                     epel                                              94 k
+ python-amqplib                                          noarch                               0.6.1-2.el6                                     epel                                              65 k
+ python-boto                                             noarch                               2.27.0-1.el6                                    epel                                             1.6 M
+ python-cheetah                                          x86_64                               2.4.1-1.el6                                     base                                             365 k
+ python-cliff                                            noarch                               1.4.4-1.el6                                     epel                                             131 k
+ python-cmd2                                             noarch                               0.6.4-7.el6                                     epel                                              40 k
+ python-imaging                                          x86_64                               1.1.6-19.el6                                    base                                             388 k
+ python-jinja2                                           noarch                               2.7.2-1.el6                                     openstack-icehouse                               550 k
+ python-markdown                                         noarch                               2.0.1-3.1.el6                                   base                                             118 k
+ python-markupsafe                                       x86_64                               0.9.2-4.el6                                     base                                              22 k
+ python-neutronclient                                    noarch                               2.3.4-1.el6                                     openstack-icehouse                               158 k
+ python-nova                                             noarch                               2014.1-4.el6                                    openstack-icehouse                               3.0 M
+ python-oslo-rootwrap                                    noarch                               1.0.0-1.el6                                     openstack-icehouse                                28 k
+ python-paramiko                                         noarch                               1.10.1-2.el6                                    openstack-icehouse                               739 k
+ python-pyasn1                                           noarch                               0.0.12a-1.el6                                   base                                              70 k
+ python-pygments                                         noarch                               1.4-6.el6                                       openstack-icehouse                               661 k
+ python-websockify                                       noarch                               0.5.1-1.el6                                     openstack-icehouse                                58 k
+
+Transaction Summary
+=====================================================================================================================================================================================================
+Install      28 Package(s)
+
+Total download size: 9.2 M
+Installed size: 64 M
+Downloading Packages:
+(1/28): freetype-2.3.11-14.el6_3.1.x86_64.rpm                                                                                                                                 | 359 kB     00:00     
+(2/28): libjpeg-turbo-1.2.1-3.el6_5.x86_64.rpm                                                                                                                                | 174 kB     00:00     
+(3/28): novnc-0.4-8.el6.noarch.rpm                                                                                                                                            | 160 kB     00:00     
+(4/28): openstack-nova-api-2014.1-4.el6.noarch.rpm                                                                                                                            |  25 kB     00:00     
+(5/28): openstack-nova-cert-2014.1-4.el6.noarch.rpm                                                                                                                           |  27 kB     00:00     
+(6/28): openstack-nova-common-2014.1-4.el6.noarch.rpm                                                                                                                         |  82 kB     00:00     
+(7/28): openstack-nova-conductor-2014.1-4.el6.noarch.rpm                                                                                                                      |  24 kB     00:00     
+(8/28): openstack-nova-console-2014.1-4.el6.noarch.rpm                                                                                                                        |  25 kB     00:00     
+(9/28): openstack-nova-novncproxy-2014.1-4.el6.noarch.rpm                                                                                                                     |  24 kB     00:00     
+(10/28): openstack-nova-scheduler-2014.1-4.el6.noarch.rpm                                                                                                                     |  24 kB     00:00     
+(11/28): pyparsing-1.5.6-1.el6.noarch.rpm                                                                                                                                     |  94 kB     00:00     
+(12/28): python-amqplib-0.6.1-2.el6.noarch.rpm                                                                                                                                |  65 kB     00:00     
+(13/28): python-boto-2.27.0-1.el6.noarch.rpm                                                                                                                                  | 1.6 MB     00:00     
+(14/28): python-cheetah-2.4.1-1.el6.x86_64.rpm                                                                                                                                | 365 kB     00:00     
+(15/28): python-cliff-1.4.4-1.el6.noarch.rpm                                                                                                                                  | 131 kB     00:00     
+(16/28): python-cmd2-0.6.4-7.el6.noarch.rpm                                                                                                                                   |  40 kB     00:00     
+(17/28): python-imaging-1.1.6-19.el6.x86_64.rpm                                                                                                                               | 388 kB     00:00     
+(18/28): python-jinja2-2.7.2-1.el6.noarch.rpm                                                                                                                                 | 550 kB     00:00     
+(19/28): python-markdown-2.0.1-3.1.el6.noarch.rpm                                                                                                                             | 118 kB     00:00     
+(20/28): python-markupsafe-0.9.2-4.el6.x86_64.rpm                                                                                                                             |  22 kB     00:00     
+(21/28): python-neutronclient-2.3.4-1.el6.noarch.rpm                                                                                                                          | 158 kB     00:00     
+(22/28): python-nova-2014.1-4.el6.noarch.rpm                                                                                                                                  | 3.0 MB     00:01     
+(23/28): python-novaclient-2.17.0-2.el6.noarch.rpm                                                                                                                            | 292 kB     00:00     
+(24/28): python-oslo-rootwrap-1.0.0-1.el6.noarch.rpm                                                                                                                          |  28 kB     00:00     
+(25/28): python-paramiko-1.10.1-2.el6.noarch.rpm                                                                                                                              | 739 kB     00:00     
+(26/28): python-pyasn1-0.0.12a-1.el6.noarch.rpm                                                                                                                               |  70 kB     00:00     
+(27/28): python-pygments-1.4-6.el6.noarch.rpm                                                                                                                                 | 661 kB     00:00     
+(28/28): python-websockify-0.5.1-1.el6.noarch.rpm                                                                                                                             |  58 kB     00:00     
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                                922 kB/s | 9.2 MB     00:10     
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : python-websockify-0.5.1-1.el6.noarch                                                                                                                                             1/28 
+  Installing : pyparsing-1.5.6-1.el6.noarch                                                                                                                                                     2/28 
+  Installing : python-cmd2-0.6.4-7.el6.noarch                                                                                                                                                   3/28 
+  Installing : python-cliff-1.4.4-1.el6.noarch                                                                                                                                                  4/28 
+  Installing : python-neutronclient-2.3.4-1.el6.noarch                                                                                                                                          5/28 
+  Installing : novnc-0.4-8.el6.noarch                                                                                                                                                           6/28 
+  Installing : python-boto-2.27.0-1.el6.noarch                                                                                                                                                  7/28 
+  Installing : 1:python-novaclient-2.17.0-2.el6.noarch                                                                                                                                          8/28 
+  Installing : python-amqplib-0.6.1-2.el6.noarch                                                                                                                                                9/28 
+  Installing : libjpeg-turbo-1.2.1-3.el6_5.x86_64                                                                                                                                              10/28 
+  Installing : python-pyasn1-0.0.12a-1.el6.noarch                                                                                                                                              11/28 
+  Installing : python-markdown-2.0.1-3.1.el6.noarch                                                                                                                                            12/28 
+  Installing : python-oslo-rootwrap-1.0.0-1.el6.noarch                                                                                                                                         13/28 
+  Installing : freetype-2.3.11-14.el6_3.1.x86_64                                                                                                                                               14/28 
+  Installing : python-imaging-1.1.6-19.el6.x86_64                                                                                                                                              15/28 
+  Installing : python-pygments-1.4-6.el6.noarch                                                                                                                                                16/28 
+  Installing : python-cheetah-2.4.1-1.el6.x86_64                                                                                                                                               17/28 
+  Installing : python-markupsafe-0.9.2-4.el6.x86_64                                                                                                                                            18/28 
+  Installing : python-jinja2-2.7.2-1.el6.noarch                                                                                                                                                19/28 
+  Installing : python-paramiko-1.10.1-2.el6.noarch                                                                                                                                             20/28 
+  Installing : python-nova-2014.1-4.el6.noarch                                                                                                                                                 21/28 
+  Installing : openstack-nova-common-2014.1-4.el6.noarch                                                                                                                                       22/28 
+  Installing : openstack-nova-console-2014.1-4.el6.noarch                                                                                                                                      23/28 
+  Installing : openstack-nova-api-2014.1-4.el6.noarch                                                                                                                                          24/28 
+  Installing : openstack-nova-scheduler-2014.1-4.el6.noarch                                                                                                                                    25/28 
+  Installing : openstack-nova-cert-2014.1-4.el6.noarch                                                                                                                                         26/28 
+  Installing : openstack-nova-novncproxy-2014.1-4.el6.noarch                                                                                                                                   27/28 
+  Installing : openstack-nova-conductor-2014.1-4.el6.noarch                                                                                                                                    28/28 
+  Verifying  : python-neutronclient-2.3.4-1.el6.noarch                                                                                                                                          1/28 
+  Verifying  : openstack-nova-console-2014.1-4.el6.noarch                                                                                                                                       2/28 
+  Verifying  : python-paramiko-1.10.1-2.el6.noarch                                                                                                                                              3/28 
+  Verifying  : openstack-nova-api-2014.1-4.el6.noarch                                                                                                                                           4/28 
+  Verifying  : python-websockify-0.5.1-1.el6.noarch                                                                                                                                             5/28 
+  Verifying  : pyparsing-1.5.6-1.el6.noarch                                                                                                                                                     6/28 
+  Verifying  : python-markupsafe-0.9.2-4.el6.x86_64                                                                                                                                             7/28 
+  Verifying  : openstack-nova-scheduler-2014.1-4.el6.noarch                                                                                                                                     8/28 
+  Verifying  : python-imaging-1.1.6-19.el6.x86_64                                                                                                                                               9/28 
+  Verifying  : freetype-2.3.11-14.el6_3.1.x86_64                                                                                                                                               10/28 
+  Verifying  : python-pygments-1.4-6.el6.noarch                                                                                                                                                11/28 
+  Verifying  : openstack-nova-cert-2014.1-4.el6.noarch                                                                                                                                         12/28 
+  Verifying  : openstack-nova-common-2014.1-4.el6.noarch                                                                                                                                       13/28 
+  Verifying  : python-cheetah-2.4.1-1.el6.x86_64                                                                                                                                               14/28 
+  Verifying  : python-oslo-rootwrap-1.0.0-1.el6.noarch                                                                                                                                         15/28 
+  Verifying  : python-markdown-2.0.1-3.1.el6.noarch                                                                                                                                            16/28 
+  Verifying  : openstack-nova-novncproxy-2014.1-4.el6.noarch                                                                                                                                   17/28 
+  Verifying  : python-pyasn1-0.0.12a-1.el6.noarch                                                                                                                                              18/28 
+  Verifying  : libjpeg-turbo-1.2.1-3.el6_5.x86_64                                                                                                                                              19/28 
+  Verifying  : python-nova-2014.1-4.el6.noarch                                                                                                                                                 20/28 
+  Verifying  : python-amqplib-0.6.1-2.el6.noarch                                                                                                                                               21/28 
+  Verifying  : python-cliff-1.4.4-1.el6.noarch                                                                                                                                                 22/28 
+  Verifying  : python-jinja2-2.7.2-1.el6.noarch                                                                                                                                                23/28 
+  Verifying  : 1:python-novaclient-2.17.0-2.el6.noarch                                                                                                                                         24/28 
+  Verifying  : python-cmd2-0.6.4-7.el6.noarch                                                                                                                                                  25/28 
+  Verifying  : openstack-nova-conductor-2014.1-4.el6.noarch                                                                                                                                    26/28 
+  Verifying  : python-boto-2.27.0-1.el6.noarch                                                                                                                                                 27/28 
+  Verifying  : novnc-0.4-8.el6.noarch                                                                                                                                                          28/28 
+
+Installed:
+  openstack-nova-api.noarch 0:2014.1-4.el6          openstack-nova-cert.noarch 0:2014.1-4.el6        openstack-nova-conductor.noarch 0:2014.1-4.el6   openstack-nova-console.noarch 0:2014.1-4.el6  
+  openstack-nova-novncproxy.noarch 0:2014.1-4.el6   openstack-nova-scheduler.noarch 0:2014.1-4.el6   python-novaclient.noarch 1:2.17.0-2.el6         
+
+Dependency Installed:
+  freetype.x86_64 0:2.3.11-14.el6_3.1              libjpeg-turbo.x86_64 0:1.2.1-3.el6_5          novnc.noarch 0:0.4-8.el6                         openstack-nova-common.noarch 0:2014.1-4.el6       
+  pyparsing.noarch 0:1.5.6-1.el6                   python-amqplib.noarch 0:0.6.1-2.el6           python-boto.noarch 0:2.27.0-1.el6                python-cheetah.x86_64 0:2.4.1-1.el6               
+  python-cliff.noarch 0:1.4.4-1.el6                python-cmd2.noarch 0:0.6.4-7.el6              python-imaging.x86_64 0:1.1.6-19.el6             python-jinja2.noarch 0:2.7.2-1.el6                
+  python-markdown.noarch 0:2.0.1-3.1.el6           python-markupsafe.x86_64 0:0.9.2-4.el6        python-neutronclient.noarch 0:2.3.4-1.el6        python-nova.noarch 0:2014.1-4.el6                 
+  python-oslo-rootwrap.noarch 0:1.0.0-1.el6        python-paramiko.noarch 0:1.10.1-2.el6         python-pyasn1.noarch 0:0.0.12a-1.el6             python-pygments.noarch 0:1.4-6.el6                
+  python-websockify.noarch 0:0.5.1-1.el6          
+
+Complete!
++ echo Done.
+Done.
++ echo 'Configuring Nova...'
+Configuring Nova...
++ openstack-config --set /etc/nova/nova.conf database connection mysql://nova:548295a7ebf749b74d42@controller/nova
++ openstack-config --set /etc/nova/nova.conf DEFAULT rpc_backend qpid
++ openstack-config --set /etc/nova/nova.conf DEFAULT qpid_hostname controller
++ openstack-config --set /etc/nova/nova.conf DEFAULT my_ip 10.0.0.11
++ openstack-config --set /etc/nova/nova.conf DEFAULT vncserver_listen 10.0.0.11
++ openstack-config --set /etc/nova/nova.conf DEFAULT vncserver_proxyclient_address 10.0.0.11
++ su -s /bin/sh -c 'nova-manage db sync' nova
++ keystone user-create --name=nova --pass=548295a7ebf749b74d42 --email=nova@devtrax.com
+Expecting an auth URL via either --os-auth-url or env[OS_AUTH_URL]
++ keystone user-role-add --user=nova --tenant=service --role=admin
+Expecting an auth URL via either --os-auth-url or env[OS_AUTH_URL]
++ openstack-config --set /etc/nova/nova.conf DEFAULT auth_strategy keystone
++ openstack-config --set /etc/nova/nova.conf keystone_authtoken auth_uri http://controller:5000
++ openstack-config --set /etc/nova/nova.conf keystone_authtoken auth_host controller
++ openstack-config --set /etc/nova/nova.conf keystone_authtoken auth_protocol http
++ openstack-config --set /etc/nova/nova.conf keystone_authtoken auth_port 35357
++ openstack-config --set /etc/nova/nova.conf keystone_authtoken admin_user nova
++ openstack-config --set /etc/nova/nova.conf keystone_authtoken admin_tenant_name service
++ openstack-config --set /etc/nova/nova.conf keystone_authtoken admin_password 548295a7ebf749b74d42
++ keystone service-create --name=nova --type=compute --description="OpenStack Compute"
+Expecting an auth URL via either --os-auth-url or env[OS_AUTH_URL]
+++ keystone service-list
+++ awk '/ compute / {print $2}'
+Expecting an auth URL via either --os-auth-url or env[OS_AUTH_URL]
++ keystone endpoint-create --service-id= '--publicurl=http://controller:8774/v2/%(tenant_id)s' '--internalurl=http://controller:8774/v2/%(tenant_id)s' '--adminurl=http://controller:8774/v2/%(tenant_id)s'
+Expecting an auth URL via either --os-auth-url or env[OS_AUTH_URL]
++ echo Done.
+Done.
++ echo 'Starting service and setting chkconfig...'
+Starting service and setting chkconfig...
++ service openstack-nova-api start
+Starting openstack-nova-api:                               [  OK  ]
++ service openstack-nova-cert start
+Starting openstack-nova-cert:                              [  OK  ]
++ service openstack-nova-consoleauth start
+Starting openstack-nova-consoleauth:                       [  OK  ]
++ service openstack-nova-scheduler start
+Starting openstack-nova-scheduler:                         [  OK  ]
++ service openstack-nova-conductor start
+Starting openstack-nova-conductor:                         [  OK  ]
++ service openstack-nova-novncproxy start
+Starting openstack-nova-novncproxy:                        [  OK  ]
++ chkconfig openstack-nova-api on
++ chkconfig openstack-nova-cert on
++ chkconfig openstack-nova-consoleauth on
++ chkconfig openstack-nova-scheduler on
++ chkconfig openstack-nova-conductor on
++ chkconfig openstack-nova-novncproxy on
++ echo Done.
+Done.
++ echo 'Installing Networking Service (Neutron)...'
+Installing Networking Service (Neutron)...
++ yum install openstack-neutron openstack-neutron-ml2 python-neutronclient -y
+Loaded plugins: fastestmirror, priorities
+Loading mirror speeds from cached hostfile
+ * base: mirror.es.its.nyu.edu
+ * epel: mirrors.mit.edu
+ * extras: mirror.cogentco.com
+ * updates: mirror.net.cen.ct.gov
+215 packages excluded due to repository priority protections
+Setting up Install Process
+Package python-neutronclient-2.3.4-1.el6.noarch already installed and latest version
+Resolving Dependencies
+--> Running transaction check
+---> Package openstack-neutron.noarch 0:2014.1-18.el6 will be installed
+--> Processing Dependency: python-neutron = 2014.1-18.el6 for package: openstack-neutron-2014.1-18.el6.noarch
+--> Processing Dependency: dnsmasq-utils for package: openstack-neutron-2014.1-18.el6.noarch
+--> Processing Dependency: dnsmasq for package: openstack-neutron-2014.1-18.el6.noarch
+---> Package openstack-neutron-ml2.noarch 0:2014.1-18.el6 will be installed
+--> Running transaction check
+---> Package dnsmasq.x86_64 0:2.48-13.el6 will be installed
+---> Package dnsmasq-utils.x86_64 0:2.48-13.el6 will be installed
+---> Package python-neutron.noarch 0:2014.1-18.el6 will be installed
+--> Processing Dependency: python-jinja2-26 for package: python-neutron-2014.1-18.el6.noarch
+--> Processing Dependency: python-alembic for package: python-neutron-2014.1-18.el6.noarch
+--> Running transaction check
+---> Package python-alembic.noarch 0:0.4.2-3.el6 will be installed
+--> Processing Dependency: python-mako for package: python-alembic-0.4.2-3.el6.noarch
+---> Package python-jinja2-26.noarch 0:2.6-2.el6 will be installed
+--> Running transaction check
+---> Package python-mako.noarch 0:0.5.0-5.el6 will be installed
+--> Processing Dependency: python-beaker for package: python-mako-0.5.0-5.el6.noarch
+--> Running transaction check
+---> Package python-beaker.noarch 0:1.3.1-7.el6 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================================================================================================================
+ Package                                               Arch                                   Version                                       Repository                                          Size
+=====================================================================================================================================================================================================
+Installing:
+ openstack-neutron                                     noarch                                 2014.1-18.el6                                 openstack-icehouse                                  43 k
+ openstack-neutron-ml2                                 noarch                                 2014.1-18.el6                                 openstack-icehouse                                 166 k
+Installing for dependencies:
+ dnsmasq                                               x86_64                                 2.48-13.el6                                   base                                               149 k
+ dnsmasq-utils                                         x86_64                                 2.48-13.el6                                   openstack-icehouse                                  16 k
+ python-alembic                                        noarch                                 0.4.2-3.el6                                   epel                                               294 k
+ python-beaker                                         noarch                                 1.3.1-7.el6                                   base                                                72 k
+ python-jinja2-26                                      noarch                                 2.6-2.el6                                     epel                                               526 k
+ python-mako                                           noarch                                 0.5.0-5.el6                                   openstack-icehouse                                 265 k
+ python-neutron                                        noarch                                 2014.1-18.el6                                 openstack-icehouse                                 1.3 M
+
+Transaction Summary
+=====================================================================================================================================================================================================
+Install       9 Package(s)
+
+Total download size: 2.8 M
+Installed size: 39 M
+Downloading Packages:
+(1/9): dnsmasq-2.48-13.el6.x86_64.rpm                                                                                                                                         | 149 kB     00:00     
+(2/9): dnsmasq-utils-2.48-13.el6.x86_64.rpm                                                                                                                                   |  16 kB     00:00     
+(3/9): openstack-neutron-2014.1-18.el6.noarch.rpm                                                                                                                             |  43 kB     00:00     
+(4/9): openstack-neutron-ml2-2014.1-18.el6.noarch.rpm                                                                                                                         | 166 kB     00:00     
+(5/9): python-alembic-0.4.2-3.el6.noarch.rpm                                                                                                                                  | 294 kB     00:00     
+(6/9): python-beaker-1.3.1-7.el6.noarch.rpm                                                                                                                                   |  72 kB     00:00     
+(7/9): python-jinja2-26-2.6-2.el6.noarch.rpm                                                                                                                                  | 526 kB     00:00     
+(8/9): python-mako-0.5.0-5.el6.noarch.rpm                                                                                                                                     | 265 kB     00:00     
+(9/9): python-neutron-2014.1-18.el6.noarch.rpm                                                                                                                                | 1.3 MB     00:00     
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                                2.2 MB/s | 2.8 MB     00:01     
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : python-beaker-1.3.1-7.el6.noarch                                                                                                                                                  1/9 
+  Installing : python-mako-0.5.0-5.el6.noarch                                                                                                                                                    2/9 
+  Installing : python-alembic-0.4.2-3.el6.noarch                                                                                                                                                 3/9 
+  Installing : python-jinja2-26-2.6-2.el6.noarch                                                                                                                                                 4/9 
+  Installing : python-neutron-2014.1-18.el6.noarch                                                                                                                                               5/9 
+  Installing : dnsmasq-utils-2.48-13.el6.x86_64                                                                                                                                                  6/9 
+  Installing : dnsmasq-2.48-13.el6.x86_64                                                                                                                                                        7/9 
+  Installing : openstack-neutron-2014.1-18.el6.noarch                                                                                                                                            8/9 
+  Installing : openstack-neutron-ml2-2014.1-18.el6.noarch                                                                                                                                        9/9 
+  Verifying  : dnsmasq-2.48-13.el6.x86_64                                                                                                                                                        1/9 
+  Verifying  : python-alembic-0.4.2-3.el6.noarch                                                                                                                                                 2/9 
+  Verifying  : openstack-neutron-2014.1-18.el6.noarch                                                                                                                                            3/9 
+  Verifying  : python-mako-0.5.0-5.el6.noarch                                                                                                                                                    4/9 
+  Verifying  : dnsmasq-utils-2.48-13.el6.x86_64                                                                                                                                                  5/9 
+  Verifying  : python-jinja2-26-2.6-2.el6.noarch                                                                                                                                                 6/9 
+  Verifying  : python-neutron-2014.1-18.el6.noarch                                                                                                                                               7/9 
+  Verifying  : openstack-neutron-ml2-2014.1-18.el6.noarch                                                                                                                                        8/9 
+  Verifying  : python-beaker-1.3.1-7.el6.noarch                                                                                                                                                  9/9 
+
+Installed:
+  openstack-neutron.noarch 0:2014.1-18.el6                                                        openstack-neutron-ml2.noarch 0:2014.1-18.el6                                                       
+
+Dependency Installed:
+  dnsmasq.x86_64 0:2.48-13.el6        dnsmasq-utils.x86_64 0:2.48-13.el6       python-alembic.noarch 0:0.4.2-3.el6    python-beaker.noarch 0:1.3.1-7.el6    python-jinja2-26.noarch 0:2.6-2.el6   
+  python-mako.noarch 0:0.5.0-5.el6    python-neutron.noarch 0:2014.1-18.el6   
+
+Complete!
++ echo Done.
+Done.
++ echo 'Configuring Neutron...'
+Configuring Neutron...
++ keystone user-create --name neutron --pass 548295a7ebf749b74d42 --email neutron@devtrax.com
+Expecting an auth URL via either --os-auth-url or env[OS_AUTH_URL]
++ keystone user-role-add --user neutron --tenant service --role admin
+Expecting an auth URL via either --os-auth-url or env[OS_AUTH_URL]
++ keystone service-create --name neutron --type network --description 'OpenStack Networking'
+Expecting an auth URL via either --os-auth-url or env[OS_AUTH_URL]
+++ keystone service-list
+++ awk '/ network / {print $2}'
+Expecting an auth URL via either --os-auth-url or env[OS_AUTH_URL]
++ keystone endpoint-create --service-id --publicurl http://controller:9696 --adminurl http://controller:9696 --internalurl http://controller:9696
+usage: keystone endpoint-create [--region <endpoint-region>] --service
+                                <service> --publicurl <public-url>
+                                [--adminurl <admin-url>]
+                                [--internalurl <internal-url>]
+keystone endpoint-create: error: argument --service/--service-id/--service_id: expected one argument
++ openstack-config --set /etc/neutron/neutron.conf database connection mysql://neutron:548295a7ebf749b74d42@controller/neutron
++ openstack-config --set /etc/neutron/neutron.conf DEFAULT auth_strategy keystone
++ openstack-config --set /etc/neutron/neutron.conf keystone_authtoken auth_uri http://controller:5000
++ openstack-config --set /etc/neutron/neutron.conf keystone_authtoken auth_host controller
++ openstack-config --set /etc/neutron/neutron.conf keystone_authtoken auth_protocol http
++ openstack-config --set /etc/neutron/neutron.conf keystone_authtoken auth_port 35357
++ openstack-config --set /etc/neutron/neutron.conf keystone_authtoken admin_tenant_name service
++ openstack-config --set /etc/neutron/neutron.conf keystone_authtoken admin_user neutron
++ openstack-config --set /etc/neutron/neutron.conf keystone_authtoken admin_password 548295a7ebf749b74d42
++ openstack-config --set /etc/neutron/neutron.conf DEFAULT rpc_backend neutron.openstack.common.rpc.impl_qpid
++ openstack-config --set /etc/neutron/neutron.conf DEFAULT qpid_hostname controller
++ openstack-config --set /etc/neutron/neutron.conf DEFAULT notify_nova_on_port_status_changes True
++ openstack-config --set /etc/neutron/neutron.conf DEFAULT notify_nova_on_port_data_changes True
++ openstack-config --set /etc/neutron/neutron.conf DEFAULT nova_url http://controller:8774/v2
++ openstack-config --set /etc/neutron/neutron.conf DEFAULT nova_admin_username nova
+++ keystone tenant-list
+++ awk '/ service / { print $2 }'
+Expecting an auth URL via either --os-auth-url or env[OS_AUTH_URL]
++ openstack-config --set /etc/neutron/neutron.conf DEFAULT nova_admin_tenant_id
++ openstack-config --set /etc/neutron/neutron.conf DEFAULT nova_admin_password 548295a7ebf749b74d42
++ openstack-config --set /etc/neutron/neutron.conf DEFAULT nova_admin_auth_url http://controller:35357/v2.0
++ openstack-config --set /etc/neutron/neutron.conf DEFAULT core_plugin ml2
++ openstack-config --set /etc/neutron/neutron.conf DEFAULT service_plugins router
++ openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2 type_drivers gre
++ openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2 tenant_network_types gre
++ openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2 mechanism_drivers openvswitch
++ openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2_type_gre tunnel_id_ranges 1:1000
++ openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini securitygroup firewall_driver neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver
++ openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini securitygroup enable_security_group True
++ openstack-config --set /etc/nova/nova.conf DEFAULT network_api_class nova.network.neutronv2.api.API
++ openstack-config --set /etc/nova/nova.conf DEFAULT neutron_url http://controller:9696
++ openstack-config --set /etc/nova/nova.conf DEFAULT neutron_auth_strategy keystone
++ openstack-config --set /etc/nova/nova.conf DEFAULT neutron_admin_tenant_name service
++ openstack-config --set /etc/nova/nova.conf DEFAULT neutron_admin_username neutron
++ openstack-config --set /etc/nova/nova.conf DEFAULT neutron_admin_password 548295a7ebf749b74d42
++ openstack-config --set /etc/nova/nova.conf DEFAULT neutron_admin_auth_url http://controller:35357/v2.0
++ openstack-config --set /etc/nova/nova.conf DEFAULT linuxnet_interface_driver nova.network.linux_net.LinuxOVSInterfaceDriver
++ openstack-config --set /etc/nova/nova.conf DEFAULT firewall_driver nova.virt.firewall.NoopFirewallDriver
++ openstack-config --set /etc/nova/nova.conf DEFAULT security_group_api neutron
++ openstack-config --set /etc/nova/nova.conf DEFAULT service_neutron_metadata_proxy true
++ openstack-config --set /etc/nova/nova.conf DEFAULT neutron_metadata_proxy_shared_secret 548295a7ebf749b74d42
++ ln -s /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugin.ini
++ echo Done.
+Done.
++ echo 'Starting service and setting chkconfig...'
+Starting service and setting chkconfig...
++ service openstack-nova-api restart
+Stopping openstack-nova-api:                               [  OK  ]
+Starting openstack-nova-api:                               [  OK  ]
++ service openstack-nova-scheduler restart
+Stopping openstack-nova-scheduler:                         [  OK  ]
+Starting openstack-nova-scheduler:                         [  OK  ]
++ service openstack-nova-conductor restart
+Stopping openstack-nova-conductor:                         [  OK  ]
+Starting openstack-nova-conductor:                         [  OK  ]
++ service neutron-server start
+Starting neutron:                                          [  OK  ]
++ chkconfig neutron-server on
++ echo Done.
+Done.
+[root@controller ~]# 
