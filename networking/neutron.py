@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import subprocess
+import keystone
 
 ##### COLOR #####
 class colors:
@@ -12,40 +13,83 @@ class colors:
     FAIL = '\033[91m'
     ENDC = '\033[0m'
 
-
 ######### NETWORK MANAGEMENT ########
 #Class Neutron
 class Net:
     def __init__(self, name, passwd):
-        self.__name__ = name
-        self.user = name
-        self.passwd = passwd
-        self.tenant = name
-        self.auth_url='http://controller:35357/v2.0'
-        self.cred = '--os-username=' + self.user + ' --os-password=' + self.passwd + ' --os-tenant-name=' + tenant + ' --os-auth-url=' + auth_url
-        print 'Created [Net] instance successfully'
+        self.__name__ = name                            #name of instance
+        self.user = name                                #User name
+        self.passwd = passwd                            #User password
+        #self.tenant = name                             #Tenant name
+        self.tenant = 'testuser' #only on testrun
+        self.auth_url='http://controller:35357/v2.0'    #authenticate URL
+        #User Credential
+        #neutron --os-username=chasiumen --os-password=agumion$0822 --os-tenant-name=testuser --os-auth-url=http://controller:35357/v2.0 subnet-list
+        self.cred = '--os-username=' + self.user + ' --os-password=' + self.passwd + ' --os-tenant-name=' + self.tenant + ' --os-auth-url=' + self.auth_url
+        self.name_priv='private-net'                    #Name of private netowrk
+        self.name_subnet='private_subnet01'             #Name of subnet on private network
+        self.NeuCmd = 'neutron ' + self.cred            #Neutron Base commad
+        self.v= Verbose()
+        self.v.notice('Created ' + colors.BLUE + name + colors.ENDC + ' [Net] instance successfully')
     
-    #add a router
+    #CREATE ROUTERS
+    #neutron router-create [router_name]  + self.cred
+    #neutron router-gateway-set [router_name] ext-net + self.cred
+    #
     def router(self, router):
-        self.router = router
-        cmd = 'neutron router-create ' + self.router + self.cred
-        print colors.WHITE + cmd + colors.ENDC
+        self.router = router            #Name of router
+        #Create new router
+        cmd1=self.NeuCmd + ' router-create ' + self.router
+        self.v.check(cmd1)
+        self.v.notice('Created [' + self.router + '] router successfully')
 
-        ##Create User router
-        #neutron router-create [router_name]  + cred
-        #neutron router-gateway-set [router_name] ext-net + cred
-        
-        
-        cmd = 'cat /etc/resolv.conf'
-        self.exe(cmd)
+        #Assign Gateway as ext-net
+        cmd2=self.NeuCmd + ' router-gateway-set ' + self.router + ' ext-net '
 
-    #def add_network(self, url):
+        self.v.check(cmd2)
+        self.v.notice('Assigned ext-net as [' + self.router + ']\'s gateway successfully')
+        #self.exe(cmd1)
+        #self.exe(cmd2)
+       
+    #CREATE INTERNAL NETWORKj
+    #neutron net-create private-net --tenant-id $(source /root/admin-openrc.sh && keystone tenant-list | grep ' + self.tenant + ' | awk -F \'|\' \'{print $2}\')
+    def add_network(self):
+        tenant_id=' $(source /root/admin-openrc.sh && keystone tenant-list | grep ' + self.tenant + ' | awk -F \'|\' \'{print $2}\')'
+        #Create network
+        cmd1=self.NeuCmd + ' net-create ' + self.name_priv + tenant_id
+        #Create subnet
+        #neutron subnet-create private-net 10.0.0.0/24 --name private_subnet01 --enable_dhcp=True --gateway=10.0.0.1 --dns-nameserver 8.8.8.8
+        cmd2=self.NeuCmd + ' subnet-create ' + self.name_priv + ' 10.0.0.0/24 --name ' + self.name_subnet + ' --enable_dhcp=True --gateway=10.0.0.1 --dns-nameserver 8.8.8.8'
+        self.v.check(cmd1)
+        self.v.check(cmd2)
+        #self.exe(tenant_id)
+
+
+
+        
+    
     #execute shell comannd
     def exe(self, cmd):
         p =subprocess.Popen(cmd,stdout=subprocess.PIPE, shell=True)
         out, err = p.communicate()
         self.output = out.rstrip()
         return self.output
+
+
+#Verbose class -simple colored outputs-
+class Verbose(object):
+    #Default output
+    def __init__(self):
+        print 'Color instance created'
+    def notice(self, cmd):
+        print colors.GREEN + cmd + colors.ENDC   
+    #Warning message
+    def warn(self, cmd):
+        print colors.RED + cmd + colors.ENDC
+    #Command check
+    def check(self, cmd):
+        print 'CMD:' + colors.WHITE + cmd + colors.ENDC
+
 
 #def get_tenant:
     #load admin cred
@@ -55,96 +99,3 @@ class Net:
     ##export OS_TENANT_NAME=admin
     ##export OS_AUTH_URL=http://controller:35357/v2.0
     #Get tenant list
-
-######### Account Management #########
-#Class Keystone
-class Keystone:
-    def __init__(self, name, passwd, email):
-        self.name = name
-        self.passwd = passwd
-        self.email = email
-        self.tenant = name
-        self.desc = 'User Tenant'
-        self.role = 'admin'
-        print 'Created ' + colors.WHITE + name + colors.ENDC + '\'s ' + '[Keyston] instance successfully'
-
-    #               ---------- CREATE FUNCTIONS ----------
-    #
-    #
-
-    #CREATE TENANTS
-    #keystone tenant-create --name=testuser --description="Test User Tenant"
-    #
-    def add_tenant(self):
-        cmd ='keystone tenant-create --name=' + self.tenant + ' --description=\"' + self.desc + '\"'
-        print 'CMD:'+ colors.WHITE + cmd + colors.ENDC
-        print colors.RED + 'Created User account successfully' + colors.ENDC
-
-    #CREATE USERS 
-    #keystone user-create --name=chasiumen --pass=admin --email=morinor@devtrax.com
-    #    
-    def add_user(self):
-        cmd = 'keystone user-create --name=' + self.name + ' --pass=' + self.passwd + ' --email=' + self.email
-        print 'CMD:'+ colors.WHITE + cmd + colors.ENDC
-        print colors.RED + 'Created User tenant successfully' + colors.ENDC
-
-    #ADD ROLE 
-    #keystone user-role-add --user=chasiumen --role=admin/member --tenant=testuser
-    #    
-    def add_role(self):
-        cmd = 'keystone user-role-add --user=' + self.name + ' --role=' + self.role + ' --tenant=' + self.tenant
-        print 'CMD:'+ colors.WHITE + cmd + colors.ENDC
-        print colors.RED + 'Add ' + self.name + ' as [' + self.role + '] successfully' + colors.ENDC
-
-    #               ---------- REMOVE FUNCTIONS ----------
-    #
-    #
-
-    #DELETE TENANTS
-    #keystone user-role-remove --user=chasiumen --role=_member_ --tenant=testuser
-    #
-    def del_tenant(self):
-        cmd = ''
-
-    #DELETE TENANTS
-    #keystone tenant-delete testuser
-    #
-    def del_user(self):
-        cmd = ''
-
-#### VARIABLES ####
-#Assume tenants name is same as username
-user='chasiumen'
-passwd='admin'
-mail='morinor@devtrax.com'
-auth_url='http://controller:35357/v2.0'
-cred='--os-username=' + user + ' --os-password=' + passwd + ' --os-tenant-name=' + tenant + ' --os-auth-url=' + auth_url
-
-
-#### Keystone ####
-#   1. Create user TENANT
-#   2. Create user ACCOUNT
-#   3. Assign user ROLE
-
-#Create an instance
-keystone = Keystone(user, passwd, mail)
-
-#Create tenant
-keystone.add_tenant()
-#Create user
-keystone.add_user()
-#Assign role
-keystone.add_role()
-
-
-
-#execute a command
-#a.exe('ls -al ./')
-#a.router(user)
-#b.add_tenant(user)
-
-
-
-#output
-#print dir(a)
-#print a.output
