@@ -34,40 +34,25 @@ router='r1'
 #   2. Create user ACCOUNT
 #   3. Assign user ROLE
 
-print '==='*10 + ' CREATE USER AND TENANT ' + '==='*10
-#Create an instance
-keystone = keystone.Keystone(user, passwd, mail)
 
 #####KEYSTONE DELETE####
-#print '==='*10 + ' DELETE USER AND TENANT ' + '==='*10
+print '==='*10 + ' DELETE USER AND TENANT ' + '==='*10
+#Create an instance
+keystone = keystone.Keystone(user, passwd, mail)
 ##Delete Tenant
 keystone.del_tenant()
 ##Delete user
 keystone.del_user()
 
-
 #get user-list
 keystone.get_user()
 
-#Create tenant
-keystone.add_tenant()
-#Create user
-keystone.add_user()
-#Assign role
-keystone.add_role()
 
-
-
-
-print '==='*10 + ' CREATE NETWORK AND ROUTER ' + '==='*10 
 #### Neutron ####
+##print '==='*10 + ' DELETE NETWORK AND ROUTER ' + '==='*10
 #Create an instance
 neutron = neutron.Net(user, passwd, keystone.KeyCmd)
-#Create router
-neutron.router(router)
-neutron.add_network()
+neutron.delete_network()
+neutron.delete_router()
 
-##delete
-#print '==='*10 + ' DELETE NETWORK AND ROUTER ' + '==='*10
-#neutron.delete_network()
-#neutron.delete_router()
+
