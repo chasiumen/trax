@@ -39,8 +39,16 @@ print '==='*10 + ' CREATE USER AND TENANT ' + '==='*10
 #Create an instance
 keystone = keystone.Keystone(user, passwd, mail)
 
+#####KEYSTONE DELETE####
+#print '==='*10 + ' DELETE USER AND TENANT ' + '==='*10
+##Delete Tenant
+keystone.del_tenant()
+##Delete user
+keystone.del_user()
+
+
 #get user-list
-#keystone.get_user()
+keystone.get_user()
 
 #Create tenant
 keystone.add_tenant()
@@ -49,13 +57,6 @@ keystone.add_user()
 #Assign role
 keystone.add_role()
 
-
-#####KEYSTONE DELETE####
-#print '==='*10 + ' DELETE USER AND TENANT ' + '==='*10
-##Delete Tenant
-#keystone.del_tenant()
-##Delete user
-#keystone.del_user()
 
 
 
