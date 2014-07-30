@@ -16,9 +16,13 @@ class colors:
 
 #### VARIABLES ####
 #Assume tenants name is same as username
-user='chasiumen'
+#user='chasiumen'
+#passwd='agumion\$0822'
+#mail='morinor@devtrax.com'
+user='umi'
 passwd='agumion\$0822'
-mail='morinor@devtrax.com'
+mail='umi@devtrax.com'
+
 
 
 #### Keystone ####
@@ -26,8 +30,12 @@ mail='morinor@devtrax.com'
 #   2. Create user ACCOUNT
 #   3. Assign user ROLE
 
+print '==='*10 + ' CREATE USER AND TENANT ' + '==='*10
 #Create an instance
 keystone = keystone.Keystone(user, passwd, mail)
+
+#get user-list
+keystone.get_user()
 
 #Create tenant
 keystone.add_tenant()
@@ -37,23 +45,24 @@ keystone.add_user()
 keystone.add_role()
 
 
+####KEYSTONE DELETE####
+print '==='*10 + ' DELETE USER AND TENANT ' + '==='*10
+#Delete Tenant
+keystone.del_tenant()
+#Delete user
+keystone.del_user()
+
+
+
+print '==='*10 + ' CREATE NETWORK AND ROUTER ' + '==='*10 
 #### Neutron ####
-
 #Create an instance
-neutron = neutron.Net(user, passwd)
-
+neutron = neutron.Net(user, passwd, keystone.KeyCmd)
 #Create router
-neutron.router("test_router")
+neutron.router("r1")
 neutron.add_network()
 
-
-#execute a command
-#a.exe('ls -al ./')
-#a.router(user)
-#b.add_tenant(user)
-
-
-
-#output
-#print dir(a)
-#print a.output
+#delete
+print '==='*10 + ' DELETE NETWORK AND ROUTER ' + '==='*10
+neutron.delete_network()
+neutron.delete_router()

@@ -15,20 +15,26 @@ class colors:
 
 ######### Account Management #########
 #Class Keystone
+#--os-username=admin --os-password=548295a7ebf749b74d42 --os-tenant-name=admin --os-auth-url=http://controller:35357/v2.0
 class Keystone:
     def __init__(self, name, passwd, email):
-        self.name = name
-        self.passwd = passwd
-        self.email = email
-        self.tenant = name
+    #Regular user
+        self.name = name                                #Name of instance
+        self.passwd = passwd                            #User password
+        self.email = email                              #User email
+        self.tenant = name                             #Name of user Tenant
         self.desc = 'User Tenant'
-        self.role = 'admin'
-        self.admin_pass = '548295a7ebf749b74d42'
-        self.admin_tenant = 'admin'
-        self.auth_url = 'http://controller:35357/v2.0'
-        #--os-username=admin --os-password=548295a7ebf749b74d42 --os-tenant-name=admin --os-auth-url=http://controller:35357/v2.0
+        #self.role = 'admin'                             #Role of the user
+        self.role = '_member_'                          #Role of the user (default regular user)
+    #Admin Cred //Static
+        self.admin_pass = '548295a7ebf749b74d42'        #Admin's pass
+        self.admin_tenant = 'admin'                     #Admin's tenant (admin)
+        self.auth_url = 'http://controller:35357/v2.0'  #Auth URL
         self.admin_cred = '--os-username=admin  --os-password=' + self.admin_pass + ' --os-tenant-name=' + self.admin_tenant + ' --os-auth-url=' + self.auth_url
-        print 'Created ' + colors.WHITE + name + colors.ENDC + '\'s ' + '[Keyston] instance successfully'
+        self.KeyCmd ='keystone ' + self.admin_cred
+    #Output
+        self.v= Verbose()                           #Create Verbose instance
+        self.v.notice('Created ' + colors.BLUE + name + colors.ENDC + '\'s ' + '[Keyston] instance successfully')
     
     #           -------------------- CREATE FUNCTIONS --------------------
     #
@@ -36,25 +42,28 @@ class Keystone:
     #keystone tenant-create --name=testuser --description="Test User Tenant"
     #
     def add_tenant(self):
-        cmd ='keystone tenant-create --name=' + self.tenant + ' --description=\"' + self.desc + '\"'
-        print 'CMD:'+ colors.WHITE + cmd + colors.ENDC
-        print colors.GREEN + 'Created User account successfully' + colors.ENDC
-
+        cmd =self.KeyCmd + ' tenant-create --name=' + self.tenant + ' --description=\"' + self.desc + '\"'
+        self.v.check(cmd)
+        self.exe(cmd)
+        self.v.notice('Created User account successfully')
+        
     #CREATE USERS 
     #keystone user-create --name=chasiumen --pass=admin --email=morinor@devtrax.com
     #    
     def add_user(self):
-        cmd = 'keystone user-create --name=' + self.name + ' --pass=' + self.passwd + ' --email=' + self.email
-        print 'CMD:'+ colors.WHITE + cmd + colors.ENDC
-        print colors.GREEN + 'Created User tenant successfully' + colors.ENDC
+        cmd =self.KeyCmd +  ' user-create --name=' + self.name + ' --pass=' + self.passwd + ' --email=' + self.email
+        self.v.check(cmd)
+        self.exe(cmd)
+        self.v.notice('Created User tenant successfully')
 
     #ADD ROLE 
     #keystone user-role-add --user=chasiumen --role=admin/member --tenant=testuser
     #    
     def add_role(self):
-        cmd = 'keystone user-role-add --user=' + self.name + ' --role=' + self.role + ' --tenant=' + self.tenant
-        print 'CMD:'+ colors.WHITE + cmd + colors.ENDC
-        print colors.GREEN + 'Add ' + self.name + ' as [' + self.role + '] successfully' + colors.ENDC
+        cmd =self.KeyCmd + ' user-role-add --user=' + self.name + ' --role=' + self.role + ' --tenant=' + self.tenant
+        self.v.check(cmd)
+        self.exe(cmd)
+        self.v.notice('Add ' + self.name + ' as [' + self.role + '] successfully')
 
     #
     #           -------------------- REMOVE FUNCTIONS --------------------
@@ -62,13 +71,24 @@ class Keystone:
     #keystone user-role-remove --user=chasiumen --role=_member_ --tenant=testuser
     #
     def del_tenant(self):
-        cmd = ''
+        cmd =self.KeyCmd + ' tenant-delete ' + self.tenant
+        self.v.check(cmd)
+        self.exe(cmd)
+        self.v.warn('DELETED: User tenant [' +  self.tenant + '] successfully')
 
     #DELETE TENANTS
     #keystone tenant-delete testuser
     #
     def del_user(self):
-        cmd = ''
+        cmd =self.KeyCmd + ' user-delete ' + self.name
+        self.v.check(cmd)
+        self.exe(cmd)
+        self.v.warn('DELETED: User [' + self.name + '] successfully')
+
+    def get_user(self):
+        cmd =self.KeyCmd + ' user-list'
+        self.exe(cmd)
+        self.v.check(cmd)
 
     #execute shell comannd
     def exe(self, cmd):
@@ -76,4 +96,20 @@ class Keystone:
         out, err = p.communicate()
         self.output = out.rstrip()
         return self.output
+
+
+#Verbose class -simple colored outputs-
+class Verbose(object):
+    #Default output
+    def __init__(self):
+        print 'Color instance created'
+    def notice(self, cmd):
+        print colors.GREEN + cmd + colors.ENDC   
+    #Warning message
+    def warn(self, cmd):
+        print colors.RED + cmd + colors.ENDC
+    #Command check
+    def check(self, cmd):
+        print 'CMD:' + colors.WHITE + cmd + colors.ENDC
+
 

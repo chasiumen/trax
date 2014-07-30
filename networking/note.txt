@@ -72,6 +72,51 @@ keystone tenant-delete testuser
 
        
 
+#### NOVA #####
+1. Create instance
+2. assign floating ip
+
+nova boot -options!!!
+
+
+add pass on Fedora image
+http://d.hatena.ne.jp/ytooyama/20140201/1391186305
+------------------------------
+#cloud-config
+password: vmpass
+chpasswd: { expire: False }
+ssh_pwauth: True
+
+-----------------------------
+
+
+
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux_OpenStack_Platform/2/html/Getting_Started_Guide/ch14s02.html
+#Check flavor
+nova flavor-list
+
+#Check image list
+nova image-list
+
+
+nova boot --flavor[FLAVOR_ID_NUMBER,2] --key_name [KEY_NAME] --image [IMAGE_ID] Fedora(instance Name)
+
+#Show current instance running
+nova list
+
+#more details
+nova show [INSTANCE_ID]
+
+
+
+
+
+
+
+
+
+
+
 
 
 192.168.1.159   compute

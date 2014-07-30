@@ -16,58 +16,100 @@ class colors:
 ######### NETWORK MANAGEMENT ########
 #Class Neutron
 class Net:
-    def __init__(self, name, passwd):
+    def __init__(self, name, passwd, KeyCmd):
         self.__name__ = name                            #name of instance
         self.user = name                                #User name
         self.passwd = passwd                            #User password
-        #self.tenant = name                             #Tenant name
-        self.tenant = 'testuser' #only on testrun
+        self.tenant = name                             #Tenant name
+        #self.tenant = 'testuser' #only on testrun
         self.auth_url='http://controller:35357/v2.0'    #authenticate URL
         #User Credential
-        #neutron --os-username=chasiumen --os-password=agumion$0822 --os-tenant-name=testuser --os-auth-url=http://controller:35357/v2.0 subnet-list
         self.cred = '--os-username=' + self.user + ' --os-password=' + self.passwd + ' --os-tenant-name=' + self.tenant + ' --os-auth-url=' + self.auth_url
         self.name_priv='private-net'                    #Name of private netowrk
         self.name_subnet='private_subnet01'             #Name of subnet on private network
-        self.NeuCmd = 'neutron ' + self.cred            #Neutron Base commad
-        self.v= Verbose()
-        self.v.notice('Created ' + colors.BLUE + name + colors.ENDC + ' [Net] instance successfully')
+        self.NeuCmd = 'neutron ' + self.cred            #Neutron Base command
+        self.KeyCmd = KeyCmd                            #keystone Base command
+        self.v= Verbose()                               #Create Verbose instance
+        self.v.notice('Created ' + colors.BLUE + name + colors.ENDC + '\'s [Net] instance successfully')
     
     #CREATE ROUTERS
-    #neutron router-create [router_name]  + self.cred
-    #neutron router-gateway-set [router_name] ext-net + self.cred
-    #
     def router(self, router):
         self.router = router            #Name of router
-        #Create new router
+
+        #Create new router              [neutron router-create ROUTER_NAME]
         cmd1=self.NeuCmd + ' router-create ' + self.router
         self.v.check(cmd1)
+        self.exe(cmd1)
         self.v.notice('Created [' + self.router + '] router successfully')
 
-        #Assign Gateway as ext-net
+        #Assign Gateway as ext-net      [neutron router-gateway-set ROUTER_NAME  ext-net]
         cmd2=self.NeuCmd + ' router-gateway-set ' + self.router + ' ext-net '
-
         self.v.check(cmd2)
+        self.exe(cmd2)
         self.v.notice('Assigned ext-net as [' + self.router + ']\'s gateway successfully')
+        
         #self.exe(cmd1)
         #self.exe(cmd2)
        
-    #CREATE INTERNAL NETWORKj
+    #CREATE INTERNAL NETWORK
     #neutron net-create private-net --tenant-id $(source /root/admin-openrc.sh && keystone tenant-list | grep ' + self.tenant + ' | awk -F \'|\' \'{print $2}\')
     def add_network(self):
-        tenant_id=' $(source /root/admin-openrc.sh && keystone tenant-list | grep ' + self.tenant + ' | awk -F \'|\' \'{print $2}\')'
-        #Create network
-        cmd1=self.NeuCmd + ' net-create ' + self.name_priv + tenant_id
-        #Create subnet
-        #neutron subnet-create private-net 10.0.0.0/24 --name private_subnet01 --enable_dhcp=True --gateway=10.0.0.1 --dns-nameserver 8.8.8.8
-        cmd2=self.NeuCmd + ' subnet-create ' + self.name_priv + ' 10.0.0.0/24 --name ' + self.name_subnet + ' --enable_dhcp=True --gateway=10.0.0.1 --dns-nameserver 8.8.8.8'
-        self.v.check(cmd1)
-        self.v.check(cmd2)
-        #self.exe(tenant_id)
-
-
-
+        #Get tenant_id and router_id
+        self.tenant_id='$(' + self.KeyCmd + ' tenant-list | grep ' + self.tenant + ' | awk -F \'|\' \'{print $2}\')'
+        self.router_id='$(' + self.NeuCmd + ' router-list | grep ' + self.router + ' | awk -F \'|\' \'{print $2}\')'
         
-    
+        #Create network                 [neutron net-create PRIVATE_NET_NAME --tenant-id=@#$A%^]
+        cmd1=self.NeuCmd + ' net-create ' + self.name_priv + ' --tenant-id ' + self.tenant_id
+        self.v.check(cmd1)
+        self.exe(cmd1)
+        self.v.notice('Created Network [' + colors.WHITE + self.name_priv + colors.ENDC + '] successfully')
+        
+        #Create subnet                  [neutron subnet-create private-net 10.0.0.0/24 --name private_subnet01 --enable_dhcp=True --gateway=10.0.0.1 --dns-nameserver 8.8.8.8]
+        cmd2=self.NeuCmd + ' subnet-create ' + self.name_priv + ' 10.0.0.0/24 --name ' + self.name_subnet + ' --enable_dhcp=True --gateway=10.0.0.1 --dns-nameserver 8.8.8.8'
+        self.v.check(cmd2)
+        self.exe(cmd2)
+        self.v.notice('Created Subnet [' + colors.WHITE + self.name_subnet + colors.ENDC + '] successfully')
+        #self.exe(tenant_id)
+        
+        #Admin only 
+        #update network as shared       [neutron net-update private-net --shared]
+        cmd3=self.NeuCmd + ' net-update ' + self.name_priv + ' --shared'
+        self.exe(cmd3)
+        self.v.check(cmd3)
+        
+        #add interface                  [neutron router-interface-add  $router-id(r1's) INTERFACE(subnet=SUBNET_NAME)]
+        cmd4=self.NeuCmd + ' router-interface-add ' + self.router_id + ' subnet=' +  self.name_subnet  #connect private network with router2
+        self.v.check(cmd4)
+        self.exe(cmd4)
+        self.v.notice('Added interface [' + self.name_subnet + '] on router [' + self.router + '] successfully')
+
+    ######## DELETE NETWORK AND ROUTER ###########
+    def delete_network(self):
+        #delete interface   router_id Interface
+        cmd1=self.NeuCmd + ' router-interface-delete ' + self.router_id + ' subnet=' + self.name_subnet
+        self.v.check(cmd1)
+        self.exe(cmd2)
+        self.v.warn('DELETE: router-interface [' + self.router + ']')
+        
+        #delete subnet
+        cmd2 = self.NeuCmd + ' subnet-delete ' + self.name_subnet    
+        self.v.check(cmd2)
+        self.exe(cmd2)
+        self.v.warn('DELETE: subent [' + self.name_subnet + ']')
+
+        #delete network
+        cmd3=self.NeuCmd + ' net-delete ' + self.name_priv
+        self.v.check(cmd3)
+        self.exe(cmd3)
+        self.v.warn('DELETE: Private Network [' + self.name_priv + ']')
+
+    def delete_router(self):
+        #delete router
+        cmd=self.NeuCmd + ' router-delete ' + self.router
+        self.v.check(cmd)
+        self.exe(cmd)
+        self.v.warn('DELETE: router [' + self.router + ']')
+
     #execute shell comannd
     def exe(self, cmd):
         p =subprocess.Popen(cmd,stdout=subprocess.PIPE, shell=True)
@@ -90,12 +132,3 @@ class Verbose(object):
     def check(self, cmd):
         print 'CMD:' + colors.WHITE + cmd + colors.ENDC
 
-
-#def get_tenant:
-    #load admin cred
-    #source /root/admin-openrc.sh
-    ##export OS_USERNAME=admin
-    ##export OS_PASSWORD=548295a7ebf749b74d42
-    ##export OS_TENANT_NAME=admin
-    ##export OS_AUTH_URL=http://controller:35357/v2.0
-    #Get tenant list
