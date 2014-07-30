@@ -88,7 +88,7 @@ class Net:
         #delete interface   router_id Interface
         cmd1=self.NeuCmd + ' router-interface-delete ' + self.router_id + ' subnet=' + self.name_subnet
         self.v.check(cmd1)
-        self.exe(cmd2)
+        self.exe(cmd1)
         self.v.warn('DELETE: router-interface [' + self.router + ']')
         
         #delete subnet
