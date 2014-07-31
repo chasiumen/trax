@@ -49,7 +49,7 @@ class Keystone:
     #CREATE USERS 
     #keystone user-create --name=chasiumen --pass=admin --email=morinor@devtrax.com
     #    
-    def add_user(self, mail):
+    def add_user(self, email):
         self.email = email                              #User email
         cmd =self.KeyCmd +  ' user-create --name=' + self.name + ' --pass=' + self.passwd + ' --email=' + self.email
         self.v.check(cmd)

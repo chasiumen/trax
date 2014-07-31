@@ -56,6 +56,9 @@ else:
         
         #get user-list
         keystone.get_user()
+
+        #Create user account
+        keystone.add_user(mail)
         
         #Create tenant
         keystone.add_tenant()
