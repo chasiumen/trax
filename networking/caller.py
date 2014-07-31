@@ -68,7 +68,7 @@ else:
         print '==='*10 + ' CREATE NETWORK AND ROUTER ' + '==='*10 
         #### Neutron ####
         #Create an instance
-        neutron = neutron.Net(user, passwd, keystone.KeyCmd, router)
+        neutron = neutron.Net(user, passwd, keystone.KeyCmd, name_r)
         #Create router
-        neutron.router(name_r)
+        neutron.router()
         neutron.add_network()
