@@ -29,6 +29,14 @@ passwd='agumion\$0822'
 mail='umi@devtrax.com'
 router='r1'
 
+#### Neutron ####
+##print '==='*10 + ' DELETE NETWORK AND ROUTER ' + '==='*10
+#Create an instance
+neutron = neutron.Net(user, passwd, keystone.KeyCmd, router)
+neutron.delete_network()
+neutron.delete_router()
+
+
 #### Keystone ####
 #   1. Create user TENANT
 #   2. Create user ACCOUNT
@@ -47,12 +55,5 @@ keystone.del_user()
 #get user-list
 keystone.get_user()
 
-
-#### Neutron ####
-##print '==='*10 + ' DELETE NETWORK AND ROUTER ' + '==='*10
-#Create an instance
-neutron = neutron.Net(user, passwd, keystone.KeyCmd, router)
-neutron.delete_network()
-neutron.delete_router()
 
 
