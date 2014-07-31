@@ -98,8 +98,7 @@ class Net:
         self.exe(cmd3)
         self.v.warn('DELETE: Private Network [' + self.name_priv + ']')
 
-    def delete_router(self, name):
-        
+    def delete_router(self):
         #delete router
         cmd=self.NeuCmd + ' router-delete ' + self.router
         self.v.check(cmd)
