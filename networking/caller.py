@@ -17,8 +17,6 @@ else:
     print "Unable to load modules"
     sys.exit()
 
-
-
 #### VARIABLES ####
 #Assume tenants name is same as username
 #user='chasiumen'
@@ -57,14 +55,12 @@ keystone.add_user()
 keystone.add_role()
 
 
-
-
 print '==='*10 + ' CREATE NETWORK AND ROUTER ' + '==='*10 
 #### Neutron ####
 #Create an instance
-neutron = neutron.Net(user, passwd, keystone.KeyCmd)
+neutron = neutron.Net(user, passwd, keystone.KeyCmd, router)
 #Create router
-neutron.router(router)
+neutron.router()
 neutron.add_network()
 
 ##delete
