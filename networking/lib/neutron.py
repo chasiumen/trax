@@ -41,14 +41,14 @@ class Net:
         #Create new router              [neutron router-create ROUTER_NAME]
         cmd1=self.NeuCmd + ' router-create ' + self.router
         self.v.check(cmd1)
+        self.v.notice('Creating [' + self.router + '] router ')
         self.exe(cmd1)
-        self.v.notice('Created [' + self.router + '] router successfully')
 
         #Assign Gateway as ext-net      [neutron router-gateway-set ROUTER_NAME  ext-net]
         cmd2=self.NeuCmd + ' router-gateway-set ' + self.router + ' ext-net '
         self.v.check(cmd2)
+        self.v.notice('Assigning ext-net as [' + self.router + ']\'s gateway ')
         self.exe(cmd2)
-        self.v.notice('Assigned ext-net as [' + self.router + ']\'s gateway successfully')
        
     #CREATE INTERNAL NETWORK
     #neutron net-create private-net --tenant-id $(source /root/admin-openrc.sh && keystone tenant-list | grep ' + self.tenant + ' | awk -F \'|\' \'{print $2}\')
@@ -56,15 +56,14 @@ class Net:
         #Create network                 [neutron net-create PRIVATE_NET_NAME --tenant-id=@#$A%^]
         cmd1=self.NeuCmd + ' net-create ' + self.name_priv + ' --tenant-id ' + self.tenant_id
         self.v.check(cmd1)
+        self.v.notice('Creating Network [' + colors.WHITE + self.name_priv + colors.ENDC + '] ')
         self.exe(cmd1)
-        self.v.notice('Created Network [' + colors.WHITE + self.name_priv + colors.ENDC + '] successfully')
         
         #Create subnet                  [neutron subnet-create private-net 10.0.0.0/24 --name private_subnet01 --enable_dhcp=True --gateway=10.0.0.1 --dns-nameserver 8.8.8.8]
         cmd2=self.NeuCmd + ' subnet-create ' + self.name_priv + ' 10.0.0.0/24 --name ' + self.name_subnet + ' --enable_dhcp=True --gateway=10.0.0.1 --dns-nameserver 8.8.8.8'
         self.v.check(cmd2)
+        self.v.notice('Creating Subnet [' + colors.WHITE + self.name_subnet + colors.ENDC + '] ')
         self.exe(cmd2)
-        self.v.notice('Created Subnet [' + colors.WHITE + self.name_subnet + colors.ENDC + '] successfully')
-        #self.exe(tenant_id)
         
         #Admin only 
         #update network as shared       [neutron net-update private-net --shared]
@@ -75,35 +74,35 @@ class Net:
         #add interface                  [neutron router-interface-add  $router-id(r1's) INTERFACE(subnet=SUBNET_NAME)]
         cmd4=self.NeuCmd + ' router-interface-add ' + self.router_id + ' subnet=' +  self.name_subnet  #connect private network with router2
         self.v.check(cmd4)
+        self.v.notice('Adding interface [' + self.name_subnet + '] on router [' + self.router + '] ')
         self.exe(cmd4)
-        self.v.notice('Added interface [' + self.name_subnet + '] on router [' + self.router + '] successfully')
 
     ######## DELETE NETWORK AND ROUTER ###########
     def delete_network(self):
         #delete interface   router_id Interface
         cmd1=self.NeuCmd + ' router-interface-delete ' + self.router_id + ' subnet=' + self.name_subnet
         self.v.check(cmd1)
-        self.exe(cmd1)
         self.v.warn('DELETE: router-interface [' + self.router + ']')
+        self.exe(cmd1)
         
         #delete subnet
         cmd2 = self.NeuCmd + ' subnet-delete ' + self.name_subnet    
         self.v.check(cmd2)
-        self.exe(cmd2)
         self.v.warn('DELETE: subent [' + self.name_subnet + ']')
+        self.exe(cmd2)
 
         #delete network
         cmd3=self.NeuCmd + ' net-delete ' + self.name_priv
         self.v.check(cmd3)
-        self.exe(cmd3)
         self.v.warn('DELETE: Private Network [' + self.name_priv + ']')
+        self.exe(cmd3)
 
     def delete_router(self):
         #delete router
         cmd=self.NeuCmd + ' router-delete ' + self.router
         self.v.check(cmd)
-        self.exe(cmd)
         self.v.warn('DELETE: router [' + self.router + ']')
+        self.exe(cmd)
 
     #execute shell comannd
     def exe(self, cmd):

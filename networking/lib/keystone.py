@@ -43,8 +43,8 @@ class Keystone:
     def add_tenant(self):
         cmd =self.KeyCmd + ' tenant-create --name=' + self.tenant + ' --description=\"' + self.desc + '\"'
         self.v.check(cmd)
+        self.v.notice('Creating  User account')
         self.exe(cmd)
-        self.v.notice('Created User account successfully')
         
     #CREATE USERS 
     #keystone user-create --name=chasiumen --pass=admin --email=morinor@devtrax.com
@@ -53,8 +53,8 @@ class Keystone:
         self.email = email                              #User email
         cmd =self.KeyCmd +  ' user-create --name=' + self.name + ' --pass=' + self.passwd + ' --email=' + self.email
         self.v.check(cmd)
+        self.v.notice('Creating User tenant')
         self.exe(cmd)
-        self.v.notice('Created User tenant successfully')
 
     #ADD ROLE 
     #keystone user-role-add --user=chasiumen --role=admin/member --tenant=testuser
@@ -62,8 +62,8 @@ class Keystone:
     def add_role(self):
         cmd =self.KeyCmd + ' user-role-add --user=' + self.name + ' --role=' + self.role + ' --tenant=' + self.tenant
         self.v.check(cmd)
+        self.v.notice('Adding ' + self.name + ' as [' + self.role + ']')
         self.exe(cmd)
-        self.v.notice('Add ' + self.name + ' as [' + self.role + '] successfully')
 
     #
     #           -------------------- REMOVE FUNCTIONS --------------------
@@ -73,8 +73,8 @@ class Keystone:
     def del_tenant(self):
         cmd =self.KeyCmd + ' tenant-delete ' + self.tenant
         self.v.check(cmd)
+        self.v.warn('DELETE: User tenant [' +  self.tenant + ']')
         self.exe(cmd)
-        self.v.warn('DELETED: User tenant [' +  self.tenant + '] successfully')
 
     #DELETE TENANTS
     #keystone tenant-delete testuser
@@ -82,8 +82,8 @@ class Keystone:
     def del_user(self):
         cmd =self.KeyCmd + ' user-delete ' + self.name
         self.v.check(cmd)
+        self.v.warn('DELETE: User [' + self.name + ']')
         self.exe(cmd)
-        self.v.warn('DELETED: User [' + self.name + '] successfully')
 
     def get_user(self):
         cmd =self.KeyCmd + ' user-list'

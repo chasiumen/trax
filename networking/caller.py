@@ -45,7 +45,7 @@ else:
         user = sys.argv[1]
         passwd = sys.argv[2]
 #        mail = sys.arg[3]
-        router = sys.argv[4]
+        name_r = sys.argv[4]
         mail = sys.argv[1]+'@devtrax.com'
        
 
@@ -70,5 +70,5 @@ else:
         #Create an instance
         neutron = neutron.Net(user, passwd, keystone.KeyCmd, router)
         #Create router
-        neutron.router(router)
+        neutron.router(name_r)
         neutron.add_network()

@@ -47,7 +47,9 @@ else:
 #        mail = sys.arg[3]
         router = sys.argv[4]
         mail = sys.argv[1]+'@devtrax.com'
- 
+        #Create an instance
+        keystone = keystone.Keystone(user, passwd)
+        
         #### Neutron ####
         print '==='*10 + ' DELETE NETWORK AND ROUTER ' + '==='*10
         #Create an instance
@@ -64,8 +66,8 @@ else:
         
         #####KEYSTONE DELETE####
         print '==='*10 + ' DELETE USER AND TENANT ' + '==='*10
-        #Create an instance
-        keystone = keystone.Keystone(user, passwd, mail)
+
+
         ##Delete Tenant
         keystone.del_tenant()
         ##Delete user
