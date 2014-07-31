@@ -62,13 +62,11 @@ else:
         #Create user keystone.add_user(mail)
         #Assign role
         keystone.add_role()
-        
- 
 ####################### NEUTRON ############################
         print '==='*10 + ' CREATE NETWORK AND ROUTER ' + '==='*10 
         #### Neutron ####
         #Create an instance
         neutron = neutron.Net(user, passwd, keystone.KeyCmd, name_r)
-        #Create router
-        neutron.router()
+        neutron.add_router()
         neutron.add_network()
+        #Create router

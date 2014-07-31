@@ -35,9 +35,8 @@ class Net:
         self.router_id='$(' + self.NeuCmd + ' router-list | grep ' + self.router + ' | awk -F \'|\' \'{print $2}\')'
         self.v= Verbose()                               #Create Verbose instance
         self.v.notice('Created ' + colors.BLUE + name + colors.ENDC + '\'s [Net] instance successfully')
-    
     #CREATE ROUTERS
-    def router(self):
+    def add_router(self):
         #Create new router              [neutron router-create ROUTER_NAME]
         cmd1=self.NeuCmd + ' router-create ' + self.router
         self.v.check(cmd1)
@@ -49,7 +48,6 @@ class Net:
         self.v.check(cmd2)
         self.v.notice('Assigning ext-net as [' + self.router + ']\'s gateway ')
         self.exe(cmd2)
-       
     #CREATE INTERNAL NETWORK
     #neutron net-create private-net --tenant-id $(source /root/admin-openrc.sh && keystone tenant-list | grep ' + self.tenant + ' | awk -F \'|\' \'{print $2}\')
     def add_network(self):
