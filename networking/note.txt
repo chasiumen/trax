@@ -38,6 +38,11 @@ keystone user-delete chasiumen
 #remove tenant
 keystone tenant-delete testuser
 
+#show users on specific tenant
+keystone user-list --tenant=TENANT
+
+
+
 ## NEUTRON ##
 
 --os-username=chasiumen --os-password=admin --os-tenant-name=testuser --os-auth-url=http://controller:35357/v2.0
@@ -76,7 +81,31 @@ keystone tenant-delete testuser
 1. Create instance
 2. assign floating ip
 
+#showk list of instance
+nova list
+
+#show image list
+nova image-list
+
+#show list of flavor
+nova flavor-list
+
+# create and launch an instance
+#http://docs.openstack.org/cli-reference/content/novaclient_commands.html#novaclient_subcommand_boot
+# nova boot --flavor 2 --key_name oskey --image 17a34b8e-c573-48d6-920c-b4b450172b41 rhel
 nova boot -options!!!
+
+#snapshot
+http://docs.openstack.org/ja/user-guide/content/cli_migrate_instances.html
+
+
+#HEAT
+#git, heat
+http://d.hatena.ne.jp/enakai00/20131226/1388021566
+
+
+#heat stack-create wordpress --template-file=WordPress_Composed_Instances.template --parameters="DBUsername=wp;DBPassword=wp;KeyName=userkey;LinuxDistribution=F17"
+
 
 
 add pass on Fedora image

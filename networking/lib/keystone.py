@@ -17,11 +17,10 @@ class colors:
 #Class Keystone
 #--os-username=admin --os-password=548295a7ebf749b74d42 --os-tenant-name=admin --os-auth-url=http://controller:35357/v2.0
 class Keystone:
-    def __init__(self, name, passwd, email):
+    def __init__(self, name, passwd):
     #Regular user
         self.name = name                                #Name of instance
         self.passwd = passwd                            #User password
-        self.email = email                              #User email
         self.tenant = name                             #Name of user Tenant
         self.desc = 'User Tenant'
         #self.role = 'admin'                             #Role of the user
@@ -50,7 +49,8 @@ class Keystone:
     #CREATE USERS 
     #keystone user-create --name=chasiumen --pass=admin --email=morinor@devtrax.com
     #    
-    def add_user(self):
+    def add_user(self, mail):
+        self.email = email                              #User email
         cmd =self.KeyCmd +  ' user-create --name=' + self.name + ' --pass=' + self.passwd + ' --email=' + self.email
         self.v.check(cmd)
         self.exe(cmd)
