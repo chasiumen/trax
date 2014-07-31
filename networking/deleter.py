@@ -30,7 +30,7 @@ mail='umi@devtrax.com'
 router='r1'
 
 #### Neutron ####
-##print '==='*10 + ' DELETE NETWORK AND ROUTER ' + '==='*10
+print '==='*10 + ' DELETE NETWORK AND ROUTER ' + '==='*10
 #Create an instance
 neutron = neutron.Net(user, passwd, keystone.KeyCmd, router)
 neutron.delete_network()
