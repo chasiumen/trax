@@ -51,7 +51,7 @@ keystone.get_user()
 #### Neutron ####
 ##print '==='*10 + ' DELETE NETWORK AND ROUTER ' + '==='*10
 #Create an instance
-neutron = neutron.Net(user, passwd, keystone.KeyCmd)
+neutron = neutron.Net(user, passwd, keystone.KeyCmd, router)
 neutron.delete_network()
 neutron.delete_router()
 
