@@ -116,11 +116,14 @@ class Verbose(object):
     def __init__(self):
         print 'Color instance created'
     def notice(self, cmd):
-        print colors.GREEN + cmd + colors.ENDC   
+        print colors.GREEN + "<br>" + cmd + "</br>" + colors.ENDC   
+        #print colors.GREEN + cmd + colors.ENDC   
     #Warning message
     def warn(self, cmd):
-        print colors.RED + cmd + colors.ENDC
+        print colors.RED + "<br>" + cmd + "</br>" + colors.ENDC
+        #print colors.RED + cmd + colors.ENDC
     #Command check
     def check(self, cmd):
-        print 'CMD:' + colors.WHITE + cmd + colors.ENDC
+        print 'CMD:' + colors.WHITE + "<br>" + cmd + "</br>" + colors.ENDC
+        #print 'CMD:' + colors.WHITE + cmd + colors.ENDC
 

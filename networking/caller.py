@@ -20,7 +20,7 @@
     
 import sys, os.path
 #load additonal modules
-mPath='./lib/'
+mPath='../networking/lib/'
 if os.path.isfile(mPath+'neutron.py') and os.path.isfile(mPath+'keystone.py') is False:
     sys.exit("Error: Unable to load modules")
 else:

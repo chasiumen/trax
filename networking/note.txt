@@ -106,6 +106,12 @@ http://d.hatena.ne.jp/enakai00/20131226/1388021566
 #templates
 http://aws.amazon.com/jp/cloudformation/aws-cloudformation-templates/
 
+#Building JEOS images for use with Heat
+http://docs.openstack.org/developer/heat/getting_started/jeos_building.html
+
+#Cloud-init
+http://cloudinit.readthedocs.org/en/latest/topics/examples.html
+
 
 #heat stack-create wordpress --template-file=WordPress_Composed_Instances.template --parameters="DBUsername=wp;DBPassword=wp;KeyName=userkey;LinuxDistribution=F17"
 
