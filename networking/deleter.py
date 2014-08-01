@@ -32,9 +32,9 @@ else:
 
 #Check number of argeument
 #username, passwd, email, router_name
-    if len(sys.argv) != 5:
+    if len(sys.argv) != 4:
         print "Error: Number of command-line argeument mismatch"
-        sys.exit("Useage: ./caller.py USER PASSWD EMAIL ROUTER")
+        sys.exit("Useage: ./caller.py USER PASSWD EMAIL")
     else:
         #### VARIABLES ####
         #Assume tenants name is same as username
@@ -45,7 +45,7 @@ else:
         user = sys.argv[1]
         passwd = sys.argv[2]
 #        mail = sys.arg[3]
-        router = sys.argv[4]
+        router = 'r1'
         mail = sys.argv[1]+'@devtrax.com'
         #Create an instance
         keystone = keystone.Keystone(user, passwd)

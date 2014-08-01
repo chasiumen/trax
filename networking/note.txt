@@ -99,9 +99,12 @@ nova boot -options!!!
 http://docs.openstack.org/ja/user-guide/content/cli_migrate_instances.html
 
 
-#HEAT
+############# HEAT ##########
 #git, heat
 http://d.hatena.ne.jp/enakai00/20131226/1388021566
+
+#templates
+http://aws.amazon.com/jp/cloudformation/aws-cloudformation-templates/
 
 
 #heat stack-create wordpress --template-file=WordPress_Composed_Instances.template --parameters="DBUsername=wp;DBPassword=wp;KeyName=userkey;LinuxDistribution=F17"
