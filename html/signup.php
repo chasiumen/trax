@@ -19,7 +19,7 @@ echo ("EMAIL:".$email);
 print ("<br><br>");
 print ("<b>Executing python script...</b><br>");
 #echo "Execute python script....<br>";
-$command = escapeshellcmd('../networking/caller.py'). " ". $user. " ".  $pass. " ". $email;
+$command = escapeshellcmd('./scrpts/signup.py'). " ". $user. " ".  $pass. " ". $email;
 print ("<b>$command </b>");
 $output = shell_exec($command);
 echo $output;
