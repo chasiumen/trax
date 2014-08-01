@@ -1,0 +1,35 @@
+<html>
+<head>
+</head>
+<body>
+<?php
+
+//variables
+$file_name = 'out.csv';
+
+//connect to mysql 
+$link = mysql_connect('192.168.1.147', 'chasiumen', 'agumion$0822') or die ("Could not conncet to database");
+//$link = mysql_connect('localhost', 'morinor', 'GD4MLLPZeKw4HMbb' ) or die ("Could not connect to databse");
+
+//select schema name
+$selected = mysql_select_db("test", $link) or die ("Could not choose schema");
+#$selected = mysql_select_db("wordpress", $link) or die ("Could not choose schema");
+
+$sql = "INSERT INTO FILES (file_name, file_gps, file_path, file_type, file_size, user_name)
+VALUES ('$file_name', '$file_gps', '$file_path', '$file_type', $file_size, 'morinor')";
+
+
+
+//----QUERY------
+$result_flag = mysql_query($sql);
+if (!$result_flag) {
+    die('Failed to issue INSERT query'.mysql_error());
+}
+
+
+
+
+?>
+
+</body>
+</html>

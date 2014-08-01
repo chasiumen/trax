@@ -1,0 +1,37 @@
+<html>
+
+<head>
+</head>
+
+<script
+>
+// Can also be used with $(document).ready()
+$(window).load(function() {
+  $('.flexslider').flexslider({
+    animation: "slide"
+  });
+});
+
+
+</script>
+<body>
+
+<a href="http://chasiumen.net/mrtg/index.html">MRTG 監視</a>
+<a href="http://www.chasiumen.net/awstats/awstats.pl?config=chasiumen.net">Awstats</a>
+<a href="redirect.html">Redirect test</a>
+
+</br>
+</br>
+
+<h1>Upload file</h1>
+<form action="upload_file.php" method="post"
+enctype="multipart/form-data">
+<label for="file">Filename:</label>
+<input type="file" name="file" id="file"><br>
+<input type="submit" name="submit" value="Submit">
+</form>
+
+
+</body>
+
+</html>
