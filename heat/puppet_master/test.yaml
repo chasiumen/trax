@@ -1,0 +1,102 @@
+heat_template_version: 2014-05-23
+
+description: Template to deploy a Puppet Master.
+
+parameters:
+ net_id:
+    type: string
+    label: Net ID
+    description: Network ID for the server
+    default: "dfb55d09-58bb-4ad5-bd10-d82fc047f5d6"
+
+ instance_name:
+    type: string
+    label: Instance Name
+    description: Name of the instance.
+    default: Puppet_Master
+
+  image_id:
+    type: string
+    label: Image ID
+    description: Image to be used for compute instance
+    default: ubuntu-heat-cfntools
+    constraints:
+      - allowed_values:
+        - ubuntu-heat-cfntools
+        - F19-x86_64-cfntools
+
+  instance_type:
+    type: string
+    label: Instance Type
+    description: Type of instance (flavor), limited to medium due to systems
+    default: m1.small
+    constraints:
+      - allowed_values:
+        - m1.tiny
+        - m1.small
+        - m1.medium
+        description: Value must be m1.tiny, m1.small, or m1.medium.
+
+  ppm_static_ip:
+    type: string
+    label: Static IP
+    description: Set the IP of the puppet master.
+    default: 10.0.0.3
+
+  ppm_netmask:
+    type: string
+    label: Netmask
+    description: Set the netmask.
+    default: 255.255.255.0
+
+  ppm_gateway:
+    type: string
+    label: Gateway
+    description: Set the network gateway.
+    default: 10.0.0.1
+
+resources:
+  pp_config:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      inputs:
+        - name: ip_address
+        - name: netmask
+        - name: gateway
+      group: script
+      config: | 
+        #!/bin/bash -v
+        apt-get install puppetmaster
+        echo \* > /etc/puppet/autosign.conf
+        /etc/init.d/puppetmaster restart
+ 
+ pp_deployment:
+    type: OS::Heat::SoftwareDeployment
+    properties:
+      config:
+        get_resource: pp_config
+      server:
+        get_resource: pp_master_instance
+      input_values:
+        ip_address: { get_param: ppm_static_ip }
+        netmask: { get_param: ppm_netmask }
+        gateway: { get_param: ppm_gateway }
+
+  pp_master_instance: 
+    type: OS::Nova::Server
+    properties:
+      name: { get_param: instance_name }
+      image: { get_param: image_id }
+      flavor: { get_param: instance_type }
+      networks:
+        - network: { get_param: net_id }
+      user_data_format: SOFTWARE_CONFIG
+
+outputs:
+  instance_ip:
+    description: IP for Puppet Master
+    value:
+      str_replace:
+        template: host
+        params:
+          host: { get_attr: [pp_master_instance, networks, private, 0] }

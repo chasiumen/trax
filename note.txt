@@ -119,6 +119,16 @@ http://cloudinit.readthedocs.org/en/latest/topics/examples.html
 
 add pass on Fedora image
 http://d.hatena.ne.jp/ytooyama/20140201/1391186305
+
+
+
+
+
+######CLOULD INIT
+
+#templates
+http://bazaar.launchpad.net/~cloud-init-dev/cloud-init/trunk/files/head:/doc/examples/
+
 ------------------------------
 #cloud-config
 password: vmpass
@@ -126,6 +136,33 @@ chpasswd: { expire: False }
 ssh_pwauth: True
 
 -----------------------------
+
+#Create cloud-init centos6 image
+http://okochang.blogspot.com/2012/01/amazon-linuxcloud-initcentos6.html
+
+
+
+#Building JEOS images for use with Heat
+#http://docs.openstack.org/developer/heat/getting_started/jeos_building.html
+#disk-image-create [-a i386|amd64|armhf] -o filename {element} [{element} ...]
+
+#Get codes from git
+git clone https://github.com/openstack/diskimage-builder.git
+git clone https://github.com/openstack/tripleo-image-elements.git
+
+#add elements path
+export ELEMENTS_PATH=tripleo-image-elements/elements
+
+#Create JEOS images
+diskimage-builder/bin/disk-image-create vm fedora heat-cfntools -a amd64 -o fedora-heat-cfntools
+
+diskimage-builder/bin/disk-image-create vm ubuntu heat-cfntools -a i386 -o ubuntu-heat-cfntools
+
+#add to glance
+source ~/.openstack/keystonerc
+glance image-create --name fedora-heat-cfntools --is-public true --disk-format qcow2 --container-format bare < fedora-heat-cfntools.qcow2
+
+glance image-create --name ubuntu-heat-cfntools --is-public true --disk-format qcow2 --container-format bare < ubuntu-heat-cfntools.qcow2
 
 
 
@@ -148,6 +185,10 @@ nova show [INSTANCE_ID]
 
 
 
+############################ make stack template
+heat stack-create -f test-stack.yml   -P "ImageID=cirros-0.3.2-x86_64;NetID=$NET_ID" testStack
+
+heat stack-create -f test-stack.yml -P "ImageID=cirros-0.3.2-x86_64;NetID=$NET_ID" testStack
 
 
 
