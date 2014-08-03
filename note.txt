@@ -192,6 +192,33 @@ heat stack-create -f test-stack.yml -P "ImageID=cirros-0.3.2-x86_64;NetID=$NET_I
 
 
 
+#################instance front end
+
+1. get number of instances (list)
+    run nova-list and store into tmp file
+    read tempfile
+        get number of instances
+        instance name
+        instance ID
+
+
+nova list (get ID)
+nova get-vnc-console 3196794e-098a-43ba-8869-d4977ff099e7  novnc
+
+#Soft_reboot
+nova reboot <server>
+#terminate instance
+nova stop <server>
+
+
+
+
+
+
+
+
+
+
 
 
 
