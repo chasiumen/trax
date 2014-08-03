@@ -10,8 +10,8 @@ import sys, re, subprocess
 #Generates dynamic bash commands
 def cmd(path, cred, x):
 #    cmd = 'nova os-username=umi --os-password=admin --os-tenant-name=umi --os-auth-url=http://controller:35357/v2.0 list' +  ' |  awk -F \'\|\' \'{print $' + x + '}\' '
-    cmd = 'nova ' + cred + ' list' +  ' |  awk -F \'\|\' \'{print $' + x + '}\' '
-#    cmd = 'cat ' + path +  ' |  awk -F \'\|\' \'{print $' + x + '}\' '
+#    cmd = 'nova ' + cred + ' list  \|  awk -F \'\|\' \'{print $' + x + '}\' '
+    cmd = 'cat ' + path +  ' |  awk -F \'\|\' \'{print $' + x + '}\' '
 #    print cmd
     return exe(cmd)
     
@@ -50,7 +50,8 @@ def php_out(ID, NAME, STATUS, POWER, x):
 
 ##################### MAIN ###############
 #dir of nova-list output
-path='../conf/instance.out'
+#path='../conf/instance.out'
+path='/tmp/instance.out'
 
 #check number of arguments
 #User pass 
@@ -63,7 +64,11 @@ else:
     tenant=user
     auth_url = 'http://controller:35357/v2.0'  #Auth URL
     cred = '--os-username=' + user +  ' --os-password=' + passwd + ' --os-tenant-name=' + tenant + ' --os-auth-url=' + auth_url
-
+    NovaCmd = 'nova ' + cred                   #nova base command
+    
+    #Get list of instances and output to a file
+    GetList = NovaCmd + ' list > ' + path
+    outfile = exe(GetList)
 
     #   INSTANCE ID
     #cat ../conf/instance.out  | awk -F '\|' '{print $3}'
