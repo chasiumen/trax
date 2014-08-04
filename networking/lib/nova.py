@@ -39,10 +39,10 @@ def php_out(ID, NAME, STATUS, POWER, x):
 
 #nova cred + get-vnc-console InstanceID novnc
 def get_console(NovaCmd,InstanceID):
-    cmd = NovaCmd + ' get-vnc-console ' InstanceID + ' novnc'
+    cmd = NovaCmd + ' get-vnc-console ' +  InstanceID + ' novnc'
     print "GetConsole:"
     x = exe(cmd)
-    print x
+    print x[10]
 
    
 #<tr>
