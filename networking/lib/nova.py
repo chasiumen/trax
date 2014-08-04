@@ -11,7 +11,7 @@ import sys, re, subprocess
 def cmd(path, cred, x):
 #    cmd = 'nova os-username=umi --os-password=admin --os-tenant-name=umi --os-auth-url=http://controller:35357/v2.0 list' +  ' |  awk -F \'\|\' \'{print $' + x + '}\' '
 #    cmd = 'nova ' + cred + ' list  \|  awk -F \'\|\' \'{print $' + x + '}\' '
-    cmd = 'cat ' + path +  ' |  awk -F \'\|\' \'{print $' + x + '}\' '
+    cmd = 'cat ' + path +  ' |  awk -F \'|\' \'{print $' + x + '}\' '
 #    print cmd
     return exe(cmd)
     
@@ -36,6 +36,13 @@ def php_out(ID, NAME, STATUS, POWER, x):
     pipe = ' | '
     print ID[x] + pipe +  NAME[x] + pipe + STATUS[x] + pipe + POWER[x] + '\n'
 
+
+#nova cred + get-vnc-console InstanceID novnc
+def get_console(NovaCmd,InstanceID):
+    cmd = NovaCmd + ' get-vnc-console ' InstanceID + ' novnc'
+    print "GetConsole:"
+    x = exe(cmd)
+    print x
 
    
 #<tr>
@@ -70,19 +77,19 @@ else:
     GetList = NovaCmd + ' list > ' + path
     outfile = exe(GetList)
 
-    #   INSTANCE ID
+#INSTANCE ID
     #cat ../conf/instance.out  | awk -F '\|' '{print $3}'
     InstanceID = cmd(path, cred, '2')
     del InstanceID[0:2]         #trim data
     #print "InstnceID", InstanceID
     
     
-    #   NAME OF INSTANCE
+#NAME OF INSTANCE
     InstanceName = cmd(path, cred, '3')
     del InstanceName[0:2]       #trim data
     #print "InstanceName:", InstanceName
     
-    #   Instance Status
+#Instance Status
     #cat ../conf/instance.out  | awk -F '\|' '{print $4}'
     #active
     #shutoff
@@ -90,24 +97,20 @@ else:
     del InstanceStatus[0:2]
     #print "Instance Status:", InstanceStatus
     
-    #power state
+#power state
     #cat ../conf/instance.out  | awk -F '\|' '{print $6}'
     #Running 
     #shutdown
     PowerState = cmd(path, cred, '6')
     del PowerState[0:3]         #trim data
     #print "Power State:",  PowerState
-    
+  
+
+    #get console url
+    get_console(NovaCmd, InstanceID[2])   
+  
     print '====='*10
     
     for x in range(0,len(InstanceName)):
         php_out(InstanceID, InstanceName, InstanceStatus, PowerState, x)
-    #with open(path) as temp:
-    #    line = temp.readline()
-    #    while line:
-    ##        print line.rstrip("\n")
-    #        x =  line.rstrip("\n")
-    #        line = temp.readline()
-    #
-    #
     

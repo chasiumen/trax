@@ -1,0 +1,52 @@
+heat_template_version: 2013-05-23
+
+description: Test template.
+
+parameters:
+  net_id:
+    type: string
+    label: Net ID
+    description: Network ID for the server
+    default: 03e0e92e-d2b9-4c2b-b0fc-98a5a773818e
+
+  instance_name:
+    type: string
+    label: Instance Name
+    description: Name of the instance.
+    default: test01
+
+resources:
+  script_cfg:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      group: script
+      config: |
+        #!/bin/bash
+        echo "This should appear in a file." > /tmp/test-script.text
+
+  server_init:
+    type: OS::Heat::MultipartMime
+    properties:
+      parts:
+        - config: { get_resource: script_cfg }
+
+  the_server:
+    type: OS::Nova::Server
+    properties:
+      name: { get_param: instance_name }
+      key_name: CloudKey
+      image: "ubuntu-heat-cfntools"
+      flavor: m1.small
+      networks:
+        - network: "03e0e92e-d2b9-4c2b-b0fc-98a5a773818e"
+      user_data_format: RAW
+      user_data:
+        get_resource: server_init
+outputs:
+  instance_ip:
+    description: IP for test instance.
+    value:
+      str_replace:
+        template: host
+        params:
+          host: { get_attr: [the_server, networks, private, 0] }
