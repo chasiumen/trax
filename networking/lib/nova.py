@@ -31,11 +31,30 @@ def parse(line):
 def php_out(NovaCmd, ID, NAME, STATUS, POWER, x, console):
     #print '<tr><td><h6>' + array[x] + '</h2></td><td><input type="submit" formaction="" value="Soft Reboot" /></td><td><input type="submit" formaction="" value="Delete" /></td><td><input type="submit" formaction="" value="Console" /></td></tr><br />'
     pipe = ' | '
-    print console + pipe +  NAME[x] + pipe + STATUS[x] + pipe + POWER[x] + '\n'
-    reboot(NovaCmd, ID)
-    terminate(NovaCmd, ID)
+#    print console + pipe +  NAME[x] + pipe + STATUS[x] + pipe + POWER[x] + '\n'
+    print " <?php session_start(); $=\""+ ID + "; $_SESSION[\"ID\"]=$ID; ?> <form id=\"instances\" method=\"post\" action=\"\"> <table summary=\"instances\"> <tr> <td><h2>" + NAME[x] +  "</h2></td> <td><input type=\"submit\" formaction=\"reboot.php  \" value=\"Soft Reboot\" /></td> <td><input type=\"submit\" formaction=\"" "\" value=\"Delete\" /></td><td><input type=\"submit\" formaction=\"" + console  + "\" value=\"Console\" /></td> </tr> <br /> "
+    print "</table> </form>"
 
 
+#    print " <?php
+#session_start();
+#$=\""+ ID + ";
+#$_SESSION[\"ID\"]=$ID;
+#?>
+#<form id=\"instances\" method=\"post\" action=\"\">
+#<table summary=\"instances\">
+#<tr>
+#<td><h2>" + NAME[x] +  "</h2></td>
+#<td><input type=\"submit\" formaction=\"reboot.php  \" value=\"Soft Reboot\" /></td>
+#<td><input type=\"submit\" formaction=\"" "\" value=\"Delete\" /></td>
+#<td><input type=\"submit\" formaction=\"" + console  + "\" value=\"Console\" /></td>
+#</tr>
+#<br />
+#"
+#    reboot(NovaCmd, ID)
+#    terminate(NovaCmd, ID)
+
+################ NOVA RELATED FUNCTIONS
 #nova cred + get-vnc-console InstanceID novnc
 def get_console(NovaCmd,InstanceID):
     cmd = NovaCmd + ' get-vnc-console ' +  InstanceID + ' novnc'
@@ -43,16 +62,18 @@ def get_console(NovaCmd,InstanceID):
     x = exe(cmd)
 #    print x[11]
     return x[11]
-
+#SOFT REBOOT
 def reboot(NovaCmd, InstanceID):
     cmd = NovaCmd + ' reboot ' + InstanceID
     #exe(cmd)
-    print "Reboot:" + cmd
+#    print "Reboot:" + cmd
 
+#STOP
 def terminate(NovaCmd, InstanceID):
     cmd= NovaCmd + ' stop ' + InstanceID
     #exe(cmd)
-    print "Terminate:" + cmd
+#    print "Terminate:" + cmd
+
 
 
 ##################### MAIN ###############
